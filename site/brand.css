@@ -1,0 +1,309 @@
+/* ==========================================================================
+   My Sign — brand.css
+   The shared visual language of the app (app/static/index.html) and the
+   public site (site/index.html): tokens first, then the room (sky, grain),
+   then type, fields, buttons, glass, sheet and the orbit motif.
+
+   Copied faithfully from the app's "After Dark" stylesheet so the app can
+   later import this file instead of carrying its own copy. One look at every
+   hour: the night atlas. The first :root block is the old After Dark day
+   palette, kept so the token names stay in step with the app; the block after
+   it sets the night values for everyone, whatever the phone's theme says.
+   Fonts come from /fonts/fonts.css: Bodoni Moda for headlines, Newsreader for
+   the voice, Geist for the interface, DM Mono for the sky's numbers.
+   ========================================================================== */
+
+/* ---------- 1. tokens ---------- */
+:root{
+  color-scheme:dark;
+  --ground:#F5EEE6; --ground-2:#EFE5DB;
+  --surface:rgba(250,244,236,.72); --surface-solid:#FFFAF4; --surface-2:#EDE1D6;
+  --ink:#1E1518; --ink-2:#4E3E3C; --ink-3:#655450;
+  --rule:rgba(60,30,30,.11); --rule-2:rgba(60,30,30,.2);
+  --accent:#7C2235; --accent-2:#94703A; --accent-ink:#FFFFFF;
+  --accent-wash:rgba(124,34,53,.08);
+  --glow:linear-gradient(118deg,#C9A774 0%,#D98C86 50%,#7C2235 100%);
+  --glow-deep:linear-gradient(135deg,#8E2A3B 0%,#5A1726 100%);
+  --text-glow:linear-gradient(100deg,#94703A 0%,#A3404F 55%,#7C2235 100%);
+  --rose-a:#C9A774; --rose-b:#D98C86; --rose-c:#7C2235;
+  --aura-1:rgba(233,180,170,.55); --aura-2:rgba(214,178,120,.28); --aura-3:rgba(124,34,53,.10);
+  --stars:rgba(90,30,40,.16);
+  --shadow:0 1px 0 rgba(255,255,255,.75) inset, 0 10px 30px -14px rgba(80,30,30,.22);
+  --shadow-lg:0 30px 60px -26px rgba(80,30,30,.35);
+  --good:#2D6A4F; --warn:#865A12; --crit:#A3282E;
+  --warn-wash:rgba(180,130,30,.12); --crit-wash:rgba(180,40,50,.07);
+  --fire:#C8603F; --earth:#7E8B4E; --air:#B8945A; --water:#5A7FA0;
+  --display:'Newsreader',Charter,Georgia,serif;
+  --sans:'Geist','Helvetica Neue',Arial,sans-serif;
+  --mono:'Geist','Helvetica Neue',Arial,sans-serif;
+  --symbols:'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',var(--sans);
+  --r:20px; --r-sm:12px; --r-pill:999px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  /* glass */
+  --glass-line:rgba(124,34,53,.12); --glass-hi:rgba(255,255,255,.55);
+  /* the living sky: --s0..--s3 run top to horizon, set by sky.js (MySky) */
+  --s0:var(--ground); --s1:var(--ground); --s2:var(--ground); --s3:var(--ground);
+  --orb-x:80%; --orb-y:10%; --orb-o:0; --star-o:0;
+  --sun-core:#F2D4A6; --sun-halo:#EFAE8E;
+}
+@media all{:root{
+  color-scheme:dark;
+  --ground:#090B17; --ground-2:#0E1122;
+  --surface:rgba(9,11,23,.5); --surface-solid:#10142A; --surface-2:rgba(239,230,210,.07);
+  --ink:#EFE6D2; --ink-2:#C9C2AE; --ink-3:#A39D88;
+  --rule:rgba(200,162,74,.2); --rule-2:rgba(200,162,74,.36);
+  --accent:#F0745C; --accent-2:#D2AE58; --accent-ink:#14101A;
+  --accent-wash:rgba(240,116,92,.1);
+  --glow:linear-gradient(#D2AE58,#D2AE58); --glow-deep:linear-gradient(#F0745C,#F0745C);
+  --text-glow:linear-gradient(#EFE6D2,#EFE6D2);
+  --rose-a:#D2AE58; --rose-b:#D2AE58; --rose-c:#F0745C;
+  --aura-1:rgba(64,78,170,.26); --aura-2:rgba(200,162,74,.08); --aura-3:rgba(240,116,92,.05);
+  --stars:rgba(239,230,210,.6);
+  --shadow:none; --shadow-lg:0 30px 60px -30px rgba(0,0,0,.9);
+  --good:#8FD0AC; --warn:#E9C27A; --crit:#FF9A8E;
+  --warn-wash:rgba(233,194,122,.11); --crit-wash:rgba(255,120,110,.09);
+  --fire:#E8876A; --earth:#B3BE82; --air:#E6CFA8; --water:#8FA9C8;
+  --glass-line:rgba(200,162,74,.34); --glass-hi:transparent;
+  --r:6px; --r-sm:4px;
+}}
+
+/* ---------- 2. base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background-color:var(--ground);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.55;letter-spacing:-.003em;font-optical-sizing:auto;font-kerning:normal;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none}
+::selection{background:var(--accent);color:var(--accent-ink)}
+a{color:var(--accent);text-underline-offset:.18em}
+h1,h2,.hero{overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 3. the room: sky, horizon, sun or moon, haze, stars, grain ---------- */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:linear-gradient(180deg,var(--s0) 0%,var(--s1) 45%,var(--s2) 78%,var(--s3) 100%)}
+.sky::before{content:"";position:absolute;left:-20%;right:-20%;bottom:-12%;height:46%;
+  background:radial-gradient(50% 50% at 50% 70%,color-mix(in oklab,var(--s3) 62%,#FFE6CC),transparent 72%);
+  opacity:.42}
+.sky .haze{position:absolute;inset:-25%;
+  background:radial-gradient(34% 26% at 16% 14%,var(--aura-1),transparent 70%),
+             radial-gradient(30% 26% at 90% 34%,var(--aura-2),transparent 70%);
+  opacity:.55;will-change:transform;animation:drift 38s var(--ease) infinite alternate}
+.sky .orb{position:absolute;left:calc(42% + var(--orb-x) * .52);top:calc(var(--orb-y) * .3);width:4.25rem;height:4.25rem;
+  transform:translate(-50%,-50%);opacity:var(--orb-o);transition:left 60s linear,top 60s linear,opacity 4s}
+.sky .orb::before{content:"";position:absolute;inset:-260%;border-radius:50%;
+  background:radial-gradient(closest-side,color-mix(in oklab,var(--sun-halo) 46%,transparent),
+             color-mix(in oklab,var(--sun-halo) 14%,transparent) 45%,transparent)}
+.sky .orb i{position:absolute;inset:0;border-radius:50%;filter:blur(1.5px);
+  background:radial-gradient(closest-side,#FFFBF2 0%,#FFF1D8 38%,color-mix(in oklab,var(--sun-core) 85%,transparent) 70%,transparent 100%);
+  box-shadow:0 0 60px 18px color-mix(in oklab,var(--sun-core) 38%,transparent)}
+[data-orb=moon] .sky .orb{width:4rem;height:4rem}
+/* Wide screens: the top band holds the nav, so the light sits in the gap
+   between the headline and the art instead. */
+@media (min-width:60rem){ .sky .orb{left:calc(46% + var(--orb-x) * .1);top:calc(10% + var(--orb-y) * .6)} }
+[data-orb=moon] .sky .orb i{background:none;box-shadow:none}
+[data-orb=moon] .sky .orb::before{inset:-120%;background:radial-gradient(closest-side,rgba(243,234,226,.16),transparent)}
+@media all{ .sky .orb{opacity:calc(var(--orb-o) * .78);mix-blend-mode:screen} }
+.sky::after{content:"";position:absolute;inset:0;opacity:var(--star-o);transition:opacity 4s;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,var(--stars),transparent 60%),
+    radial-gradient(1px 1px at 72% 8%,var(--stars),transparent 60%),
+    radial-gradient(1.4px 1.4px at 86% 42%,var(--stars),transparent 60%),
+    radial-gradient(1px 1px at 32% 56%,var(--stars),transparent 60%),
+    radial-gradient(1.2px 1.2px at 58% 74%,var(--stars),transparent 60%),
+    radial-gradient(1px 1px at 8% 88%,var(--stars),transparent 60%),
+    radial-gradient(1px 1px at 94% 92%,var(--stars),transparent 60%),
+    radial-gradient(1.3px 1.3px at 46% 22%,var(--stars),transparent 60%),
+    radial-gradient(1px 1px at 24% 36%,var(--stars),transparent 60%),
+    radial-gradient(1.2px 1.2px at 64% 30%,var(--stars),transparent 60%);
+  background-size:420px 520px;animation:twinkle 9s ease-in-out infinite alternate}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media all{ .grain{opacity:.045} }
+
+/* ---------- 4. brand lockup ---------- */
+.brand{font-family:var(--display);font-style:italic;font-size:1.65rem;font-weight:500;
+  letter-spacing:-.01em;line-height:1}
+.lockup{display:flex;align-items:center;gap:.5rem;color:var(--ink);text-decoration:none}
+.lockup .mark{width:1.45rem;height:1.45rem;flex:none;display:block;
+  filter:drop-shadow(0 0 6px rgba(230,200,150,.5));animation:breathe 5s ease-in-out infinite}
+
+/* ---------- 5. type ---------- */
+.hero{font-family:var(--display);font-weight:400;
+  font-size:clamp(3.2rem,15vw,4rem);line-height:.98;letter-spacing:-.018em;
+  margin:2.2rem 0 .3rem;text-wrap:balance}
+.hero em,.glow-text{padding-right:.06em;font-style:italic;background:var(--text-glow);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{color:var(--ink-2);margin:0 0 1.4rem;text-wrap:pretty;font-size:1rem}
+.eyebrow,label{display:block;font-family:var(--sans);font-size:.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 .5rem}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- 6. fields ---------- */
+.field{margin-bottom:1.1rem;position:relative}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=time],select{
+  width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);
+  border:1px solid var(--rule-2);border-radius:var(--r-sm);padding:.85rem 1rem;min-width:0;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease);-webkit-appearance:none;appearance:none;min-height:3.1rem}
+input::placeholder,textarea::placeholder{color:var(--ink-3);opacity:.85}
+select:focus,input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash),0 0 24px -6px var(--accent)}
+input:disabled{opacity:.45}
+input[readonly]{color:var(--ink-2)}
+.code-input{font-size:1.6rem!important;letter-spacing:.5em;text-align:center;font-variant-numeric:tabular-nums;font-weight:600;padding-left:1.4rem!important}
+.hint{font-size:.8125rem;color:var(--ink-3);margin:.45rem 0 0}
+.err{color:var(--crit);font-size:.8125rem;margin:.6rem 0 0;min-height:1.2em}
+.devcode{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.8125rem;color:var(--warn);background:var(--warn-wash);border-radius:var(--r-sm);
+  padding:.6rem .8rem;margin:.6rem 0 0;font-variant-numeric:tabular-nums}
+.devcode[hidden]{display:none}
+
+/* ---------- 7. buttons ---------- */
+/* .primary works on <button> and <a>: the site links where the app taps. */
+:is(button,a).primary{position:relative;display:block;width:100%;text-align:center;text-decoration:none;
+  font:inherit;font-weight:700;font-size:1rem;letter-spacing:.01em;cursor:pointer;
+  background:var(--glow-deep);color:#FFF6F8;border:0;border-radius:var(--r-pill);padding:1rem 1.2rem;
+  box-shadow:0 14px 30px -14px rgba(142,42,59,.8),inset 0 1px 0 rgba(255,255,255,.25);
+  overflow:hidden;isolation:isolate;transition:transform .2s var(--ease),box-shadow .3s var(--ease),opacity .3s}
+:is(button,a).primary::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);
+  transform:translateX(-120%);transition:transform .9s var(--ease)}
+:is(button,a).primary:not(:disabled):hover::after{transform:translateX(120%)}
+:is(button,a).primary:not(:disabled):hover{box-shadow:0 18px 38px -14px rgba(142,42,59,.95),inset 0 1px 0 rgba(255,255,255,.3)}
+:is(button,a).primary:not(:disabled):active{transform:scale(.98)}
+button.primary:disabled{background:var(--surface-2);color:var(--ink-3);cursor:default;box-shadow:none}
+:is(button,a).primary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.link{background:none;border:0;font:inherit;font-size:.875rem;font-weight:600;color:var(--accent);
+  cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.link:disabled{color:var(--ink-3);cursor:default;text-decoration:none}
+:is(button,a).ghost,.pill{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  background:var(--surface);border:1px solid var(--rule-2);color:var(--ink);min-height:2.75rem;text-decoration:none;
+  border-radius:var(--r-pill);font:inherit;font-size:.8125rem;font-weight:600;padding:.5rem 1rem;cursor:pointer;
+  transition:border-color .25s,background .25s;white-space:nowrap}
+:is(button,a).ghost:hover,.pill:hover{border-color:var(--accent);background:var(--accent-wash)}
+button.ghost:disabled{opacity:.45;cursor:default}
+:is(button,a).ghost:focus-visible,.pill:focus-visible,.link:focus-visible,a:focus-visible,summary:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--r-pill)}
+
+/* ---------- 8. glass card ---------- */
+/* Frosted glass over the sky: the colour of the hour bleeds through, text
+   stays on a dense enough pane to hold AA. Hairline, no drop shadow. */
+.card{background:var(--surface);border:.5px solid var(--glass-line);border-radius:var(--r);
+  -webkit-backdrop-filter:blur(24px) saturate(1.2);backdrop-filter:blur(24px) saturate(1.2);
+  box-shadow:inset 0 1px 0 var(--glass-hi)}
+@media (prefers-reduced-transparency:reduce){
+  .card{background:var(--surface-solid);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* The candlelit edge the app gives its Today card. */
+.card.lit{position:relative}
+.card.lit::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+  background:var(--glow);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none}
+
+/* ---------- 9. sheet (bottom sheet over a scrim) ---------- */
+.sheet{width:100%;max-width:30rem;background:var(--surface-solid);border:1px solid var(--rule-2);border-bottom:0;
+  border-radius:26px 26px 0 0;padding:1.5rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+  box-shadow:var(--shadow-lg);animation:up .4s var(--ease) both}
+.sheet::before{content:"";display:block;width:2.4rem;height:4px;border-radius:4px;background:var(--rule-2);margin:-.6rem auto 1.1rem}
+.sheet h2,.sheet h3{font-family:var(--display);font-weight:400;font-size:1.9rem;line-height:1.05;margin:0 0 .5rem}
+.sheet p{color:var(--ink-2);font-size:.9375rem;margin:0 0 1rem}
+.sheet .step{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;color:var(--ink-3);margin:0 0 .4rem}
+.sent{font-size:.8125rem;color:var(--ink-3);margin:-.4rem 0 1rem}
+
+/* ---------- 10. the orbit motif ---------- */
+.orbit .ring{fill:none;stroke:var(--rule-2);stroke-width:.6}
+.orbit .spin{transform-origin:120px 120px;animation:spin 60s linear infinite}
+.orbit .spin.rev{animation-duration:90s;animation-direction:reverse}
+
+/* ---------- 11. motion ---------- */
+@keyframes drift{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(3%,-2%,0) rotate(6deg)}100%{transform:translate3d(-3%,3%,0) rotate(-4deg)}}
+@keyframes twinkle{from{opacity:.55}to{opacity:1}}
+@keyframes breathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.08) rotate(8deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes up{from{transform:translateY(100%)}}
+@keyframes fade{from{opacity:0}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* the free form in steps (index.html, ig.html; driven by site.js) */
+.free{scroll-margin-top:5.5rem}
+.free .mini{margin:1rem 0 .2rem;padding:.9rem 1rem;border-radius:var(--r-sm);background:var(--accent-wash)}
+.free .mini[hidden],.free #frMore[hidden],.back[hidden],.frmail[hidden]{display:none}
+.free .mini .lab{margin:0 0 .35rem;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.free .mini q{display:block;font-family:var(--display);font-size:1.25rem;line-height:1.25;quotes:"“" "”";text-wrap:pretty}
+.free .mini .why{margin:.4rem 0 0;font-size:.8125rem;color:var(--ink-3)}
+.free .more-h{margin:.9rem 0 .7rem;font-family:var(--display);font-size:1.2rem;line-height:1.2}
+.free #frMore .hint{text-align:left}
+.free #frMore .link{display:inline;min-height:0;padding:0 .15rem}
+.back{margin:1.2rem 0 -.4rem;padding:.6rem 1rem;border-radius:var(--r-sm);font-size:.9375rem;display:flex;flex-wrap:wrap;gap:.2rem .9rem;align-items:center;max-width:28rem}
+.top .signin{min-height:2.75rem;padding:.4rem .6rem}
+.top .startsm{text-decoration:none;align-items:center}
+.frmail{padding:1.3rem 1.25rem;margin-top:1rem;max-width:36rem}
+.frmail h3{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.15;margin:0 0 .5rem}
+.frmail .field{margin:.9rem 0}
+.frmail .err:empty{display:none}
+.ghost.sec{display:inline-flex;align-items:center;margin-top:1rem;text-decoration:none}
+/* the teaser: the last two lines are there, but you have to ask for them */
+#you .mine li.locked{position:relative;overflow:hidden}
+#you .mine li.locked q{filter:blur(7px);opacity:.7;user-select:none;pointer-events:none}
+#you .mine .unlock{position:absolute;left:0;right:0;top:50%;margin:0 auto;width:max-content;max-width:calc(100% - 1.5rem);transform:translateY(-50%);display:inline-flex;align-items:center;gap:.5rem;
+  min-height:2.75rem;padding:0 1.1rem;border-radius:999px;white-space:nowrap;font-size:.875rem;font-weight:600;text-decoration:none;
+  color:var(--accent);background:var(--surface-solid);border:1px solid var(--rule-2);box-shadow:0 6px 20px rgba(60,30,30,.12);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+#you .mine .unlock svg{width:.95rem;height:.95rem;flex:none}
+#you .mine .unlock:hover{transform:translateY(calc(-50% - 2px));box-shadow:0 10px 26px rgba(60,30,30,.16)}
+#you .ctas{margin-top:1.4rem}
+/* the detail lives one tap away, on the same grid as everything else */
+.moreinfo{max-width:var(--wrap,72rem);margin:0 auto;padding:0 1rem 2.5rem;text-align:center}
+.moreinfo>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;min-height:2.75rem;padding:0 1.2rem;
+  border:1px solid var(--rule-2);border-radius:999px;color:var(--ink-2);font-size:.9375rem;font-weight:500;transition:background .2s var(--ease),color .2s var(--ease)}
+.moreinfo>summary::-webkit-details-marker{display:none}
+.moreinfo>summary::after{content:"";width:.5rem;height:.5rem;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:translateY(-.15rem) rotate(45deg);transition:transform .25s var(--ease)}
+.moreinfo>summary:hover{background:var(--surface);color:var(--ink)}
+.moreinfo[open]>summary::after{transform:translateY(.1rem) rotate(-135deg)}
+.moreinfo[open]{text-align:left;padding:0 0 1rem}
+.moreinfo[open]>summary{display:flex;width:max-content;margin:0 auto 1rem}
+/* phones: one button follows you once the hero has scrolled away */
+.stickybar{display:none}
+@media (max-width:59.99rem){
+  .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:block;padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--ground) 70%,transparent);transform:translateY(110%);transition:transform .25s var(--ease)}
+  .stickybar.on{transform:none}
+  .stickybar .primary{display:flex;width:100%;min-height:3rem;justify-content:center;align-items:center;text-decoration:none}
+}
+@media (prefers-reduced-motion:reduce){.stickybar{transition:none}}
+/* phones: small inline controls still get a thumb-sized target */
+#frSkip{display:inline-block;padding:.7rem .5rem;margin:-.7rem -.2rem}
+.top .lockup{display:inline-flex;align-items:center;min-height:2.75rem}
+/* the privacy question gets the bottom of the screen to itself */
+body:has(#msConsent) .stickybar{transform:translateY(110%)}
+
+/* ---------- 12. the night atlas skin ---------- */
+/* The same override layer the app carries (app/static/index.html, "Night
+   atlas"): ink-blue night, gold hairlines, one hot accent, no gradient type,
+   no glass, no glow. Applies at every hour and in either phone theme. */
+:root{--head:'Bodoni Moda','Instrument Serif','Newsreader',Georgia,serif;
+  --mono:'DM Mono','Geist Mono',ui-monospace,Menlo,monospace;
+  --flair:'IM Fell Double Pica','Bodoni Moda',Georgia,serif}
+.hero,.brand,.sheet h2,.sheet h3,.frmail h3,.free .more-h{font-family:var(--head)}
+.hero,.sheet h2,.sheet h3,.frmail h3{font-weight:500;letter-spacing:-.015em}
+.hero em,.glow-text{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:inherit;font-weight:400}
+.eyebrow,label,.free .mini .lab{font-family:var(--mono);font-weight:500;letter-spacing:.01em;text-transform:none}
+label:has(input[type=checkbox]){font-family:var(--sans);font-weight:400}
+:is(button,a).primary{background:var(--accent);color:var(--accent-ink);border-radius:var(--r-sm);box-shadow:none;font-weight:600}
+:is(button,a).primary::after{display:none}
+:is(button,a).primary:not(:disabled):hover{box-shadow:none;filter:brightness(1.07)}
+:is(button,a).ghost,.pill{background:transparent;border-radius:var(--r-sm)}
+:is(button,a).ghost:focus-visible,.pill:focus-visible,.link:focus-visible,a:focus-visible,summary:focus-visible{border-radius:var(--r-sm)}
+.card{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid var(--glass-line)}
+.card.lit::before{display:none}
+.lockup .mark{filter:none;animation:none}
+#you .mine .unlock{box-shadow:none}
+#you .mine .unlock:hover{box-shadow:none}
+/* depth: a field of real-sized stars at every hour, darker at the edges */
+.sky{box-shadow:inset 0 0 150px 36px rgba(2,3,10,.72)}
+.sky::before{opacity:.3}
+.sky::after{opacity:max(var(--star-o),.8)}
+.sky::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='560' fill='%23EFE6D2'%3E%3Ccircle cx='170.8' cy='368.2' r='0.6' opacity='0.35'/%3E%3Ccircle cx='3.9' cy='209.9' r='0.6' opacity='0.70'/%3E%3Ccircle cx='165.7' cy='484.0' r='0.45' opacity='0.64'/%3E%3Ccircle cx='238.1' cy='81.4' r='1.1' opacity='0.81'/%3E%3Ccircle cx='122.3' cy='117.7' r='0.45' opacity='0.30'/%3E%3Ccircle cx='247.3' cy='188.7' r='0.8' opacity='0.81'/%3E%3Ccircle cx='31.4' cy='514.6' r='0.45' opacity='0.31'/%3E%3Ccircle cx='355.4' cy='530.2' r='0.35' opacity='0.71'/%3E%3Ccircle cx='349.7' cy='302.1' r='0.45' opacity='0.93'/%3E%3Ccircle cx='318.8' cy='310.9' r='0.35' opacity='0.53'/%3E%3Ccircle cx='150.8' cy='333.7' r='1.1' opacity='0.88'/%3E%3Ccircle cx='194.8' cy='358.8' r='0.35' opacity='0.93'/%3E%3Ccircle cx='351.5' cy='371.6' r='0.6' opacity='0.91'/%3E%3Ccircle cx='311.8' cy='215.9' r='0.6' opacity='0.33'/%3E%3Ccircle cx='84.6' cy='203.5' r='0.45' opacity='0.27'/%3E%3Ccircle cx='296.1' cy='240.9' r='0.35' opacity='0.41'/%3E%3Ccircle cx='153.8' cy='217.4' r='0.35' opacity='0.78'/%3E%3Ccircle cx='79.4' cy='43.7' r='0.6' opacity='0.28'/%3E%3Ccircle cx='99.6' cy='192.7' r='0.35' opacity='0.61'/%3E%3Ccircle cx='132.6' cy='190.2' r='1.1' opacity='0.84'/%3E%3Ccircle cx='345.1' cy='269.4' r='0.45' opacity='0.58'/%3E%3Ccircle cx='197.6' cy='101.9' r='0.45' opacity='0.89'/%3E%3Ccircle cx='2.4' cy='150.2' r='0.6' opacity='0.38'/%3E%3Ccircle cx='286.2' cy='280.8' r='0.45' opacity='0.68'/%3E%3Ccircle cx='354.2' cy='559.2' r='0.45' opacity='0.27'/%3E%3Ccircle cx='116.1' cy='440.9' r='0.6' opacity='0.70'/%3E%3Ccircle cx='82.6' cy='295.3' r='1.1' opacity='0.85'/%3E%3Ccircle cx='127.3' cy='383.3' r='1.1' opacity='0.97'/%3E%3Ccircle cx='58.4' cy='163.1' r='0.35' opacity='0.44'/%3E%3Ccircle cx='339.8' cy='288.5' r='1.1' opacity='0.91'/%3E%3Ccircle cx='77.1' cy='159.6' r='0.6' opacity='0.27'/%3E%3Ccircle cx='1.3' cy='15.3' r='0.6' opacity='0.54'/%3E%3Ccircle cx='86.8' cy='243.8' r='0.35' opacity='0.64'/%3E%3Ccircle cx='224.9' cy='515.2' r='0.6' opacity='0.78'/%3E%3Ccircle cx='150.4' cy='329.5' r='0.8' opacity='0.80'/%3E%3Ccircle cx='208.9' cy='194.6' r='0.6' opacity='0.70'/%3E%3Ccircle cx='138.6' cy='90.1' r='0.45' opacity='0.88'/%3E%3Ccircle cx='287.2' cy='502.6' r='0.8' opacity='0.62'/%3E%3Ccircle cx='284.1' cy='212.5' r='0.35' opacity='0.75'/%3E%3Ccircle cx='68.0' cy='151.6' r='1.1' opacity='0.89'/%3E%3Ccircle cx='44.9' cy='299.2' r='0.8' opacity='0.66'/%3E%3Ccircle cx='25.8' cy='199.2' r='0.35' opacity='0.73'/%3E%3Ccircle cx='51.1' cy='50.7' r='0.6' opacity='0.47'/%3E%3Ccircle cx='64.7' cy='379.9' r='0.8' opacity='0.51'/%3E%3Ccircle cx='10.7' cy='273.2' r='1.1' opacity='0.85'/%3E%3Ccircle cx='20.4' cy='332.8' r='1.1' opacity='0.77'/%3E%3Ccircle cx='117.9' cy='528.5' r='0.35' opacity='0.92'/%3E%3Ccircle cx='131.9' cy='475.3' r='0.8' opacity='0.46'/%3E%3Ccircle cx='185.9' cy='82.1' r='0.6' opacity='0.36'/%3E%3Ccircle cx='167.3' cy='339.7' r='0.45' opacity='0.57'/%3E%3Ccircle cx='282.8' cy='27.6' r='0.45' opacity='0.54'/%3E%3Ccircle cx='251.6' cy='443.4' r='1.1' opacity='0.90'/%3E%3Ccircle cx='350.1' cy='310.2' r='0.6' opacity='0.50'/%3E%3Ccircle cx='263.6' cy='180.5' r='1.1' opacity='0.97'/%3E%3Ccircle cx='227.7' cy='95.4' r='1.1' opacity='0.77'/%3E%3Ccircle cx='195.9' cy='141.0' r='0.35' opacity='0.55'/%3E%3Ccircle cx='131.3' cy='228.8' r='0.6' opacity='0.52'/%3E%3Ccircle cx='314.3' cy='502.4' r='0.6' opacity='0.35'/%3E%3Ccircle cx='93.3' cy='18.2' r='0.8' opacity='0.54'/%3E%3Ccircle cx='222.4' cy='147.4' r='0.8' opacity='0.79'/%3E%3Ccircle cx='177.3' cy='526.3' r='0.45' opacity='0.37'/%3E%3Ccircle cx='73.8' cy='142.6' r='0.6' opacity='0.62'/%3E%3Ccircle cx='19.1' cy='467.8' r='0.6' opacity='0.94'/%3E%3Ccircle cx='329.4' cy='431.7' r='0.6' opacity='0.83'/%3E%3Ccircle cx='76.0' cy='492.7' r='0.35' opacity='0.64'/%3E%3Ccircle cx='15.3' cy='453.8' r='0.45' opacity='0.36'/%3E%3Ccircle cx='257.7' cy='166.1' r='0.45' opacity='0.94'/%3E%3Ccircle cx='278.5' cy='305.9' r='0.35' opacity='0.67'/%3E%3Ccircle cx='36.8' cy='383.6' r='0.45' opacity='0.56'/%3E%3Ccircle cx='189.9' cy='364.8' r='0.8' opacity='0.60'/%3E%3Ccircle cx='228.8' cy='261.7' r='0.8' opacity='0.85'/%3E%3Ccircle cx='321.4' cy='15.8' r='0.6' opacity='0.26'/%3E%3Ccircle cx='55.8' cy='424.0' r='0.6' opacity='0.73'/%3E%3Ccircle cx='344.3' cy='382.2' r='0.8' opacity='0.63'/%3E%3Ccircle cx='346.6' cy='210.0' r='0.35' opacity='0.84'/%3E%3Ccircle cx='46.6' cy='34.9' r='0.35' opacity='0.55'/%3E%3Ccircle cx='290.1' cy='468.7' r='0.45' opacity='0.27'/%3E%3Ccircle cx='247.2' cy='316.3' r='0.35' opacity='0.67'/%3E%3Ccircle cx='211.3' cy='449.9' r='0.45' opacity='0.57'/%3E%3Ccircle cx='121.2' cy='363.9' r='0.6' opacity='0.81'/%3E%3Ccircle cx='140.7' cy='367.4' r='0.6' opacity='0.92'/%3E%3Ccircle cx='355.2' cy='428.5' r='0.6' opacity='0.35'/%3E%3Ccircle cx='44.1' cy='271.9' r='0.45' opacity='0.72'/%3E%3Ccircle cx='4.5' cy='128.0' r='1.1' opacity='0.83'/%3E%3Ccircle cx='122.4' cy='227.0' r='0.6' opacity='0.49'/%3E%3Ccircle cx='137.4' cy='482.9' r='1.1' opacity='0.80'/%3E%3Ccircle cx='320.2' cy='355.9' r='0.6' opacity='0.30'/%3E%3Ccircle cx='122.9' cy='149.3' r='0.45' opacity='0.84'/%3E%3Ccircle cx='239.8' cy='246.6' r='0.6' opacity='0.43'/%3E%3Ccircle cx='150.7' cy='57.3' r='1.1' opacity='0.75'/%3E%3C/svg%3E");background-size:360px 560px}
+/* flourishes: the Fell types (Oxford, 1680s) for the lines that stand alone */
+.free .mini q,#you .mine q{font-family:var(--flair);font-style:italic;font-feature-settings:"liga","dlig","onum"}
+.free .mini q{font-size:1.4rem}

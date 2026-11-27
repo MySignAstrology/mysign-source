@@ -1,0 +1,73 @@
+{
+ "source": "NASA GSFC Five Millennium Canon of Eclipses (Espenak & Meeus): eclipse.gsfc.nasa.gov/SEcat5/SE1901-2000.html, SE2001-2100.html, LEcat5/LE1901-2000.html, LE2001-2100.html",
+ "note": "Greatest eclipse in UT = catalogue TD minus the catalogue's \u0394T (\u00b11 s).",
+ "retrieved": "2026-10-27",
+ "solar": [
+  {
+   "ut": "1985-11-12 14:10:32",
+   "type": "total"
+  },
+  {
+   "ut": "1986-10-03 19:05:20",
+   "type": "hybrid"
+  },
+  {
+   "ut": "1987-09-23 03:11:26",
+   "type": "annular"
+  },
+  {
+   "ut": "1991-07-11 19:06:03",
+   "type": "total"
+  },
+  {
+   "ut": "1994-05-10 17:11:26",
+   "type": "annular"
+  },
+  {
+   "ut": "1999-08-11 11:03:05",
+   "type": "total"
+  },
+  {
+   "ut": "2005-04-08 20:35:46",
+   "type": "hybrid"
+  },
+  {
+   "ut": "2008-08-01 10:21:06",
+   "type": "total"
+  }
+ ],
+ "lunar": [
+  {
+   "ut": "1985-05-04 19:56:24",
+   "type": "total"
+  },
+  {
+   "ut": "1993-11-29 06:26:06",
+   "type": "total"
+  },
+  {
+   "ut": "1995-04-15 12:18:03",
+   "type": "partial"
+  },
+  {
+   "ut": "1997-09-16 18:46:39",
+   "type": "total"
+  },
+  {
+   "ut": "2000-01-21 04:43:30",
+   "type": "total"
+  },
+  {
+   "ut": "2001-07-05 14:55:19",
+   "type": "partial"
+  },
+  {
+   "ut": "2007-08-28 10:37:21",
+   "type": "total"
+  },
+  {
+   "ut": "2009-02-09 14:38:16",
+   "type": "penumbral"
+  }
+ ]
+}

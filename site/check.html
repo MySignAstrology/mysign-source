@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Are you two compatible? Check two birthdays — My Sign</title>
+<meta name="description" content="Enter two birthdays and get an honest compatibility score from real planetary positions, checked against NASA. Free, no sign-up, nothing saved.">
+<link rel="canonical" href="https://mysignapp.com/check">
+<meta name="theme-color" content="#090B17">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-title" content="My Sign">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="My Sign">
+<meta property="og:url" content="https://mysignapp.com/check">
+<meta property="og:title" content="Are you two compatible?">
+<meta property="og:description" content="Two birthdays. One honest number, from planets checked against NASA. No sign-up.">
+<meta property="og:image" content="https://mysignapp.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="My Sign — the sky, read against your own life, and remembered.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Are you two compatible?">
+<meta name="twitter:description" content="Two birthdays. One honest number, from planets checked against NASA. No sign-up.">
+<meta name="twitter:image" content="https://mysignapp.com/og.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<script src="/sky.js?v=2"></script>
+<link rel="stylesheet" href="/fonts/fonts.css?v=2">
+<link rel="stylesheet" href="/brand.css?v=5">
+<style>
+/* Page layout only. Colours, type, buttons, fields, glass: brand.css. */
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.page{position:relative;z-index:2}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 1.25rem}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--surface-solid);color:var(--ink);
+  padding:.6rem 1rem;border-radius:var(--r-pill);border:1px solid var(--rule-2)}
+.skip:focus{top:1rem}
+
+/* header: clear at the top, frosted once content scrolls under it (as the app) */
+.top{position:sticky;top:0;z-index:20;border-bottom:1px solid transparent;
+  transition:background .3s,border-color .3s,backdrop-filter .3s}
+.top.scrolled{background:color-mix(in srgb,var(--s0) 80%,transparent);border-bottom-color:var(--rule);
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3)}
+.top .wrap{display:flex;align-items:center;gap:.6rem;padding-top:calc(.8rem + env(safe-area-inset-top));padding-bottom:.75rem}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:.4rem}
+.top nav .ghost{min-height:2.75rem;padding:.4rem 1rem}
+.top .navlink{display:none;font-size:.875rem;font-weight:500;color:var(--ink-2);text-decoration:none;padding:.5rem .75rem;border-radius:var(--r-pill)}
+.top .navlink:hover{color:var(--ink)}
+.top .startsm{display:none}
+
+main{padding:1.2rem 0 4rem}
+h1{font-family:var(--head);font-weight:500;font-size:clamp(2.5rem,11vw,4.5rem);line-height:.98;letter-spacing:-.02em;margin:.6rem 0 .8rem;text-wrap:balance}
+h1 em,h2 em{font-style:italic;padding-right:.06em;background:var(--text-glow);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:1.0625rem;color:var(--ink-2);max-width:32rem;margin:0 0 1.2rem;text-wrap:pretty}
+.col{max-width:30rem}
+.got{padding:.9rem 1.1rem;margin:0 0 1.2rem;font-size:.9375rem;line-height:1.4}
+.got[hidden]{display:none}
+.got b{font-family:var(--display);font-weight:400;font-size:1.25rem}
+.got small{display:block;color:var(--ink-2);margin-top:.15rem}
+.chk{padding:1.15rem 1.25rem .9rem}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.7rem;align-items:end}
+@media (max-width:22rem){.row{grid-template-columns:minmax(0,1fr);gap:0}}
+.row input{min-width:0;width:100%;box-sizing:border-box}
+/* Half a phone's width: the year must not clip behind the calendar icon. */
+.row input[type=date]{padding-left:.6rem;padding-right:.5rem}
+.chk label,.chk legend{display:block}
+.chk .field{margin-bottom:.8rem}
+.chk .err:empty{display:none}
+.chk .hint{text-align:center;margin:.6rem 0 .1rem}
+.kinds{border:0;margin:0 0 .9rem;padding:0}
+.kinds legend{padding:0;margin-bottom:.4rem;font-size:.875rem;color:var(--ink-2)}
+.kinds div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+.kinds input{position:absolute;opacity:0;width:1px;height:1px}
+.kinds label{display:flex;align-items:center;justify-content:center;min-height:2.75rem;border:1px solid var(--rule-2);border-radius:var(--r-pill);font-size:.875rem;font-weight:600;color:var(--ink-2);cursor:pointer}
+.kinds input:checked + label{background:var(--accent-wash);border-color:var(--accent);color:var(--ink)}
+.kinds input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px}
+.res{margin-top:1.4rem}
+.res[hidden]{display:none}
+.res h2{font-family:var(--head);font-style:italic;font-weight:500;font-size:1.6rem;margin:0;text-align:center;overflow-wrap:anywhere}
+.res h2:focus{outline:none}
+.score{padding:1.4rem 1.25rem 1.2rem;text-align:center}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(5rem,28vw,7rem);line-height:1;margin:.5rem 0 .2rem;color:var(--accent)}
+.band{font-family:var(--mono);font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin:0}
+.ln{font-family:var(--flair);font-style:italic;font-size:1.5rem;line-height:1.18;margin:.8rem 0 .6rem;text-wrap:balance}
+.rng,.sn{font-size:.875rem;color:var(--ink-2);margin:.3rem 0 0;text-wrap:pretty}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.8rem}
+.acts .ghost{min-height:2.75rem;font-size:.875rem;padding:.4rem .6rem}
+.acts .primary{grid-column:1/-1}
+.shared{min-height:1.2rem;margin:.5rem 0 0;font-size:.875rem;color:var(--ink-2);text-align:center;overflow-wrap:anywhere}
+.dims{list-style:none;margin:.8rem 0 0;padding:1rem 1.25rem;display:grid;gap:.75rem}
+.dims .t{display:flex;justify-content:space-between;gap:.6rem;font-size:.9375rem;font-weight:600}
+.dims .t span{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.dims small{display:block;font-size:.8125rem;color:var(--ink-3)}
+.bar{height:4px;border-radius:2px;background:var(--rule);margin:.3rem 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.why{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:.6rem}
+.why li{padding:1rem 1.25rem}
+.why .lab{margin:0 0 .3rem;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.why q{display:block;font-family:var(--flair);font-style:italic;font-size:1.25rem;line-height:1.22;quotes:none;text-wrap:pretty}
+.why small{display:block;margin-top:.35rem;font-size:.8125rem;color:var(--ink-3)}
+.save{padding:1.3rem 1.25rem;margin-top:.8rem}
+.save h3{font-family:var(--head);font-weight:500;font-size:1.6rem;line-height:1.15;margin:0 0 .5rem}
+.save p{margin:0 0 .9rem;color:var(--ink-2);font-size:.9375rem;text-wrap:pretty}
+.again{display:block;margin:1rem auto 0}
+.fun{margin:1rem 0 0;font-size:.8125rem;color:var(--ink-3);text-align:center}
+
+/* the start sheet: a native <dialog>, a bottom sheet on phones, centred above */
+dialog.start{padding:0;border:0;background:transparent;color:var(--ink);width:100%;max-width:100%;max-height:100dvh;
+  margin:auto 0 0;overflow:visible}
+dialog.start::backdrop{background:rgba(8,4,6,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:fade .25s var(--ease) both}
+dialog.start .sheet{position:relative;margin:0 auto;max-height:calc(100dvh - 1rem);overflow-y:auto;padding-top:1.6rem}
+dialog.start .x{position:absolute;right:.7rem;top:.7rem;width:2.75rem;height:2.75rem;display:grid;place-items:center;
+  background:none;border:0;border-radius:50%;color:var(--ink-2);cursor:pointer}
+dialog.start .x:hover{background:var(--accent-wash);color:var(--ink)}
+dialog.start .x:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+dialog.start .x svg{width:1.1rem;height:1.1rem;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
+dialog.start .mk{width:2rem;height:2rem;display:block;margin:0 0 .9rem;filter:drop-shadow(0 0 8px rgba(230,200,150,.5))}
+dialog.start h2{font-size:2.3rem;margin:0 0 .45rem}
+dialog.start [hidden]{display:none!important}
+dialog.start .resend{margin:-.4rem 0 1rem;font-size:.8125rem;color:var(--ink-3)}
+dialog.start .fine{font-size:.75rem;color:var(--ink-3);margin:1rem 0 0;text-align:center}
+dialog.start .fine a{color:var(--ink-2)}
+dialog.start .status{min-height:0;margin:0}
+
+@media (min-width:40rem){
+  .wrap{padding:0 2rem}
+  .top .startsm{display:inline-flex}
+  dialog.start{margin:auto;width:30rem}
+  dialog.start .sheet{border-radius:26px;border-bottom:1px solid var(--rule-2);padding:2rem 1.75rem 1.6rem;animation:rise .4s var(--ease) both}
+  dialog.start .sheet::before{display:none}
+}
+@media (min-width:60rem){.top .navlink{display:inline-block}}
+</style>
+<script src="/static/inapp.js"></script></head>
+<body data-page="check">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="ms-brass" x1="0" y1="0" x2=".35" y2="1">
+    <stop offset="0" stop-color="#EFC97E"/><stop offset=".55" stop-color="#D9A94E"/>
+    <stop offset="1" stop-color="#B8842C"/></linearGradient>
+  <linearGradient id="ms-rose" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#E6CFA8"/><stop offset=".5" stop-color="#E7A79C"/>
+    <stop offset="1" stop-color="#B4485C"/></linearGradient>
+  <symbol id="ms-star" viewBox="0 0 120 120"><path d="M 60 3 C 61.27 52.02, 66.86 58.52, 109 60 C 66.86 61.48, 61.27 67.98, 60 117 C 58.73 67.98, 53.14 61.48, 11 60 C 53.14 58.52, 58.73 52.02, 60 3 Z"/></symbol>
+  <symbol id="ms-glint" viewBox="0 0 120 120"><path d="M 97 10 C 97.4 24.62, 99.17 26.56, 112.5 27 C 99.17 27.44, 97.4 29.38, 97 44 C 96.6 29.38, 94.83 27.44, 81.5 27 C 94.83 26.56, 96.6 24.62, 97 10 Z"/></symbol>
+</defs></svg>
+<div class="sky" aria-hidden="true"><div class="haze"></div><div class="orb"><i></i></div></div><div class="grain" aria-hidden="true"></div>
+
+<div class="page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="lockup" href="/" aria-label="My Sign, home">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true">
+        <use href="#ms-star" fill="url(#ms-brass)"/>
+        <use href="#ms-glint" fill="#EFC97E" opacity=".85"/>
+      </svg>
+      <span class="brand">My&nbsp;Sign</span>
+    </a>
+    <nav aria-label="Primary">
+      <a class="navlink" href="/accuracy">Accuracy</a>
+      <a class="navlink" href="/shop" data-track="shop_open">Shop</a>
+      <button class="ghost" type="button" data-open="signin" data-track="signin_open">Sign in</button>
+      <button class="ghost startsm" type="button" data-open="start" data-track="start_open">Start</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap"><div class="col">
+    <p class="got card" id="got" hidden></p>
+    <h1 id="h-check">Are you two <em>actually</em> compatible?</h1>
+    <p class="lede">Two birthdays. One honest number, from where the planets really were, <a href="/accuracy">checked against NASA</a>. No sign-up.</p>
+    <form class="chk card" id="chk" novalidate>
+      <div class="row">
+        <div class="field"><label for="cDateA">Your birthday</label><input type="date" id="cDateA" autocomplete="bday"></div>
+        <div class="field"><label for="cDateB">Their birthday</label><input type="date" id="cDateB" autocomplete="off"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="cNameA">Your first name</label><input type="text" id="cNameA" maxlength="20" autocomplete="given-name" autocapitalize="words" placeholder="Optional"></div>
+        <div class="field"><label for="cNameB">Their first name</label><input type="text" id="cNameB" maxlength="20" autocomplete="off" autocapitalize="words" placeholder="Optional"></div>
+      </div>
+      <fieldset class="kinds">
+        <legend>They’re your</legend>
+        <div>
+          <input type="radio" name="kind" id="kR" value="romantic" checked><label for="kR">Person</label>
+          <input type="radio" name="kind" id="kF" value="friend"><label for="kF">Friend</label>
+          <input type="radio" name="kind" id="kE" value="ex"><label for="kE">Ex</label>
+        </div>
+      </fieldset>
+      <button class="primary" type="submit" id="cGo" data-track="check_submit">Check us</button>
+      <p class="err" id="cErr" role="alert"></p>
+      <p class="hint">No sign-up. We don’t save either birthday. For two people 18 and over. <a href="/privacy">Privacy</a>.</p>
+    </form>
+
+    <section class="res" id="res" data-section="check_result" aria-labelledby="rPair" hidden>
+      <div class="score card">
+        <h2 id="rPair" tabindex="-1"></h2>
+        <p class="num" id="rNum"></p>
+        <p class="band" id="rBand"></p>
+        <p class="ln" id="rLine"></p>
+        <p class="sn" id="rSigns"></p>
+        <p class="rng" id="rRange"></p>
+      </div>
+      <div class="acts">
+        <button class="primary" type="button" id="rSend" data-track="check_send">Send it to them</button>
+        <button class="ghost" type="button" id="rPost" data-track="check_post">Post the card</button>
+        <button class="ghost" type="button" id="rCopy" data-track="check_copy">Copy the link</button>
+      </div>
+      <p class="shared" id="rShared" role="status"></p>
+      <ul class="dims card" id="rDims"></ul>
+      <ul class="why" id="rWhy"></ul>
+      <div class="save card">
+        <h3>Now get the real number.</h3>
+        <p>Birth times settle the Moon and the houses. Save this and ask what to do about it, with a free account.</p>
+        <button class="primary" type="button" id="rSave" data-track="check_save">Save us and get the full read</button>
+      </div>
+      <button class="link again" type="button" id="rAgain" data-track="check_again">Check someone else</button>
+      <p class="fun">For fun and reflection. No number decides a relationship.</p>
+    </section>
+  </div></div>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <a class="lockup" href="/" aria-label="My Sign, home">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><use href="#ms-star" fill="url(#ms-brass)"/><use href="#ms-glint" fill="#EFC97E" opacity=".85"/></svg>
+      <span class="brand">My&nbsp;Sign</span>
+    </a>
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/support">Support</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/accuracy">Accuracy</a>
+      <a href="/shop">Shop</a>
+      <a href="mailto:support@mysignapp.com">support@mysignapp.com</a>
+    </nav>
+    <p class="fine">© <span id="yr">2026</span> XII Studios LLC, Sunny Isles Beach, Florida. My Sign is for reflection and entertainment. It is not medical, legal, financial or psychological advice, and it is not a crisis service.</p>
+  </div>
+</footer>
+
+
+<!-- ============ the start sheet ============ -->
+<dialog class="start" id="start" aria-labelledby="sTitle" aria-describedby="sLede">
+  <form class="sheet" id="sForm" novalidate>
+    <button class="x" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#ms-star" fill="url(#ms-brass)"/><use href="#ms-glint" fill="#EFC97E" opacity=".85"/></svg>
+    <h2 id="sTitle">Make your <em>chart.</em></h2>
+    <p id="sLede">Enter your email and we’ll send you a six-digit code. There’s no password to forget or leak.</p>
+    <div id="sStep1">
+      <div class="field">
+        <label for="sId" id="sIdLabel">Email</label>
+        <input type="text" id="sId" name="id" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false"
+               placeholder="you@example.com" aria-describedby="sIdHint">
+        <p class="hint" id="sIdHint" aria-live="polite"></p>
+      </div>
+    </div>
+    <div id="sStep2" hidden>
+      <p class="sent" id="sSent"></p>
+      <div class="field">
+        <label for="sCode">Six-digit code</label>
+        <input type="text" id="sCode" name="code" class="code-input" inputmode="numeric" autocomplete="one-time-code"
+               maxlength="6" pattern="[0-9]{6}" placeholder="000000">
+      </div>
+      <p class="resend"><button class="link" type="button" id="sResend">Send a new code</button> <span id="sWait"></span></p>
+    </div>
+    <button class="primary" type="submit" id="sGo" disabled data-track="start_submit">Send me a code</button>
+    <p class="err" id="sErr" role="alert"></p>
+    <p class="hint status" id="sStatus" role="status"></p>
+    <div class="devcode" id="devCode" hidden></div>
+    <p class="fine">By continuing you agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+  </form>
+</dialog>
+
+<script>
+/* The check. POST /api/vs takes the two dates and keeps nothing. A result
+   arrives with a signed token: the link and the card use that, so neither ever
+   holds a birth date. sessionStorage "ms_check" is written only if she taps to
+   save, and /app reads it once she has a chart. */
+(function(){
+  var $ = function(s){ return document.querySelector(s); };
+  var form = $('#chk'), err = $('#cErr'), go = $('#cGo'), res = $('#res'), last = null, typed = null;
+
+  function title(names){
+    return names[0] && names[1] ? names[0] + ' & ' + names[1] : 'You two';
+  }
+  function counted(){
+    fetch('/api/vs/shared', {method: 'POST', credentials: 'same-origin'}).catch(function(){});
+  }
+  function say(t){ $('#rShared').textContent = t; }
+  function shareText(){
+    return title(last.names) + ' got ' + last.score + ' on My Sign. ' + last.line + ' Check yours:';
+  }
+  function copyLink(){
+    if (!navigator.clipboard) { say(last.url); return Promise.resolve(); }
+    return navigator.clipboard.writeText(last.url).then(function(){ say('Link copied.'); },
+      function(){ say(last.url); });
+  }
+  function send(){
+    counted();
+    if (!navigator.share) return copyLink();
+    navigator.share({title: 'My Sign', text: shareText(), url: last.url}).catch(function(e){
+      if (!e || e.name !== 'AbortError') copyLink();
+    });
+  }
+  /* Rasterised first: most share targets do nothing useful with an SVG. */
+  function png(svg){
+    return new Promise(function(ok, no){
+      var url = URL.createObjectURL(new Blob([svg], {type: 'image/svg+xml'})), img = new Image();
+      img.onload = function(){
+        var c = document.createElement('canvas');
+        c.width = 1080; c.height = Math.round(1080 * (img.naturalHeight || 1350) / (img.naturalWidth || 1080));
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function(b){ b ? ok(b) : no(new Error('no image')); }, 'image/png');
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); no(new Error('no image')); };
+      img.src = url;
+    });
+  }
+  function post(){
+    counted();
+    fetch('/api/vs/card/' + encodeURIComponent(last.token) + '.svg')
+      .then(function(r){ if (!r.ok) throw new Error('no card'); return r.text(); })
+      .then(png)
+      .then(function(b){
+        var file = new File([b], 'my-sign-check.png', {type: 'image/png'});
+        /* The tap's permission can run out while the card is drawn: save it instead. */
+        if (navigator.canShare && navigator.canShare({files: [file]})) {
+          return navigator.share({files: [file], title: 'My Sign'}).catch(function(e){
+            if (e && e.name === 'NotAllowedError') return saveCard(file);
+            throw e;
+          });
+        }
+        saveCard(file);
+      })
+      .catch(function(e){ if (!e || e.name !== 'AbortError') say('Couldn’t make the card. Try again?'); });
+  }
+  function saveCard(file){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(file); a.download = file.name;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 5000);
+    say('Card saved.');
+  }
+  function show(r){
+    last = r;
+    $('#rPair').textContent = title(r.names);
+    $('#rNum').textContent = r.score;
+    $('#rBand').textContent = r.band;
+    $('#rLine').textContent = r.line;
+    $('#rSigns').textContent = r.signs.join(' × ');
+    $('#rRange').textContent = r.low === r.high ? '' :
+      'Could land anywhere from ' + r.low + ' to ' + r.high + ' once real birth times are in.';
+    var dims = $('#rDims'); dims.textContent = '';
+    r.dimensions.forEach(function(d){
+      var li = document.createElement('li'), t = document.createElement('div'), n = document.createElement('span'),
+          bar = document.createElement('div'), fill = document.createElement('i'), note = document.createElement('small');
+      t.className = 't'; t.textContent = d.label; n.textContent = d.score; t.append(n);
+      bar.className = 'bar'; fill.style.width = Math.max(0, Math.min(100, d.score)) + '%'; bar.append(fill);
+      note.textContent = d.note;
+      li.append(t, bar, note); dims.append(li);
+    });
+    var why = $('#rWhy'); why.textContent = '';
+    r.why.forEach(function(w){
+      var li = document.createElement('li'), lab = document.createElement('p'),
+          q = document.createElement('q'), sm = document.createElement('small');
+      li.className = 'card'; lab.className = 'lab';
+      lab.textContent = w.tone === 'good' ? 'What’s working' : 'Where it gets hard';
+      q.textContent = w.meaning; sm.textContent = w.text;
+      li.append(lab, q, sm); why.append(li);
+    });
+    say('');
+    form.hidden = true;
+    res.hidden = false;
+    res.scrollIntoView({block: 'start'});
+    $('#rPair').focus({preventScroll: true});
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.textContent = '';
+    var a = $('#cDateA').value, b = $('#cDateB').value;
+    if (!a) { err.textContent = 'Add your birthday first.'; $('#cDateA').focus(); return; }
+    if (!b) { err.textContent = 'Add their birthday too.'; $('#cDateB').focus(); return; }
+    var kind = form.querySelector('input[name=kind]:checked').value,
+        nameA = $('#cNameA').value.trim(), nameB = $('#cNameB').value.trim();
+    go.disabled = true; go.textContent = 'Checking the sky…';
+    fetch('/api/vs', {method: 'POST', credentials: 'same-origin', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({date_a: a, date_b: b, kind: kind, name_a: nameA, name_b: nameB})})
+      .then(function(r){
+        return r.json().catch(function(){ return {}; }).then(function(j){
+          if (!r.ok) throw new Error(typeof j.detail === 'string' ? j.detail : 'That didn’t work. Try again?');
+          return j;
+        });
+      })
+      .then(function(r){
+        try { sessionStorage.removeItem('ms_check'); } catch (x) {}
+        typed = {me_date: a, them_date: b, them_name: r.names[1], kind: r.kind};
+        show(r);
+      })
+      .catch(function(x){ err.textContent = x instanceof TypeError ? 'That didn’t work. Try again?' : x.message; })
+      .then(function(){ go.disabled = false; go.textContent = 'Check us'; });
+  });
+  $('#rSend').addEventListener('click', send);
+  $('#rPost').addEventListener('click', post);
+  $('#rCopy').addEventListener('click', function(){ counted(); copyLink(); });
+  $('#rSave').addEventListener('click', function(){
+    var btn = this;
+    try { sessionStorage.setItem('ms_check', JSON.stringify(typed)); } catch (x) {}
+    /* Already signed in: straight to the app, which adds them. */
+    fetch('/api/state', {credentials: 'same-origin'}).then(function(r){ return r.ok ? r.json() : {}; })
+      .catch(function(){ return {}; }).then(function(st){
+        if (st.signed_in) location.assign('/app');
+        else if (window.MsStart) window.MsStart.open('save', btn);
+      });
+  });
+  $('#rAgain').addEventListener('click', function(){
+    try { sessionStorage.removeItem('ms_check'); } catch (x) {}
+    res.hidden = true; form.hidden = false; form.reset(); typed = null;
+    form.scrollIntoView({block: 'center'});
+    $('#cDateA').focus({preventScroll: true});
+  });
+
+  /* Backing out of the sheet takes it back: nothing waits in this tab for
+     whoever signs in next. Signing in leaves without closing it. */
+  $('#start').addEventListener('close', function(){
+    try { sessionStorage.removeItem('ms_check'); } catch (x) {}
+  });
+
+  /* Landed on someone's result: show it, then the form is for you. A reload
+     reuses it, so one person opening a link counts once. */
+  var tok = new URLSearchParams(location.search).get('r'), kept = null;
+  try { kept = JSON.parse(sessionStorage.getItem('ms_got') || 'null'); } catch (x) {}
+  if (tok) (kept && kept.tok === tok ? Promise.resolve(kept.got) :
+    fetch('/api/vs/result/' + encodeURIComponent(tok)).then(function(r){ return r.ok ? r.json() : null; }))
+    .then(function(g){
+      if (!g) return;
+      try { sessionStorage.setItem('ms_got', JSON.stringify({tok: tok, got: g})); } catch (x) {}
+      var bar = $('#got'), b = document.createElement('b'), s = document.createElement('small');
+      b.textContent = (g.names[0] && g.names[1] ? g.names[0] + ' & ' + g.names[1] + ' got ' : 'They got ') + g.score;
+      s.textContent = g.line;
+      bar.append(b, s);
+      bar.hidden = false;
+    }).catch(function(){});
+})();
+</script>
+<script src="/consent.js?v=2" defer></script>
+<script src="/track.js?v=2" defer></script>
+<script src="/site.js?v=4" defer></script>
+</body>
+</html>

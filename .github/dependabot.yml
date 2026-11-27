@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule: { interval: weekly, day: monday }
+    groups:
+      all-python: { patterns: ["*"] }
+    # pyswisseph pins the Lambda runtime to 3.11 (no cp312 wheels upstream).
+    # A major bump here is a deploy change, not a dependency change.
+    ignore:
+      - dependency-name: pyswisseph
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: monthly }
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }

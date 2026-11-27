@@ -1,0 +1,25 @@
+{
+  "_about": "The psychic room's ElevenLabs voices (app/psychic.py). 'design' is the Voice Design prompt; tools/design_psychic_voices.py makes each one a voice of ours and writes its id into voice_id with designed: true. Until then voice_id is a stock ElevenLabs voice.",
+  "voices": [
+    {"key": "lune", "label": "Madame Lune", "blurb": "Low, velvet, unhurried",
+     "design": "A woman in her sixties with a low, warm, velvety voice. She speaks slowly and softly, close to the microphone, like someone reading tarot by candlelight: calm, knowing, a little smoky, never theatrical. Neutral accent.",
+     "voice_id": "XB0fDUnXU5powFXDhCwa", "designed": false,
+     "settings": {"stability": 0.55, "similarity_boost": 0.8, "style": 0.35}},
+    {"key": "oracle", "label": "The Oracle", "blurb": "Airy, distant, serene",
+     "design": "A woman in her thirties with a clear, airy, serene voice. Gentle and slightly breathy, she speaks with calm pauses as if listening to something far away. Peaceful and reassuring. Neutral accent.",
+     "voice_id": "EXAVITQu4vr4xnSDxMaL", "designed": false,
+     "settings": {"stability": 0.6, "similarity_boost": 0.75, "style": 0.25}},
+    {"key": "juniper", "label": "Juniper", "blurb": "Young, bright, a friend",
+     "design": "A young woman in her twenties with a bright, warm, friendly voice. Playful but sincere, like a best friend who happens to read the stars. Natural conversational pace. American accent.",
+     "voice_id": "pFZP5JQG7iQjIQuC4Bku", "designed": false,
+     "settings": {"stability": 0.45, "similarity_boost": 0.75, "style": 0.4}},
+    {"key": "silas", "label": "Old Silas", "blurb": "Deep, gravelly storyteller",
+     "design": "An elderly man in his seventies with a deep, gravelly, kind voice. He speaks slowly like a storyteller by a fire, with warmth and quiet authority. Neutral accent.",
+     "voice_id": "JBFqnCBsd6RMkjVDRZzb", "designed": false,
+     "settings": {"stability": 0.6, "similarity_boost": 0.8, "style": 0.3}},
+    {"key": "orion", "label": "Orion", "blurb": "Smooth, calm baritone",
+     "design": "A man in his forties with a smooth, calm, resonant baritone. Soothing and grounded, he speaks at an easy pace, like a late-night radio host talking about the sky. Neutral accent.",
+     "voice_id": "onwK4e9ZLuTAKqWW03F9", "designed": false,
+     "settings": {"stability": 0.55, "similarity_boost": 0.75, "style": 0.25}}
+  ]
+}

@@ -1,0 +1,70 @@
+name: deploy
+
+# Never on pull_request: the deploy role trusts only main and the `production`
+# environment, and a PR from a fork must not get near either.
+#
+# By hand only, until the deploy role exists (docs/environments.md, "Deploying
+# from GitHub Actions"). On every push it ran the tests a second time and then
+# failed at sign-in, every time. Staging is the default so that reaching for
+# the button never means prod by accident.
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Where to deploy
+        type: choice
+        options: [staging, production]
+        default: staging
+
+permissions:
+  id-token: write   # the OIDC token the deploy role is assumed with
+  contents: read
+
+jobs:
+  staging:
+    if: inputs.target == 'staging' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    # One at a time, and never cancel a CloudFormation update halfway.
+    concurrency: { group: deploy-staging, cancel-in-progress: false }
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: '3.11', cache: pip }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: pip install -r requirements.txt -r deploy/requirements.txt pytest
+      - run: python -m pytest tests/ -q
+      - run: ./deploy/build.sh
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-2
+      - run: npm install -g aws-cdk@2
+      - working-directory: deploy
+        env: { MYSIGN_ACCOUNT: '${{ vars.AWS_ACCOUNT_ID }}' }
+        run: cdk deploy mysign-staging -c stage=staging --require-approval never
+
+  production:
+    if: inputs.target == 'production'
+    runs-on: ubuntu-latest
+    # The environment's protection rules (required reviewers, tag/branch
+    # rules) are the prod gate; the role only trusts jobs running in it.
+    environment: production
+    concurrency: { group: deploy-production, cancel-in-progress: false }
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: '3.11', cache: pip }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: pip install -r requirements.txt -r deploy/requirements.txt pytest
+      - run: python -m pytest tests/ -q
+      - run: ./deploy/build.sh
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-2
+      - run: npm install -g aws-cdk@2
+      - working-directory: deploy
+        env: { MYSIGN_ACCOUNT: '${{ vars.AWS_ACCOUNT_ID }}' }
+        run: cdk deploy mysign --require-approval never

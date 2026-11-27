@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mySign Shop</title>
+<meta name="description" content="Zodiac pendants, constellation necklaces, sign candles, perfume oils and tarot from independent US makers, picked by the people behind the mySign app. Secure checkout on Shopify.">
+<link rel="canonical" href="https://mysignapp.com/shop">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mySign">
+<meta property="og:title" content="mySign Shop · Gifts for every sign.">
+<meta property="og:description" content="Zodiac jewelry, candles and tarot from independent US makers, in every sign. From the mySign app.">
+<meta property="og:url" content="https://mysignapp.com/shop">
+<meta property="og:image" content="https://mysignapp.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#090B17">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css?v=2">
+<style>
+:root{
+  --ground:#F5EEE6; --surface:#FFFAF4; --ink:#1E1518;
+  --ink-2:rgba(30,21,24,.68); --ink-3:rgba(30,21,24,.66);
+  --line:rgba(30,21,24,.12); --line-2:rgba(30,21,24,.22);
+  --accent:#7C2235; --accent-2:#94703A; --rose:#D98C86; --gold:#C9A774;
+  --on-accent:#FFFAF4;
+  --fire:#A9472A; --earth:#5C6833; --air:#7F6230; --water:#44688A; --on-el:#fff;
+  --art-bg:#EFE4D8; --drop-bg:#3A1420;
+  --grad:linear-gradient(135deg,#C9A774 0%,#D98C86 50%,#7C2235 100%);
+  --shadow:0 1px 2px rgba(30,21,24,.06),0 8px 24px -12px rgba(30,21,24,.18);
+  --radius:18px;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --glyph:'Apple Symbols','Segoe UI Symbol','Noto Sans Symbols 2','Noto Sans Symbols',sans-serif;
+  color-scheme:dark;
+}
+@media all{
+  :root{
+    --ground:#090B17; --surface:#10142A; --ink:#EFE6D2; --fire:#E8876A; --earth:#B3BE82; --air:#E6CFA8; --water:#8FA9C8; --on-el:#14101A;
+    --ink-2:rgba(239,230,210,.74); --ink-3:rgba(239,230,210,.66);
+    --line:rgba(200,162,74,.22); --line-2:rgba(200,162,74,.38);
+    --accent:#F0745C; --accent-2:#D2AE58; --rose:#F0745C; --gold:#D2AE58; --on-accent:#14101A;
+    --art-bg:#0E1122; --drop-bg:#0E1122;
+    --grad:linear-gradient(135deg,#161B36 0%,#10142A 100%);
+    --shadow:none; --radius:6px;
+    --serif:'Bodoni Moda','Instrument Serif',Georgia,'Times New Roman',serif;
+    --mono:'DM Mono','Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    color-scheme:dark;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 16px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(34px,8vw,52px);line-height:1}
+h2 em,h1 em{font-style:italic;color:var(--accent)}
+.lede{color:var(--ink-2);max-width:56ch;margin:10px 0 0}
+section{padding:56px 0}
+.sec-head{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid transparent;font-weight:500;font-size:15px;text-decoration:none;transition:transform .15s ease,background .2s ease}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-small{min-height:38px;padding:0 14px;font-size:14px}
+.btn-block{width:100%}
+
+/* Announcement + header */
+.announce{background:var(--surface);color:var(--ink-2);border-bottom:1px solid var(--line);font-size:12.5px;text-align:center;padding:8px 16px}
+.announce b{font-weight:500}
+header.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{display:flex;align-items:baseline;gap:6px;text-decoration:none}
+.logo .mark{font-family:var(--serif);font-size:26px;line-height:1}
+.logo .mark i{color:var(--accent)}
+.logo .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+nav.links{display:none;gap:22px;font-size:14px}
+nav.links a{text-decoration:none;color:var(--ink-2)}
+nav.links a:hover{color:var(--ink)}
+.bag-btn{position:relative;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);font-size:14px}
+.bag-count{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:11.5px;font-weight:600;display:inline-grid;place-items:center}
+.bag-count[data-n="0"]{background:var(--line-2);color:var(--ink)}
+@media (min-width:820px){nav.links{display:flex}}
+
+/* Hero */
+.hero{padding:28px 0 40px;position:relative}
+.hero-grid{display:grid;gap:28px;align-items:center}
+.hero h1{font-size:clamp(46px,13vw,92px);line-height:.92;margin:14px 0 0}
+.hero .lede{font-size:17px}
+.season-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:13px}
+.season-chip .dot{width:22px;height:22px;border-radius:50%;background:var(--water);color:var(--on-el);display:grid;place-items:center;font-family:var(--glyph);font-size:13px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-art{position:relative;aspect-ratio:1/1;width:100%;max-width:520px;margin:0 auto}
+.hero-art svg{width:100%;height:100%}
+.orbit{transform-origin:200px 200px;animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:13px;color:var(--ink-2)}
+.hero-meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:8px;vertical-align:middle}
+@media (min-width:860px){.hero-grid{grid-template-columns:1.05fr .95fr}.hero{padding:56px 0 64px}}
+
+/* Season strip */
+.drop{background:var(--drop-bg);color:#F3EAE2;border-radius:28px;padding:28px 16px;margin:0 16px;position:relative;overflow:hidden}
+.drop .eyebrow{color:rgba(243,234,226,.72)}
+.drop h2 em{color:#E7A79C}
+.drop .lede{color:rgba(243,234,226,.78)}
+.drop-inner{max-width:1088px;margin:0 auto}
+.drop .card{background:rgba(255,250,244,.06);border-color:rgba(243,234,226,.14);color:#F3EAE2}
+.drop .card .blurb,.drop .card .ship,.drop .vendor{color:rgba(243,234,226,.72)}
+.drop .card select{background:rgba(255,250,244,.08);border-color:rgba(243,234,226,.2)}
+.drop .card select option{color:#1E1518}
+.drop .card .btn-primary{background:#E7A79C;color:#1E1518}
+.drop .card .art{background:rgba(0,0,0,.2)}
+.drop .badge{background:rgba(30,21,24,.6);color:#F3EAE2;border-color:rgba(243,234,226,.2)}
+.drop .price s{color:rgba(243,234,226,.55)}
+@media (min-width:1120px){.drop{margin:0 auto;max-width:1120px;padding:44px 32px}}
+
+/* Pair finder */
+.pair{display:grid;gap:18px}
+.picker{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.picker-row+.picker-row{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line-2)}
+.picker-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.picker-label b{font-family:var(--serif);font-weight:400;font-size:22px}
+.picker-label span{font-size:13px;color:var(--ink-2)}
+.chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 6px;border-radius:12px;border:1px solid var(--line);background:transparent;min-width:0}
+.chip .g{font-family:var(--glyph);font-size:20px;line-height:1.1;color:var(--el)}
+.chip .n{font-size:10.5px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.chip[aria-pressed="true"]{background:var(--el);border-color:var(--el)}
+.chip[aria-pressed="true"] .g,.chip[aria-pressed="true"] .n{color:var(--on-el)}
+.result{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.result-head{padding:20px 16px 18px;background:var(--grad);color:#EFE6D2;position:relative;border-bottom:1px solid var(--line-2)}
+.result-head .eyebrow{color:rgba(255,250,244,.85)}
+.result-head h3{font-size:clamp(34px,9vw,46px);line-height:1;margin-top:6px}
+.result-head h3 .gg{font-family:var(--glyph);font-size:.7em;vertical-align:.08em}
+.el-pills{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.el-pill{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,250,244,.18);border:1px solid rgba(255,250,244,.35)}
+.result-note{padding:16px 16px 4px;font-family:var(--serif);font-size:22px;line-height:1.25}
+.result-fine{padding:0 16px 14px;font-size:13px;color:var(--ink-2)}
+.pair-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pair-item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.pair-item:last-child{border-bottom:0}
+.pair-item .thumb{display:block;width:64px;height:80px;border-radius:10px;overflow:hidden;background:var(--art-bg)}
+.pair-item h4{margin:0;font-size:15px;font-weight:500}
+.pair-item .sub{margin:2px 0 0;font-size:12.5px;color:var(--ink-2)}
+.pair-item .p{font-family:var(--serif);font-size:20px;text-align:right;white-space:nowrap}
+.pair-item .btn{margin-top:4px}
+.pair-empty{padding:16px;font-size:14px;color:var(--ink-2)}
+@media (min-width:900px){.pair{grid-template-columns:1fr 1.1fr;align-items:start}}
+
+/* Signs */
+.signs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sign{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 12px 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-align:left;overflow:hidden;min-width:0}
+.sign::after{content:"";position:absolute;right:-18px;top:-18px;width:64px;height:64px;border-radius:50%;background:var(--el);opacity:.13}
+.sign .g{font-family:var(--glyph);font-size:28px;line-height:1;color:var(--el)}
+.sign .n{font-family:var(--serif);font-size:21px;line-height:1.05}
+.sign .d{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+.sign.now{border-color:var(--el)}
+.sign[aria-pressed="true"]{border-color:var(--el);box-shadow:inset 0 0 0 1px var(--el)}
+.sign[aria-pressed="true"]::after{opacity:.28}
+.sign .now-tag{position:absolute;right:8px;top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--el)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--el)}
+@media (min-width:700px){.signs{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1000px){.signs{grid-template-columns:repeat(6,1fr)}}
+
+/* Collections */
+.cols{display:grid;grid-template-columns:1fr;gap:10px}
+.col{display:flex;flex-direction:column;text-align:left;border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--line);padding:0;min-width:0}
+.col .art{aspect-ratio:16/7;background:var(--art-bg);overflow:hidden}
+.col .cap{padding:12px 14px 14px}
+.col .cap b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1}
+.col .cap span{font-size:12.5px;color:var(--ink-2)}
+@media (min-width:700px){.cols{grid-template-columns:repeat(3,1fr)}.col .art{aspect-ratio:4/3}}
+
+/* Product grid */
+.area{border-top:1px solid var(--line)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tab{height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:transparent;font-size:14px}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.filter-note{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-4px 0 16px;font-size:14px;color:var(--ink-2)}
+.filter-note[hidden]{display:none}
+.filter-note .soft{flex-basis:100%;font-size:13px;color:var(--ink-3)}
+.linkbtn{background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;color:var(--accent);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media (min-width:1060px){.grid{grid-template-columns:repeat(4,1fr)}}
+.grid-empty{grid-column:1/-1;padding:28px 16px;border:1px dashed var(--line-2);border-radius:var(--radius);text-align:center;color:var(--ink-2)}
+.grid-empty b{display:block;font-family:var(--serif);font-weight:400;font-size:26px;color:var(--ink);margin-bottom:4px}
+.card{display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--line);min-width:0}
+.card .art{position:relative;display:block;aspect-ratio:4/5;background:var(--art-bg);overflow:hidden}
+.card .art img,.col .art img,.pair-item .thumb img,.line .thumb img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:8px;top:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.badge.hot{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.card-body{display:flex;flex-direction:column;gap:8px;padding:12px;flex:1}
+.card-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card h3{font-family:var(--sans);font-size:14.5px;font-weight:500;line-height:1.25}
+.card h3 a{text-decoration:none}
+.card h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.price{font-family:var(--serif);font-size:20px;line-height:1;white-space:nowrap;text-align:right}
+.price s{display:block;font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-bottom:2px}
+.vendor{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0}
+.blurb{margin:0;font-size:12.5px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.opts{display:grid;gap:6px}
+.opts.two{grid-template-columns:1fr 1fr}
+select,input[type="text"],input[type="email"],input[type="date"]{width:100%;min-width:0;height:40px;padding:0 10px;border-radius:10px;border:1px solid var(--line-2);background:var(--ground);font-size:16px}
+select{appearance:none;-webkit-appearance:none;padding-right:26px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 14px) 17px,calc(100% - 9px) 17px;background-size:5px 5px;background-repeat:no-repeat;text-overflow:ellipsis}
+.ship{margin:0;font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:flex-start}
+.ship svg{flex:none;margin-top:2px}
+.card .btn{margin-top:auto}
+@media (max-width:420px){.card-body{padding:10px}.card h3{font-size:13.5px}.price{font-size:18px}.blurb{-webkit-line-clamp:2}.opts.two{grid-template-columns:1fr}}
+
+/* Promises */
+.promises{display:grid;gap:10px}
+.promise{padding:18px 16px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface)}
+.promise b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.1;margin-bottom:6px}
+.promise p{margin:0;font-size:14px;color:var(--ink-2)}
+
+/* Email */
+.note-card{position:relative;overflow:hidden;border-radius:var(--radius);padding:32px 16px;background:var(--grad);color:#EFE6D2;border:1px solid var(--line-2)}
+.note-card h2{color:#FFFAF4}
+.note-card .lede{color:rgba(255,250,244,.88)}
+.note-form{display:grid;gap:10px;margin-top:20px;max-width:560px}
+.note-form label{font-size:12.5px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,250,244,.9)}
+.note-form input{background:rgba(255,250,244,.95);color:#1E1518;border-color:transparent;height:46px}
+.note-form .btn{background:var(--accent);color:var(--on-accent);min-height:48px}
+.note-form .fine{font-size:12px;color:rgba(255,250,244,.82);margin:0}
+.note-msg{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(30,21,24,.28);font-size:14px}
+.note-msg[hidden]{display:none}
+@media (min-width:640px){.note-form .fields{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}.note-card{padding:48px 40px}}
+.note-form .fields>div{display:grid;gap:6px}
+@media (max-width:639px){.note-form .fields{display:grid;gap:10px}}
+
+/* Info */
+details{border-top:1px solid var(--line);padding:4px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-family:var(--serif);font-size:24px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--sans);font-size:20px;color:var(--ink-2)}
+details[open] summary::after{content:"–"}
+details p,details li{color:var(--ink-2);font-size:15px;max-width:68ch}
+details ul{padding-left:18px;margin:0 0 14px}
+
+/* Footer */
+footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom));border-top:1px solid var(--line);margin-top:24px}
+.foot-grid{display:grid;gap:24px}
+.foot-brand .mark{font-family:var(--serif);font-size:30px}
+.foot-brand p{color:var(--ink-2);font-size:14px;margin:6px 0 0;max-width:40ch}
+.foot-links{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:14px;align-content:start}
+.foot-links a{color:var(--ink-2);text-decoration:none;padding:4px 0;overflow-wrap:anywhere}
+.foot-links a:hover{color:var(--ink)}
+.app-link{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--surface);text-decoration:none;align-self:start}
+.app-link .ic{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;color:#FFFAF4;font-family:var(--serif);font-size:22px;flex:none}
+.app-link small{display:block;color:var(--ink-2);font-size:12.5px}
+.fine-print{font-size:12px;color:var(--ink-3);margin-top:24px;line-height:1.6}
+.fine-print a{color:var(--ink-2)}
+@media (min-width:860px){.foot-grid{grid-template-columns:1.2fr 1fr 1fr}}
+
+/* Cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(15,11,13,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--ground);z-index:50;transform:translateX(100%);display:flex;flex-direction:column;visibility:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s}
+.drawer.open{transform:none;visibility:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
+.drawer-head h2{font-size:32px}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:transparent;display:grid;place-items:center}
+.drawer-body{flex:1;overflow-y:auto;padding:4px 16px}
+.line{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.line .thumb{width:56px;height:70px;border-radius:10px;overflow:hidden;background:var(--art-bg)}
+.line h4{margin:0;font-size:14.5px;font-weight:500;line-height:1.25}
+.line .v{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px;margin-top:8px}
+.qty button{width:30px;height:30px;border:0;background:transparent;font-size:16px}
+.qty span{min-width:20px;text-align:center;font-size:14px}
+.line .rm{display:block;margin-top:8px;font-size:12px}
+.line .lp{font-family:var(--serif);font-size:19px;text-align:right}
+.empty{padding:40px 0;text-align:center;color:var(--ink-2)}
+.empty b{display:block;font-family:var(--serif);font-weight:400;font-size:28px;color:var(--ink);margin-bottom:6px}
+.drawer-foot{padding:16px 16px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--surface)}
+.sum{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.sum b{font-family:var(--serif);font-weight:400;font-size:26px}
+.drawer-foot .fine{font-size:12.5px;color:var(--ink-2);margin:0 0 12px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:999px;font-size:14px;transition:all .25s ease;z-index:60;max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Hero art type */
+.a-mono{font-family:var(--mono);font-size:7px;letter-spacing:.16em}
+.a-serif{font-family:var(--serif)}
+.a-glyph{font-family:var(--glyph)}
+/* Holiday gift edit */
+.drop .chips{margin:4px 0 14px}
+.drop .chip{border-color:rgba(243,234,226,.18)}
+.drop .chip .n{color:rgba(243,234,226,.72)}
+/* The drop is dark in both themes, so it takes the dark theme's element
+   colours: the light theme's were under 3:1 on it (WCAG 1.4.3). */
+.drop{--fire:#E58A6B;--earth:#A9B873;--air:#D0AE72;--water:#86ABCC;--on-el:#1A1316}
+.drop .chip[aria-pressed="true"] .n{color:var(--on-el)}
+.drop .tab{border-color:rgba(243,234,226,.28);color:#F3EAE2}
+.drop .tab[aria-pressed="true"]{background:#F3EAE2;color:#1E1518;border-color:#F3EAE2}
+.gift-for{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:14px;color:rgba(243,234,226,.78)}
+.gift-for b{font-family:var(--serif);font-weight:400;font-size:24px;color:#F3EAE2}
+.sign-set{display:grid;gap:14px;margin-top:18px;padding:16px;border-radius:var(--radius);background:rgba(255,250,244,.07);border:1px solid rgba(243,234,226,.16)}
+.sign-set h3{font-size:clamp(26px,6vw,34px);line-height:1.05}
+.sign-set h3 em{color:#E7A79C}
+.sign-set p{margin:0;font-size:14px;color:rgba(243,234,226,.78)}
+.set-thumbs{display:flex;gap:8px}
+.set-thumbs a{display:block;width:72px;height:90px;border-radius:10px;overflow:hidden;background:rgba(0,0,0,.2)}
+.set-thumbs img{width:100%;height:100%;object-fit:cover}
+.sign-set .btn-primary{background:#E7A79C;color:#1E1518}
+.gift-more{margin:14px 0 0;font-size:14px}.gift-more a{color:#E7A79C;text-underline-offset:3px}
+@media (min-width:760px){.sign-set{grid-template-columns:auto 1fr auto;align-items:center}}
+/* Birthday finder */
+.bday{margin:2px 0 16px;padding:14px;border-radius:var(--radius);background:rgba(255,250,244,.07);border:1px solid rgba(243,234,226,.16)}
+.bday label{display:block;font-family:var(--serif);font-size:22px;line-height:1.1;margin-bottom:8px}
+.bday-row{display:flex;gap:8px;flex-wrap:wrap}
+.bday-row input{flex:1 1 170px;max-width:240px;background:rgba(255,250,244,.08);border-color:rgba(243,234,226,.24);color:#F3EAE2;color-scheme:dark}
+.drop .bday .btn-primary{background:#E7A79C;color:#1E1518}
+.bday-out{margin:10px 0 0;font-size:15px;color:rgba(243,234,226,.86)}
+.bday-out:empty{display:none}
+.bday-out b{font-family:var(--serif);font-weight:400;font-size:22px;color:#F3EAE2}
+.bday-out q{display:block;margin-top:4px;font-style:italic;color:#E7A79C}
+.bday-out .cusp{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.promise a{color:var(--accent)}
+@media (min-width:760px){.promises{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1060px){.promises{grid-template-columns:repeat(4,1fr)}}
+</style>
+<script src="/static/inapp.js"></script></head>
+<body>
+
+<div class="announce" id="announce"><b>Holiday gifts for every sign</b> · Order by Dec 12 for Christmas · Every piece ships from a US maker</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="mySign Shop home">
+      <span class="mark">my<i>Sign</i></span><span class="tag">Shop</span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#season">Gift edit</a>
+      <a href="#pair">Your pair</a>
+      <a href="#signs">By sign</a>
+      <a href="/gifts">Gift guide</a>
+      <a href="#shop">Shop all</a>
+      <a href="#help">Help</a>
+    </nav>
+    <button class="bag-btn" id="bagBtn" aria-haspopup="dialog" aria-controls="drawer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+      Bag <span class="bag-count" id="bagCount" data-n="0">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="season-chip"><span class="dot" aria-hidden="true" id="seasonDot">&#x264F;&#xFE0E;</span><span id="seasonLine">Scorpio season · Oct 23 – Nov 21</span></span>
+      <h1>A gift that's <em>actually them.</em></h1>
+      <p class="lede">Tell us their sign and every piece switches to it: crystal candles, sign necklaces, perfume oils and tarot from independent US makers, from $5.99. No generic horoscope mugs.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#season">Shop gifts by their sign</a>
+        <a class="btn btn-ghost" href="#pair">A gift for the two of you</a>
+      </div>
+      <div class="hero-meta">
+        <span>From $5.99</span><span id="heroCutoff">Order by Dec 12 for Christmas</span><span>Every sign, every piece</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <linearGradient id="heroG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#27306A"/><stop offset=".5" stop-color="#161B3C"/><stop offset="1" stop-color="#0B0E20"/></linearGradient>
+          <radialGradient id="heroGold" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#F6E9CC"/><stop offset=".55" stop-color="#C9A774"/><stop offset="1" stop-color="#94703A"/></radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="168" fill="url(#heroG)" stroke="var(--line-2)"/>
+        <g class="orbit">
+          <circle cx="200" cy="200" r="186" fill="none" stroke="var(--line-2)" stroke-dasharray="1 6"/>
+          <circle cx="200" cy="14" r="4" fill="var(--accent)"/>
+          <circle cx="386" cy="200" r="2.5" fill="var(--gold)"/>
+        </g>
+        <g id="heroStars"></g>
+        <path d="M118 0 C 130 150, 270 150, 282 0" fill="none" stroke="#F6E9CC" stroke-width="1.6" stroke-dasharray="3 2" opacity=".9"/>
+        <line x1="200" y1="112" x2="200" y2="126" stroke="#F6E9CC" stroke-width="2"/>
+        <circle cx="200" cy="196" r="70" fill="url(#heroGold)"/>
+        <circle cx="200" cy="196" r="60" fill="none" stroke="#6B4E22" stroke-opacity=".35"/>
+        <text x="200" y="220" text-anchor="middle" font-size="64" class="a-glyph" fill="#4A3320" id="heroGlyph">&#x264F;&#xFE0E;</text>
+        <text x="200" y="318" text-anchor="middle" class="a-mono" font-size="10" fill="#FFFAF4" opacity=".9" style="font-size:10px" id="heroSignLine">SCORPIO · WATER · FIXED</text>
+        <text x="200" y="340" text-anchor="middle" class="a-serif" fill="#FFFAF4" style="font-size:20px;font-style:italic" id="heroMotto">feel it all, quietly</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- HOLIDAY GIFT EDIT -->
+<section id="season" style="padding-top:0">
+  <div class="drop">
+    <div class="drop-inner">
+      <div class="sec-head">
+        <span class="eyebrow" id="seasonEyebrow">The holiday gift edit</span>
+        <h2>Who are you <em>shopping for?</em></h2>
+        <p class="lede">Tap their sign, or give us their birthday and our chart engine will work it out. Every piece below switches to it, sorted by budget.</p>
+      </div>
+      <form class="bday" id="bdayForm" novalidate>
+        <label for="bday">Know their birthday?</label>
+        <div class="bday-row">
+          <input type="date" id="bday" name="bday" min="1920-01-01" required>
+          <button class="btn btn-primary btn-small" type="submit">Find their sign</button>
+        </div>
+        <p class="bday-out" id="bdayOut" aria-live="polite"></p>
+      </form>
+      <div class="chips" id="giftChips" role="group" aria-label="Their sign"></div>
+      <div class="toolbar" id="giftTabs" role="group" aria-label="Budget"></div>
+      <div class="grid" id="seasonGrid"></div>
+      <div class="sign-set" id="signSet" hidden></div>
+      <p class="gift-more"><a id="giftGuide" href="/gifts">See every pick in the gift guide</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- PAIR -->
+<section id="pair">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">A gift for two · 78 combinations</span>
+      <h2>Two signs, <em>one gift.</em></h2>
+      <p class="lede">Pick yours, pick theirs. We'll tell you, honestly, what the pairing tends to feel like, and show real pieces that come in both of your signs: one each.</p>
+    </div>
+    <div class="pair">
+      <div class="picker">
+        <div class="picker-row">
+          <div class="picker-label"><b>You</b><span id="aName">Leo</span></div>
+          <div class="chips" id="chipsA" role="group" aria-label="Your sign"></div>
+        </div>
+        <div class="picker-row">
+          <div class="picker-label"><b>Them</b><span id="bName">Scorpio</span></div>
+          <div class="chips" id="chipsB" role="group" aria-label="Their sign"></div>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="result-head">
+          <span class="eyebrow" id="pairEyebrow">Your pair</span>
+          <h3 id="pairTitle">Leo + Scorpio</h3>
+          <div class="el-pills" id="pairEls"></div>
+        </div>
+        <p class="result-note" id="pairNote"></p>
+        <p class="result-fine">Sun signs are one line of a much bigger chart; the mySign app reads both full charts. For reflection and entertainment, not a verdict.</p>
+        <ul class="pair-list" id="pairList"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNS -->
+<section id="signs" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Shop by sign</span>
+      <h2>Start with <em>yours.</em></h2>
+      <p class="lede">Tap a sign to see every piece that comes in it, already set to your sign. Colors follow the element.</p>
+    </div>
+    <div class="signs" id="signGrid"></div>
+    <div class="legend">
+      <span style="--el:var(--fire)"><i></i>Fire</span>
+      <span style="--el:var(--earth)"><i></i>Earth</span>
+      <span style="--el:var(--air)"><i></i>Air</span>
+      <span style="--el:var(--water)"><i></i>Water</span>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Collections</span>
+      <h2>Wear it, light it, <em>read it.</em></h2>
+      <p class="lede">Everything here is a real piece from an independent maker. Product photos are the makers' own.</p>
+    </div>
+    <div class="cols" id="colGrid"></div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="area">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The shop · checkout on Shopify</span>
+      <h2>Made by <em>people we like.</em></h2>
+      <p class="lede">Zodiac pieces from independent makers. Add to your bag here; checkout hands it to Shopify at shop.mysignapp.com, and each maker ships straight to you, so a mixed bag can arrive in more than one package.</p>
+    </div>
+    <div class="toolbar" id="tabs" role="group" aria-label="Collections"></div>
+    <p class="filter-note" id="filterNote" hidden><span id="filterText"></span><button class="linkbtn" id="clearSign" type="button">Show all signs</button><span class="soft" id="filterSoft"></span></p>
+    <div class="grid" id="shopGrid"></div>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section style="padding-top:8px">
+  <div class="wrap promises">
+    <div class="promise"><b>Real makers, clearly named.</b><p>Every piece comes from an independent maker, and every card says who. The photos are theirs, not ours.</p></div>
+    <div class="promise"><b>Ship times up front.</b><p>Each maker ships within its own stated window, straight to you. Shipping and tax are shown at checkout, before you pay.</p></div>
+    <div class="promise"><b>Readings, not promises.</b><p>Pair notes are written for reflection and fun, never a prediction you have to live by.</p></div>
+    <div class="promise"><b>A real team answers.</b><p>mySign Shop is run by XII Studios LLC, the people behind the My Sign app. Questions before or after you buy: <a href="mailto:support@mysignapp.com">support@mysignapp.com</a> or <a href="tel:+16107511606">+1 (610) 751-1606</a>.</p></div>
+  </div>
+</section>
+
+<!-- EMAIL -->
+
+<!-- INFO -->
+<section id="help" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Good to know</span></div>
+    <details id="shipping">
+      <summary>Shipping</summary>
+      <p>Each piece is made and shipped by its maker, from the US, so a bag with pieces from different makers can arrive in more than one package.</p>
+      <ul>
+        <li>Each maker ships within its own stated window; the details are in our <a href="https://shop.mysignapp.com/policies/shipping-policy">shipping policy</a>.</li>
+        <li>Shipping and tax are calculated at checkout, before you pay.</li>
+        <li>You'll get tracking by email from shop.mysignapp.com once your order ships.</li>
+      </ul>
+    </details>
+    <details id="returns">
+      <summary>Returns</summary>
+      <p>Returns and refunds follow the shop.mysignapp.com <a href="https://shop.mysignapp.com/policies/refund-policy">refund policy</a>. If anything arrives damaged or wrong, email <a href="mailto:support@mysignapp.com">support@mysignapp.com</a> with your order number and a photo and we'll sort it out with the maker.</p>
+    </details>
+    <details id="checkout">
+      <summary>Checkout &amp; your bag</summary>
+      <p>Your bag is kept on this device. When you check out, it opens in Shopify's secure checkout at shop.mysignapp.com, where you'll see the final price, shipping and tax before paying. Prices and stock are confirmed there.</p>
+    </details>
+    <details id="who">
+      <summary>Who runs mySign Shop?</summary>
+      <p>XII Studios LLC, the small team that makes the My Sign astrology app, based at 301 174th St, Sunny Isles Beach, FL 33160, USA. We pick every piece ourselves from independent US makers, and the makers ship it to you. Reach us at <a href="mailto:support@mysignapp.com">support@mysignapp.com</a> or <a href="tel:+16107511606">+1 (610) 751-1606</a>, or see our <a href="/support">support page</a>.</p>
+    </details>
+    <details id="cusp">
+      <summary>Not sure of their sign?</summary>
+      <p>Put their birthday in the finder at the top of the gift edit and we'll work it out with the same chart engine the My Sign app uses. If they were born on a cusp day, the Sun changed signs that day, so we'll show you both signs; their birth time and city decide which one, and the free reading on <a href="/">mysignapp.com</a> can tell you exactly.</p>
+    </details>
+    <details id="faq">
+      <summary>Are the pair notes accurate?</summary>
+      <p>They're short, honest generalisations about how two elements tend to meet, written to be useful to think with. They are for reflection and entertainment, not advice or prediction. Please don't make big decisions on a sun-sign pairing alone (we wouldn't).</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="mark">my<i style="color:var(--accent)">Sign</i> Shop</div>
+        <p>Zodiac pieces from independent US makers, picked by the people behind the mySign compatibility app.</p>
+        <p>Operated by XII Studios LLC · <a href="tel:+16107511606">+1 (610) 751-1606</a> · <a href="mailto:support@mysignapp.com">support@mysignapp.com</a></p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="https://shop.mysignapp.com/policies/shipping-policy">Shipping policy</a>
+        <a href="https://shop.mysignapp.com/policies/refund-policy">Refund policy</a>
+        <a href="https://mysignapp.com/">mySign home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/cookies">Cookies</a>
+        <a href="mailto:support@mysignapp.com">support@mysignapp.com</a>
+      </nav>
+      <a class="app-link" href="https://mysignapp.com/">
+        <span class="ic">m</span>
+        <span><b style="font-weight:500">Get the mySign app</b><small>Compatibility, read against your real charts · mysignapp.com</small></span>
+      </a>
+    </div>
+    <p class="fine-print"><b style="font-weight:500">Shipping &amp; returns:</b> each maker ships within their stated window; returns go through the shop.mysignapp.com <a href="https://shop.mysignapp.com/policies/refund-policy">refund</a> and <a href="https://shop.mysignapp.com/policies/shipping-policy">shipping</a> policies. For reflection and entertainment: pair notes and sign copy are not a substitute for professional advice. Product photos and names belong to their makers. Prices and availability are confirmed at checkout. © <span id="yr">2026</span> mySign.</p>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawerTitle">Your bag</h2>
+    <button class="icon-btn" id="closeBag" aria-label="Close bag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="bagBody"></div>
+  <div class="drawer-foot">
+    <div class="sum"><span>Subtotal</span><b id="subtotal">$0</b></div>
+    <p class="fine" id="shipFine">Shipping and tax calculated at checkout.</p>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" type="button">Checkout</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/shop-catalog.js"></script>
+<script>
+/* ===== Config ===== */
+// Products and variant IDs come from /shop-catalog.js (tools/shop_catalog.py).
+// Checkout hands the bag to Shopify with a cart permalink: /cart/{variantId}:{qty},...
+const STORE = "https://shop.mysignapp.com";
+const CART_KEY = "mysignshop.cart.v3";
+const VS = "︎"; // text-style glyphs
+
+/* ===== Data ===== */
+const SIGNS = [
+  {id:"aries",name:"Aries",g:"♈",el:"fire",from:[3,21],to:[4,19]},
+  {id:"taurus",name:"Taurus",g:"♉",el:"earth",from:[4,20],to:[5,20]},
+  {id:"gemini",name:"Gemini",g:"♊",el:"air",from:[5,21],to:[6,20]},
+  {id:"cancer",name:"Cancer",g:"♋",el:"water",from:[6,21],to:[7,22]},
+  {id:"leo",name:"Leo",g:"♌",el:"fire",from:[7,23],to:[8,22]},
+  {id:"virgo",name:"Virgo",g:"♍",el:"earth",from:[8,23],to:[9,22]},
+  {id:"libra",name:"Libra",g:"♎",el:"air",from:[9,23],to:[10,22]},
+  {id:"scorpio",name:"Scorpio",g:"♏",el:"water",from:[10,23],to:[11,21]},
+  {id:"sagittarius",name:"Sagittarius",g:"♐",el:"fire",from:[11,22],to:[12,21]},
+  {id:"capricorn",name:"Capricorn",g:"♑",el:"earth",from:[12,22],to:[1,19]},
+  {id:"aquarius",name:"Aquarius",g:"♒",el:"air",from:[1,20],to:[2,18]},
+  {id:"pisces",name:"Pisces",g:"♓",el:"water",from:[2,19],to:[3,20]}
+];
+const SIGN = Object.fromEntries(SIGNS.map(s => [s.id, s]));
+const SIGN_ORDER = SIGNS.map(s => s.id).concat("all");
+const EL_ORDER = ["fire","earth","air","water"];
+const EL_NAME = {fire:"Fire",earth:"Earth",air:"Air",water:"Water"};
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+// One honest line per element combination (10 unordered combos).
+const PAIR_NOTES = {
+  "fire-fire":"Two fires: big warmth, fast sparks. You'll rarely be bored. Take turns being the one who cools down first.",
+  "fire-earth":"Fire wants to go now; earth wants to know why. It works when you say the pace out loud instead of guessing it.",
+  "fire-air":"Air feeds fire. Lots of talk, lots of plans, real fun. The work is actually landing a few of them.",
+  "fire-water":"Steam. Strong feelings on both sides, shown differently: one says it, one feels it first. Go gently with timing.",
+  "earth-earth":"Steady, loyal, building something. You both show love by doing things. Remember to say it, too.",
+  "earth-air":"One plans, one wonders. Different speeds, real complement, if air gets room to roam and earth gets specifics.",
+  "earth-water":"A naturally caring pair: water brings depth, earth brings shelter. Watch for both of you going quiet instead of asking.",
+  "air-air":"Endless conversation and an easy friendship underneath. Feelings can stay theoretical; bring them down to earth now and then.",
+  "air-water":"Head meets heart. Curious, tender, sometimes mistranslated. Ask what they meant before deciding what they meant.",
+  "water-water":"The deep end, together. Intuitive and close. Make room for a little air: plans, friends, lightness."
+};
+const SAME_SIGN = "Same sign: you'll recognize everything, including the parts you'd rather not. ";
+
+// Only what can be bought: stock may have changed since the catalogue was baked.
+const INAPP = document.documentElement.classList.contains("inapp");
+const isDigital = p => (p.tags || []).some(t => /^(report|digital)$/i.test(String(t))) ||
+  /report|digital/i.test(p.product_type || "") || /report/i.test(p.handle || "");
+const CATALOG = (Array.isArray(window.SHOP_CATALOG) ? window.SHOP_CATALOG : [])
+  .map(p => ({...p, variants: p.variants.filter(v => v.available)}))
+  .filter(p => p.variants.length)
+  // Inside the iPhone app (inapp.js sets html.inapp) a paid report is digital
+  // content and may only be sold through Apple, so it isn't listed there.
+  .filter(p => !(INAPP && isDigital(p)));
+const PRODUCT = Object.fromEntries(CATALOG.map(p => [p.handle, p]));
+const VARIANT = {};
+CATALOG.forEach(p => p.variants.forEach(v => { VARIANT[v.id] = {p, v}; }));
+
+const COLLECTIONS = [
+  {id:"all", name:"All"},
+  {id:"jewelry", name:"Jewelry", line:"Pendants, charms and constellation necklaces", img:"written-in-the-stars-zodiac-constellation-necklace"},
+  {id:"ritual", name:"Candles & ritual", line:"Candles, ritual oils, kits and celestial decor", img:"scented-zodiac-crystal-candle"},
+  {id:"tarot", name:"Tarot", line:"Decks, a workbook and a bundle to learn with", img:"modern-hue-tarot"}
+];
+// Holiday gift edit. Budgets read each piece's lowest available price, so new imports sort themselves.
+const BUDGETS = [
+  {id:"stocking", name:"Under $15", line:"stocking stuffers", lo:0, hi:15},
+  {id:"gift", name:"$15 to $40", line:"the classic gift", lo:15, hi:40},
+  {id:"big", name:"$40 and up", line:"the big one", lo:40, hi:1e9}
+];
+// First in each budget: the strongest gifts (sign-specific, giftable on sight).
+const GIFT_FIRST = ["scented-zodiac-crystal-candle","zodiac-oils","zodiac-pillar-candle","zodiac-tarot-card-astrology-necklace","sun-moon-sun-catcher","zodiac-pendant-necklace","zodiac-stretch-bracelet","sun-moon-tarot-card-box","zodiac-perfume-oil-set-12-gemstone-infused-zodiac-scents","zodiac-magick-ritual-kits","written-in-the-stars-zodiac-constellation-necklace"];
+// The sign set: three pieces that all come in every sign, added to the bag in one tap.
+const SIGN_SET = ["scented-zodiac-crystal-candle","zodiac-tarot-card-astrology-necklace","zodiac-stretch-bracelet"];
+const CHRISTMAS_CUTOFF = [12, 12]; // [month, day]: makers' handling + USPS Ground Advantage (Dec 17) still lands by Dec 24
+const MOTTO = {aries:"go first, ask later",taurus:"slow, sweet, certain",gemini:"two minds, one mouth",cancer:"home is a person",leo:"born for the spotlight",virgo:"quietly perfect",libra:"make it beautiful",scorpio:"feel it all, quietly",sagittarius:"the truth, with jokes",capricorn:"built to last",aquarius:"ahead of everyone",pisces:"dreams in color"};
+const MODE = {aries:"cardinal",taurus:"fixed",gemini:"mutable",cancer:"cardinal",leo:"fixed",virgo:"mutable",libra:"cardinal",scorpio:"fixed",sagittarius:"mutable",capricorn:"cardinal",aquarius:"fixed",pisces:"mutable"};
+const PAIR_PICKS = [
+  {h:"zodiac-pendant-necklace", title:"Two zodiac pendants, one each"},
+  {h:"zodiac-pillar-candle", title:"Two zodiac candles"},
+  {h:"zodiac-perfume-oil-set-12-gemstone-infused-zodiac-scents", title:"Two zodiac perfume oils"},
+  {h:"written-in-the-stars-zodiac-constellation-necklace", title:"A constellation necklace for each of you"}
+];
+
+/* ===== Helpers ===== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = n => "$" + (Number.isInteger(n) ? n : Number(n).toFixed(2));
+const round2 = n => Math.round(n * 100) / 100;
+const gl = id => SIGN[id].g + VS;
+const productUrl = h => STORE + "/products/" + encodeURIComponent(h);
+const imgSrc = (src, w) => src ? src + (src.indexOf("?") >= 0 ? "&" : "?") + "width=" + w : "";
+const optVal = (v, i) => v["option" + (i + 1)];
+const hasOptions = p => !(p.options.length === 1 && p.options[0] === "Title" && p.variants.length === 1);
+const comesIn = (p, s) => p.variants.some(v => v.signs === s);
+const isSigned = p => p.variants.some(v => v.signs && v.signs !== "all");
+const anyAvailable = p => p.variants.some(v => v.available);
+const variantLabel = v => (v.title && v.title !== "Default Title") ? v.title : "";
+const elKey = (e1, e2) => [e1, e2].sort((x, y) => EL_ORDER.indexOf(x) - EL_ORDER.indexOf(y)).join("-");
+const fmtRange = s => MONTHS[s.from[0]-1] + " " + s.from[1] + " – " + MONTHS[s.to[0]-1] + " " + s.to[1];
+function category(p){
+  const tags = (p.tags || []).map(t => String(t).toLowerCase());
+  if (tags.includes("tarot")) return "tarot";
+  if (/necklace|bracelet/i.test((p.product_type || "") + " " + p.title) || tags.includes("jewelry")) return "jewelry";
+  return "ritual";
+}
+
+function store(key, val){
+  try {
+    if (val === undefined) { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; }
+    localStorage.setItem(key, JSON.stringify(val)); return true;
+  } catch (e) { return val === undefined ? null : false; }
+}
+
+function signForDate(m, d){
+  for (const s of SIGNS){
+    const [fm, fd] = s.from, [tm, td] = s.to;
+    if (fm === tm ? (m === fm && d >= fd && d <= td)
+        : ((m === fm && d >= fd) || (m === tm && d <= td))) return s;
+  }
+  return SIGNS[0];
+}
+function currentSign(){ const d = new Date(); return signForDate(d.getMonth() + 1, d.getDate()); }
+
+function rng(seed){ let s = seed % 233280; return () => (s = (s * 9301 + 49297) % 233280) / 233280; }
+function starField(seed, n, w, h, fill){
+  const r = rng(seed); let o = "";
+  for (let i = 0; i < n; i++) o += '<circle cx="' + (r()*w).toFixed(1) + '" cy="' + (r()*h).toFixed(1) + '" r="' + (r()*1.1+0.3).toFixed(2) + '" fill="' + fill + '" opacity="' + (0.35 + r()*0.6).toFixed(2) + '"/>';
+  return o;
+}
+
+/* ===== Variant picking ===== */
+// Best variant for a sign: an available one in that sign, else any in that sign, else the first available.
+function pickVariant(p, sign){
+  const pool = sign && isSigned(p) ? p.variants.filter(v => v.signs === sign) : [];
+  return pool.find(v => v.available) || pool[0] || p.variants.find(v => v.available) || p.variants[0];
+}
+// Two available variants of p, one in sign a and one in sign b, matching the other options when possible.
+function pairVariants(p, a, b){
+  if (!p || p.sign_option == null) return null;
+  const others = v => p.options.map((_, i) => i === p.sign_option ? "" : optVal(v, i)).join("|");
+  const inA = p.variants.filter(v => v.signs === a && v.available);
+  const inB = p.variants.filter(v => v.signs === b && v.available);
+  if (!inA.length || !inB.length) return null;
+  for (const va of inA){ const vb = inB.find(x => others(x) === others(va)); if (vb) return [va, vb]; }
+  return [inA[0], inB[0]];
+}
+function variantFor(p, vals){ return p.variants.find(v => vals.every((x, i) => optVal(v, i) === x)); }
+function valsOf(p, v){ return p.options.map((_, i) => optVal(v, i)); }
+// Short description of a variant: other options plus the sign name, e.g. "Silver Scorpio".
+function shortVariant(p, v){
+  const bits = p.options.map((_, i) => i === p.sign_option ? null : optVal(v, i)).filter(Boolean);
+  if (v.signs && v.signs !== "all") bits.push(SIGN[v.signs].name);
+  return bits.join(" ");
+}
+
+/* ===== Product cards ===== */
+const SHIP_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>';
+const cardState = new Map(); // "scope|handle" -> selected option values
+
+function optionValues(p, i){
+  const seen = [];
+  p.variants.forEach(v => { const x = optVal(v, i); if (x != null && !seen.includes(x)) seen.push(x); });
+  if (i === p.sign_option){
+    const signOf = x => (p.variants.find(v => optVal(v, i) === x) || {}).signs;
+    seen.sort((x, y) => SIGN_ORDER.indexOf(signOf(x)) - SIGN_ORDER.indexOf(signOf(y)));
+  }
+  return seen;
+}
+function valueLabel(p, i, x){
+  if (i === p.sign_option){
+    const s = (p.variants.find(v => optVal(v, i) === x) || {}).signs;
+    if (s === "all") return "Full set (all 12)";
+    if (s) return SIGN[s].g + VS + " " + SIGN[s].name;
+  }
+  return x;
+}
+function valueOpen(p, i, x, vals){
+  return p.variants.some(v => v.available && optVal(v, i) === x &&
+    (i === p.sign_option || p.sign_option == null || optVal(v, p.sign_option) === vals[p.sign_option]));
+}
+function optionsHTML(p, vals, scope){
+  if (!hasOptions(p)) return "";
+  const fields = p.options.map((name, i) => {
+    const fid = "o-" + scope + "-" + p.handle + "-" + i;
+    const label = i === p.sign_option ? "Sign" : name;
+    return '<label class="sr-only" for="' + fid + '">' + esc(label + " for " + p.title) + '</label>' +
+      '<select id="' + fid + '" data-i="' + i + '">' + optionValues(p, i).map(x => {
+        const open = valueOpen(p, i, x, vals);
+        return '<option value="' + esc(x) + '"' + (x === vals[i] ? " selected" : "") + (open ? "" : " disabled") + '>' +
+          esc(valueLabel(p, i, x)) + (open ? "" : " · Sold out") + '</option>';
+      }).join("") + '</select>';
+  });
+  return '<div class="opts' + (fields.length > 1 ? " two" : "") + '">' + fields.join("") + '</div>';
+}
+function priceHTML(v){
+  return '<span class="price">' + (v.compare_at_price && v.compare_at_price > v.price ? '<s>' + money(v.compare_at_price) + '</s>' : "") + money(v.price) + '</span>';
+}
+function cardHTML(p, scope){
+  const vals = cardState.get(scope + "|" + p.handle);
+  const v = variantFor(p, vals) || p.variants[0];
+  const src = v.image || p.images[0];
+  const url = productUrl(p.handle);
+  const soldOut = !v.available;
+  const badge = soldOut ? '<span class="badge">Sold out</span>'
+    : (v.compare_at_price && v.compare_at_price > v.price) ? '<span class="badge hot">Sale</span>' : "";
+  return '<article class="card" data-h="' + esc(p.handle) + '" data-scope="' + scope + '">' +
+    '<a class="art" href="' + url + '" tabindex="-1" aria-hidden="true">' +
+      (src ? '<img src="' + esc(imgSrc(src, 600)) + '" alt="" loading="lazy" decoding="async">' : "") + badge + '</a>' +
+    '<div class="card-body"><p class="vendor">' + esc(p.vendor) + '</p>' +
+    '<div class="card-top"><h3><a href="' + url + '">' + esc(p.title) + '</a></h3>' + priceHTML(v) + '</div>' +
+    '<p class="blurb">' + esc(p.description) + '</p>' + optionsHTML(p, vals, scope) +
+    '<p class="ship">' + SHIP_ICON + '<span>Made and shipped by ' + esc(p.vendor) + '</span></p>' +
+    '<button class="btn btn-primary btn-small btn-block" type="button" data-add' + (soldOut ? " disabled" : "") + '>' + (soldOut ? "Sold out" : "Add to bag") + '</button>' +
+    '</div></article>';
+}
+function renderCards(el, list, scope, sign, reset){
+  el.innerHTML = list.map(p => {
+    const k = scope + "|" + p.handle;
+    if (reset || !cardState.has(k)) cardState.set(k, valsOf(p, pickVariant(p, sign)));
+    return cardHTML(p, scope);
+  }).join("");
+}
+document.addEventListener("change", e => {
+  const sel = e.target.closest(".card select[data-i]"); if (!sel) return;
+  const card = sel.closest(".card"), p = PRODUCT[card.dataset.h], scope = card.dataset.scope;
+  const k = scope + "|" + p.handle, i = +sel.dataset.i;
+  let vals = cardState.get(k).slice(); vals[i] = sel.value;
+  const exact = variantFor(p, vals);
+  if (!exact || !exact.available){
+    // Keep the choice just made; move the other options to an available combination.
+    const alt = p.variants.find(v => v.available && optVal(v, i) === sel.value);
+    if (alt) vals = valsOf(p, alt);
+  }
+  cardState.set(k, vals);
+  card.outerHTML = cardHTML(p, scope);
+  const again = document.querySelector('.card[data-scope="' + scope + '"][data-h="' + CSS.escape(p.handle) + '"] select[data-i="' + i + '"]');
+  if (again) again.focus();
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest(".card [data-add]"); if (!b) return;
+  const card = b.closest(".card"), p = PRODUCT[card.dataset.h];
+  const v = variantFor(p, cardState.get(card.dataset.scope + "|" + p.handle));
+  if (v) addToCart(p, v);
+});
+
+/* ===== Cart ===== */
+// Lines: {variantId, qty, title, variantTitle, price, image}. Refreshed from the catalog on load.
+let cart = store(CART_KEY);
+if (!Array.isArray(cart)) cart = [];
+cart = cart.filter(l => l && VARIANT[l.variantId] && Number.isInteger(l.qty) && l.qty > 0).map(l => {
+  const {p, v} = VARIANT[l.variantId];
+  return {variantId: v.id, qty: Math.min(l.qty, 99), title: p.title, variantTitle: variantLabel(v), price: v.price, image: v.image || p.images[0] || ""};
+});
+
+function addToCart(p, v, qty, quiet){
+  if (!v || !v.available) { toast("That one's sold out right now"); return false; }
+  qty = qty || 1;
+  const line = cart.find(l => l.variantId === v.id);
+  if (line) line.qty = Math.min(line.qty + qty, 99);
+  else cart.push({variantId: v.id, qty, title: p.title, variantTitle: variantLabel(v), price: v.price, image: v.image || p.images[0] || ""});
+  saveCart(); renderCart();
+  if (!quiet) toast("Added: " + p.title + (variantLabel(v) ? " (" + variantLabel(v) + ")" : ""));
+  return true;
+}
+function saveCart(){ store(CART_KEY, cart); }
+function renderCart(){
+  const n = cart.reduce((a, l) => a + l.qty, 0);
+  const c = $("#bagCount"); c.textContent = n; c.dataset.n = n;
+  const body = $("#bagBody");
+  if (!cart.length){
+    body.innerHTML = '<div class="empty"><b>Nothing here yet.</b>Start with your sign, or find your pair.<br><br><a class="btn btn-ghost btn-small" href="#pair" data-close>Find your pair</a></div>';
+  } else {
+    body.innerHTML = cart.map((l, i) => {
+      const vendor = VARIANT[l.variantId] ? VARIANT[l.variantId].p.vendor : "";
+      return '<div class="line"><div class="thumb">' + (l.image ? '<img src="' + esc(imgSrc(l.image, 160)) + '" alt="" loading="lazy">' : "") + '</div><div><h4>' + esc(l.title) + '</h4>' +
+        (l.variantTitle ? '<div class="v">' + esc(l.variantTitle) + '</div>' : "") +
+        (vendor ? '<div class="v">Ships from ' + esc(vendor) + '</div>' : "") +
+        '<div class="qty"><button type="button" aria-label="Decrease quantity" data-q="' + i + '" data-d="-1">−</button><span>' + l.qty + '</span><button type="button" aria-label="Increase quantity" data-q="' + i + '" data-d="1">+</button></div>' +
+        '<button class="linkbtn rm" type="button" data-rm="' + i + '">Remove</button></div>' +
+        '<div class="lp">' + money(round2(l.price * l.qty)) + '</div></div>';
+    }).join("");
+  }
+  $("#subtotal").textContent = money(round2(cart.reduce((a, l) => a + l.price * l.qty, 0)));
+  const makers = new Set(cart.map(l => VARIANT[l.variantId] && VARIANT[l.variantId].p.vendor));
+  $("#shipFine").textContent = "Shipping and tax calculated at checkout." +
+    (makers.size > 1 ? " Pieces from different makers ship separately." : "");
+  $("#checkoutBtn").disabled = !cart.length;
+}
+$("#bagBody").addEventListener("click", e => {
+  const q = e.target.closest("[data-q]"), rm = e.target.closest("[data-rm]");
+  if (q){ const l = cart[+q.dataset.q]; l.qty = Math.min(l.qty + +q.dataset.d, 99); if (l.qty < 1) cart.splice(+q.dataset.q, 1); }
+  else if (rm){ cart.splice(+rm.dataset.rm, 1); }
+  else if (e.target.closest("[data-close]")) { closeBag(); return; }
+  else return;
+  saveCart(); renderCart();
+});
+
+let lastFocus = null;
+function openBag(){
+  lastFocus = document.activeElement;
+  $("#drawer").classList.add("open"); $("#scrim").classList.add("open");
+  $("#drawer").setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden";
+  setTimeout(() => $("#closeBag").focus(), 50);
+}
+function closeBag(){
+  $("#drawer").classList.remove("open"); $("#scrim").classList.remove("open");
+  $("#drawer").setAttribute("aria-hidden", "true"); document.body.style.overflow = "";
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+$("#bagBtn").addEventListener("click", openBag);
+$("#closeBag").addEventListener("click", closeBag);
+$("#scrim").addEventListener("click", closeBag);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#drawer").classList.contains("open")) closeBag(); });
+
+$("#checkoutBtn").addEventListener("click", () => {
+  if (!cart.length) return;
+  // Shopify cart permalink: hands the bag to Shopify's hosted checkout.
+  window.location.href = STORE + "/cart/" + cart.map(l => l.variantId + ":" + l.qty).join(",") + "?ref=mysign-shop";
+});
+
+let toastT;
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200); }
+
+/* ===== Pair finder ===== */
+let pairA = "leo", pairB = "scorpio";
+function chipsHTML(sel){
+  return SIGNS.map(s => '<button type="button" class="chip" style="--el:var(--' + s.el + ')" data-s="' + s.id + '" aria-pressed="' + (s.id === sel) + '" aria-label="' + s.name + '"><span class="g" aria-hidden="true">' + gl(s.id) + '</span><span class="n">' + s.name.slice(0, 3) + '</span></button>').join("");
+}
+function pairRecs(){
+  return PAIR_PICKS.map(r => {
+    const p = PRODUCT[r.h], two = pairVariants(p, pairA, pairB);
+    if (!two) return null;
+    const [va, vb] = two;
+    const same = va.id === vb.id;
+    const desc = same ? "2 × " + shortVariant(p, va) : shortVariant(p, va) + " + " + shortVariant(p, vb);
+    const each = va.price === vb.price ? " · " + money(va.price) + " each" : "";
+    return {p, va, vb, title: r.title, sub: p.vendor + " · " + desc + each, price: money(round2(va.price + vb.price))};
+  }).filter(Boolean);
+}
+function renderPair(){
+  $("#chipsA").innerHTML = chipsHTML(pairA); $("#chipsB").innerHTML = chipsHTML(pairB);
+  $("#aName").textContent = SIGN[pairA].name; $("#bName").textContent = SIGN[pairB].name;
+  const a = SIGN[pairA], b = SIGN[pairB];
+  $("#pairTitle").innerHTML = '<span class="gg">' + gl(a.id) + '</span> ' + a.name + ' + ' + b.name + ' <span class="gg">' + gl(b.id) + '</span>';
+  $("#pairEyebrow").textContent = pairA === pairB ? "Same sign pair" : "Your pair";
+  $("#pairEls").innerHTML = '<span class="el-pill">' + EL_NAME[a.el] + '</span><span class="el-pill">' + EL_NAME[b.el] + '</span>';
+  $("#pairNote").textContent = (pairA === pairB ? SAME_SIGN : "") + PAIR_NOTES[elKey(a.el, b.el)];
+  const recs = pairRecs();
+  $("#pairList").innerHTML = recs.length ? recs.map((r, i) => {
+    const src = r.va.image || r.p.images[0];
+    return '<li class="pair-item"><a class="thumb" href="' + productUrl(r.p.handle) + '" tabindex="-1" aria-hidden="true">' +
+      (src ? '<img src="' + esc(imgSrc(src, 200)) + '" alt="" loading="lazy">' : "") + '</a>' +
+      '<div><h4>' + esc(r.title) + '</h4><p class="sub">' + esc(r.sub) + '</p></div>' +
+      '<div><div class="p">' + esc(r.price) + '</div><button class="btn btn-primary btn-small" type="button" data-rec="' + i + '">Add both</button></div></li>';
+  }).join("") : '<li class="pair-empty">Nothing comes in both of these signs right now. Try the shop by sign below.</li>';
+}
+$("#chipsA").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c){ pairA = c.dataset.s; renderPair(); } });
+$("#chipsB").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c){ pairB = c.dataset.s; renderPair(); } });
+$("#pairList").addEventListener("click", e => {
+  const b = e.target.closest("[data-rec]"); if (!b) return;
+  const r = pairRecs()[+b.dataset.rec]; if (!r) return;
+  if (r.va.id === r.vb.id) addToCart(r.p, r.va, 2, true);
+  else { addToCart(r.p, r.va, 1, true); addToCart(r.p, r.vb, 1, true); }
+  toast("Added both: " + r.p.title + " (" + SIGN[pairA].name + ", " + SIGN[pairB].name + ")");
+});
+
+/* ===== Shop: signs, collections, grid ===== */
+let activeSign = null, activeTab = "all";
+
+function renderSigns(){
+  const now = currentSign().id;
+  $("#signGrid").innerHTML = SIGNS.map(s => '<button type="button" class="sign' + (s.id === now ? " now" : "") + '" style="--el:var(--' + s.el + ')" data-s="' + s.id + '" aria-pressed="' + (s.id === activeSign) + '">' +
+    (s.id === now ? '<span class="now-tag">Now</span>' : "") +
+    '<span class="g" aria-hidden="true">' + gl(s.id) + '</span><span class="n">' + s.name + '</span><span class="d">' + fmtRange(s) + '</span></button>').join("");
+}
+function setSign(id, scroll){
+  activeSign = id; renderSigns(); renderShop(true);
+  if (scroll) document.getElementById("shop").scrollIntoView();
+}
+$("#signGrid").addEventListener("click", e => { const b = e.target.closest(".sign"); if (b) setSign(b.dataset.s, true); });
+document.querySelectorAll("[data-shop-sign]").forEach(a => a.addEventListener("click", e => {
+  e.preventDefault(); activeTab = "all"; renderTabs(); setSign(a.dataset.shopSign, true);
+}));
+
+function renderCols(){
+  $("#colGrid").innerHTML = COLLECTIONS.filter(c => c.id !== "all").map(c => {
+    const p = PRODUCT[c.img], n = CATALOG.filter(x => category(x) === c.id).length;
+    return '<button type="button" class="col" data-c="' + c.id + '"><div class="art">' +
+      (p && p.images[0] ? '<img src="' + esc(imgSrc(p.images[0], 700)) + '" alt="" loading="lazy">' : "") +
+      '</div><div class="cap"><b>' + esc(c.name) + '</b><span>' + esc(c.line) + ' · ' + n + (n === 1 ? " piece" : " pieces") + '</span></div></button>';
+  }).join("");
+}
+$("#colGrid").addEventListener("click", e => {
+  const b = e.target.closest(".col"); if (!b) return;
+  activeTab = b.dataset.c; renderTabs(); renderShop(false);
+  document.getElementById("shop").scrollIntoView();
+});
+function renderTabs(){
+  $("#tabs").innerHTML = COLLECTIONS.map(c => '<button type="button" class="tab" data-t="' + c.id + '" aria-pressed="' + (c.id === activeTab) + '">' + esc(c.name) + '</button>').join("");
+}
+$("#tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b){ activeTab = b.dataset.t; renderTabs(); renderShop(false); } });
+
+function renderShop(reset){
+  let list = CATALOG.filter(p => activeTab === "all" || category(p) === activeTab);
+  if (activeSign) list = list.filter(p => comesIn(p, activeSign));
+  const grid = $("#shopGrid");
+  if (!CATALOG.length){
+    grid.innerHTML = '<div class="grid-empty"><b>The shelves are restocking.</b>Everything is still at <a href="' + STORE + '">shop.mysignapp.com</a>.</div>';
+  } else if (!list.length){
+    grid.innerHTML = '<div class="grid-empty"><b>Nothing here in ' + esc(SIGN[activeSign].name) + '.</b>' +
+      (activeTab === "tarot" ? "Our tarot pieces aren't sign-specific, so they're for everyone. " : "") +
+      '<button class="linkbtn" type="button" data-clear>Show all signs</button></div>';
+  } else renderCards(grid, list, "shop", activeSign || currentSign().id, reset);
+
+  const note = $("#filterNote");
+  if (!activeSign){ note.hidden = true; return; }
+  const name = SIGN[activeSign].name;
+  $("#filterText").textContent = "Showing " + list.length + (list.length === 1 ? " piece" : " pieces") + " that come in " + name + ", set to " + name + ".";
+  // Single-sign pieces (sign in the title, e.g. Barse's charm necklaces) only exist for some signs.
+  const single = CATALOG.filter(p => p.sign_option == null && isSigned(p));
+  const vendors = [...new Set(single.map(p => p.vendor))];
+  const mine = single.filter(p => comesIn(p, activeSign));
+  let soft = "";
+  if (single.length && !mine.length) soft = vendors.join(" and ") + "'s single-sign charm necklaces don't come in " + name + " yet; everything else that comes in " + name + " is here.";
+  else if (mine.length && !mine.some(anyAvailable)) soft = vendors.join(" and ") + "'s " + name + " charm necklace is sold out right now.";
+  $("#filterSoft").textContent = soft;
+  note.hidden = false;
+}
+function clearSign(){ activeSign = null; renderSigns(); renderShop(true); }
+$("#clearSign").addEventListener("click", clearSign);
+$("#shopGrid").addEventListener("click", e => { if (e.target.closest("[data-clear]")) clearSign(); });
+
+/* ===== Season + holiday gift edit ===== */
+let giftSign = null, giftBudget = "gift";
+function minPrice(p){ return Math.min(...p.variants.map(v => v.price)); }
+function giftList(){
+  const b = BUDGETS.find(x => x.id === giftBudget);
+  return CATALOG.filter(p => (!isSigned(p) || comesIn(p, giftSign)) && minPrice(p) >= b.lo && minPrice(p) < b.hi)
+    .sort((x, y) => {
+      const a = GIFT_FIRST.indexOf(x.handle), c = GIFT_FIRST.indexOf(y.handle);
+      return (a < 0 ? 99 : a) - (c < 0 ? 99 : c) || (isSigned(y) - isSigned(x)) || minPrice(x) - minPrice(y);
+    }).slice(0, 8);
+}
+function renderGift(reset){
+  const s = SIGN[giftSign];
+  $("#giftChips").innerHTML = SIGNS.map(x => '<button type="button" class="chip" style="--el:var(--' + x.el + ')" data-s="' + x.id + '" aria-pressed="' + (x.id === giftSign) + '"><span class="g" aria-hidden="true">' + gl(x.id) + '</span><span class="n">' + x.name + '</span></button>').join("");
+  $("#giftTabs").innerHTML = BUDGETS.map(b => '<button type="button" class="tab" data-b="' + b.id + '" aria-pressed="' + (b.id === giftBudget) + '">' + b.name + '</button>').join("");
+  const list = giftList();
+  if (list.length) renderCards($("#seasonGrid"), list, "season", giftSign, reset);
+  else $("#seasonGrid").innerHTML = '<div class="grid-empty"><b>Nothing in ' + esc(s.name) + ' at this price yet.</b>Try another budget.</div>';
+  renderSignSet();
+  const gg = $("#giftGuide"); gg.href = "/gifts/" + giftSign; gg.textContent = "Why these suit " + (/^[AEIOU]/.test(s.name) ? "an " : "a ") + s.name + ", in the " + s.name + " gift guide →";
+}
+function renderSignSet(){
+  const box = $("#signSet"), s = SIGN[giftSign];
+  const parts = SIGN_SET.map(h => PRODUCT[h]).filter(Boolean).map(p => ({p, v: p.variants.find(v => v.signs === giftSign && v.available)}));
+  if (parts.length < 2 || parts.some(x => !x.v)){ box.hidden = true; return; }
+  const total = round2(parts.reduce((a, x) => a + x.v.price, 0));
+  box.innerHTML = '<div class="set-thumbs">' + parts.map(x => '<a href="' + productUrl(x.p.handle) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(imgSrc(x.v.image || x.p.images[0], 200)) + '" alt="" loading="lazy"></a>').join("") + '</div>' +
+    '<div><span class="eyebrow">The whole set, one tap</span><h3>The ' + esc(s.name) + ' set, <em>' + money(total) + '.</em></h3>' +
+    '<p>' + parts.map(x => esc(x.p.title)).join(" + ") + ', each already in ' + esc(s.name) + '.</p></div>' +
+    '<button class="btn btn-primary" type="button" data-set>Add all ' + parts.length + ' to bag</button>';
+  box.hidden = false;
+}
+$("#giftChips").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c){ giftSign = c.dataset.s; store("mysign_gift_sign", giftSign); renderGift(true); } });
+$("#giftTabs").addEventListener("click", e => { const t = e.target.closest(".tab"); if (t){ giftBudget = t.dataset.b; renderGift(false); } });
+$("#signSet").addEventListener("click", e => {
+  if (!e.target.closest("[data-set]")) return;
+  SIGN_SET.map(h => PRODUCT[h]).filter(Boolean).forEach(p => addToCart(p, p.variants.find(v => v.signs === giftSign && v.available), 1, true));
+  toast("Added the " + SIGN[giftSign].name + " set");
+});
+
+/* ===== Birthday finder: the app's chart engine names their Sun sign ===== */
+function signsOnDate(m, d){
+  // Every sign whose dates touch this day: two on a cusp day.
+  return SIGNS.filter(s => (s.from[0] === m && s.from[1] === d) || (s.to[0] === m && s.to[1] === d) ||
+    (s.from[0] === s.to[0] ? (m === s.from[0] && d > s.from[1] && d < s.to[1])
+      : ((m === s.from[0] && d > s.from[1]) || (m === s.to[0] && d < s.to[1]))));
+}
+function useGiftSign(id){
+  giftSign = id; store("mysign_gift_sign", id); renderGift(true);
+}
+$("#bdayForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const val = $("#bday").value, out = $("#bdayOut");
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(val);
+  if (!m){ out.textContent = "Pick their birthday first."; return; }
+  const mo = +m[2], dy = +m[3];
+  let local = signsOnDate(mo, dy); if (!local.length) local = [signForDate(mo, dy)];
+  let sign = local.length === 1 ? local[0] : null, line = null;
+  out.textContent = "Reading the sky…";
+  try {
+    const r = await fetch("/api/free-glimpse", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({date: val})});
+    if (r.ok){
+      const j = await r.json(), sun = (j.signs || []).find(x => / Sun$/.test(x));
+      if (sun){ const id = sun.replace(/ Sun$/, "").toLowerCase(); if (SIGN[id]) sign = SIGN[id]; }
+      else if (!(j.signs || []).length && local.length === 1){
+        // The engine says the Sun changed sign that day somewhere on Earth.
+        const i = SIGNS.indexOf(local[0]), dd = dy <= 15 ? -1 : 1;
+        local = [local[0], SIGNS[(i + dd + 12) % 12]]; sign = null;
+      }
+      if (sign && j.section && j.section.text) line = j.section.title + ": " + j.section.text;
+    }
+  } catch (err) { /* offline or blocked: the date table is still right off the cusp */ }
+  if (sign){
+    useGiftSign(sign.id);
+    out.innerHTML = 'They\'re a <b>' + gl(sign.id) + ' ' + esc(sign.name) + '</b>. Everything below is now set to ' + esc(sign.name) + '.' +
+      (line ? '<q>' + esc(line.replace(/^Your /, "Their ").replace(/\bYou\b/g, "They").replace(/\byou\b/g, "they").replace(/\byour\b/g, "their")) + '</q>' : "");
+  } else {
+    out.innerHTML = 'Born on a cusp: the Sun changed signs that day. Their birth time and city decide it. Pick one, or get it exact with the <a href="/" style="color:#E7A79C">free reading</a>.' +
+      '<span class="cusp">' + local.map(s => '<button type="button" class="btn btn-ghost btn-small" style="color:#F3EAE2;border-color:rgba(243,234,226,.3)" data-cusp="' + s.id + '">' + gl(s.id) + ' ' + s.name + '</button>').join("") + '</span>';
+  }
+});
+$("#bdayOut").addEventListener("click", e => { const b = e.target.closest("[data-cusp]"); if (b){ useGiftSign(b.dataset.cusp); $("#bdayOut").innerHTML = 'Set to <b>' + gl(b.dataset.cusp) + ' ' + SIGN[b.dataset.cusp].name + '</b>.'; } });
+
+function renderSeason(){
+  const now = new Date(), y = now.getFullYear(), s = currentSign();
+  const end = new Date(s.to[0] < s.from[0] && now.getMonth() + 1 >= s.from[0] ? y + 1 : y, s.to[0] - 1, s.to[1], 23, 59, 59);
+  const days = Math.max(1, Math.ceil((end - now) / 86400000));
+  $("#seasonLine").textContent = s.name + " season · " + (days <= 1 ? "last day" : days + " days left");
+  $("#seasonDot").textContent = gl(s.id); $("#seasonDot").style.background = "var(--" + s.el + ")";
+  $("#heroGlyph").textContent = gl(s.id);
+  $("#heroSignLine").textContent = (s.name + " · " + EL_NAME[s.el] + " · " + MODE[s.id]).toUpperCase();
+  $("#heroMotto").textContent = MOTTO[s.id];
+  // Christmas delivery line: on until the cutoff, then honest about it.
+  const [cm, cd] = CHRISTMAS_CUTOFF, cut = new Date(y, cm - 1, cd, 23, 59, 59), xmas = new Date(y, 11, 25, 23, 59, 59);
+  let ann, meta;
+  if (now <= cut){ const left = Math.ceil((cut - now) / 86400000); ann = "<b>Holiday gifts for every sign</b> · Order by Dec " + cd + " for Christmas" + (left <= 7 ? " (" + left + (left === 1 ? " day" : " days") + " left)" : "") + " · Every piece ships from a US maker"; meta = "Order by Dec " + cd + " for Christmas"; }
+  else if (now <= xmas){ ann = "<b>Ordering now?</b> Most pieces arrive after Christmas · Perfect for New Year and " + s.name + " birthdays"; meta = "Ships from US makers"; }
+  else { ann = "<b>" + esc(s.name) + " season</b> · " + fmtRange(s) + " · Every piece ships from a US maker"; meta = "Ships from US makers"; }
+  $("#announce").innerHTML = ann; $("#heroCutoff").textContent = meta;
+  $("#heroStars").innerHTML = starField(3, 60, 400, 400, "var(--gold)");
+  $("#yr").textContent = y;
+  giftSign = store("mysign_gift_sign") && SIGN[store("mysign_gift_sign")] ? store("mysign_gift_sign") : s.id;
+  renderGift(true);
+}
+
+/* ===== Season notes (kept on this device; not sent anywhere) ===== */
+
+/* ===== Init ===== */
+renderSeason();
+renderPair();
+renderSigns();
+renderCols();
+renderTabs();
+renderShop(true);
+renderCart();
+</script>
+</body>
+</html>

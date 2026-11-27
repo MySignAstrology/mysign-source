@@ -1,0 +1,29 @@
+# Anchored to the repo root on purpose. An unanchored `data/` also matches
+# app/data/, which is the bundled city dataset — that silently kept it out of
+# every commit, and the app cannot start without it.
+/data/
+# Built from app/data/cities.tsv.gz on first use (and by deploy/build.sh).
+/app/data/cities.sqlite
+/app/data/cities.sqlite.tmp-*
+/data-dev/
+/deploy/build/
+# Synth output. Never commit it: a synth run with a secret in context writes
+# that secret into the template in plain text (it happened: the origin token,
+# commit 2c81270). The template is rebuilt from source on every deploy anyway.
+/deploy/cdk.out/
+/venv/
+/.venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+/node_modules/
+/web/orb/node_modules/
+/test-results/
+/playwright-report/
+/tests/e2e/.data/
+
+# iPhone release builds (signed archives and exports)
+/native/build-release/
+/native/build-sim/
+/evals/out/

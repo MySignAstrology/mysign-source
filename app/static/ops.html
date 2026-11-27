@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>My Sign · Admin</title>
+<style>
+/* The internal-tool look: the same theme as MySignAstrology/social-media-automation (web/src/app.css).
+   Neutral and light, system font, one accent; color is kept for state and for a second series. */
+:root{
+  color-scheme:light;
+  --ground:#FFFFFF; --surface:#F6F7F9; --ink:#16181D; --ink-2:#434A56; --ink-3:#626B7A;
+  --accent:#2456E6; --on-accent:#FFFFFF; --accent-wash:rgba(36,86,230,.08); --series-2:#C2740A;
+  --good:#117446; --warn:#875700; --crit:#BE2318; --crit-wash:rgba(190,35,24,.07);
+  --line:#E3E6EB; --field:#C9CED8; --r:8px; --r-lg:12px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}
+button,input,select{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#view:focus{outline:0}
+.muted{color:var(--ink-3)}
+.mono{font-variant-numeric:tabular-nums;font-size:.87em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* shell */
+.shell{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:100vh}
+.side-nav{position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+.name{font-weight:600;font-size:17px;letter-spacing:-.01em;color:inherit;text-decoration:none}
+.side-nav .name{margin:0 0 16px 12px}
+.areas{display:flex;flex-direction:column;gap:2px;margin:0 0 14px;padding:0 0 14px;border-bottom:1px solid var(--line)}
+.areas a{padding:6px 12px;border-radius:var(--r);color:var(--ink-3);text-decoration:none;font-size:14px;white-space:nowrap}
+.areas a:hover{background:var(--surface)}
+.areas a[aria-current]{color:var(--ink);font-weight:600}
+nav.tabs{display:flex;flex-direction:column;gap:2px}
+nav.tabs a{padding:8px 12px;border-radius:var(--r);color:var(--ink-2);text-decoration:none;white-space:nowrap}
+nav.tabs a:hover{background:var(--surface)}
+nav.tabs a[aria-current]{background:var(--surface);color:var(--ink);font-weight:500}
+nav.tabs a.main{font-weight:600;color:var(--ink)}
+nav.tabs a.main[aria-current]{background:var(--accent);color:var(--on-accent)}
+nav.tabs a.gap{margin-top:14px}
+.whoami{margin-top:auto;padding:18px 0 0 12px;font-size:13px;color:var(--ink-3);overflow-wrap:anywhere}
+.whoami b{font-weight:500;color:var(--ink-2)}
+.content{min-width:0;padding:26px 36px 80px;max-width:1320px;width:100%}
+.subbar{display:flex;gap:10px 14px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.spacer{flex:1}
+.custom{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.rangetxt{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.toggle{display:inline-flex;gap:7px;align-items:center;font-size:14px;color:var(--ink-2);cursor:pointer}
+.toggle input{margin:0;accent-color:var(--accent)}
+
+/* controls */
+select,input[type=search],input[type=password],input[type=date],input[type=text],input[type=email]{background:var(--ground);border:1px solid var(--field);border-radius:var(--r);padding:7px 11px;min-width:0}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--ground);border:1px solid var(--field);border-radius:var(--r);padding:7px 12px;font-size:14px;color:inherit;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn:hover:not([disabled]){border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:transparent;font-weight:500}
+.btn.sm{padding:4px 10px;font-size:13px}
+.btn[disabled]{opacity:.45;cursor:default}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--ground);border:1px solid var(--field);border-radius:var(--r);padding:5px 12px;font-size:14px;color:var(--ink-2);cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed=true]{background:var(--surface);border-color:var(--accent);color:var(--ink);font-weight:500}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools input[type=search]{flex:1;min-width:180px}
+.opform{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.opform input{flex:1;min-width:180px}
+.subnav{margin:14px 0 16px}
+.err{color:var(--crit);font-size:14px;min-height:1.2em;margin:6px 0 0}
+p.ok{color:var(--good);font-size:14px;margin:8px 0 0}
+
+/* type */
+h1{font-weight:600;font-size:26px;line-height:1.2;letter-spacing:-.015em;margin:0;text-wrap:balance;overflow-wrap:anywhere}
+h2{font-weight:600;font-size:15px;line-height:1.3;margin:0 0 12px}
+#view>h2{font-size:19px;margin:34px 0 12px!important}
+.mini{font-weight:400;font-size:13px;color:var(--ink-3);margin:0 0 6px}
+.sub{color:var(--ink-3);margin:4px 0 18px}
+.hint,.note{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.note{margin-top:20px}
+.phead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px 16px;flex-wrap:wrap;margin-bottom:18px}
+.phead>div:first-child{flex:1 1 300px;min-width:0}
+.phead .sub{margin-bottom:0}
+.pact{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding-top:4px}
+.badge,.pill{display:inline-block;border:1px solid currentColor;border-radius:99px;padding:1px 10px;font-size:12px;white-space:nowrap;color:var(--ink-2)}
+.badge{color:var(--warn)} .badge.ok{color:var(--ink-3)} .badge.bad{color:var(--crit)}
+.pill.s-signed_up,.pill.t-red,.pill.r-admin{color:var(--crit)}
+.pill.s-consented,.pill.t-amber,.pill.r-safety{color:var(--warn)}
+.pill.s-onboarded,.pill.t-report{color:var(--accent)}
+.pill.s-first_message,.pill.s-returned_day2,.pill.s-paid,.pill.r-analyst{color:var(--good)}
+.export{position:relative}
+.export summary{list-style:none}
+.export summary::-webkit-details-marker{display:none}
+.export div{position:absolute;right:0;top:calc(100% + 6px);z-index:6;display:flex;flex-direction:column;gap:6px;background:var(--ground);border:1px solid var(--line);border-radius:var(--r-lg);padding:10px;box-shadow:0 6px 20px rgba(22,24,29,.1)}
+
+/* cards */
+.card{background:var(--ground);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
+.grid{display:grid;gap:16px}
+.section{margin-top:16px}
+.two{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.halves{grid-template-columns:repeat(2,minmax(0,1fr))}
+.three{grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr))}
+.kpis{gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kpi{display:flex;flex-direction:column;padding:14px 18px}
+.kpi .l{order:-1;font-size:13px;color:var(--ink-3)}
+.kpi .v{font-weight:500;font-size:26px;line-height:1.3;font-variant-numeric:tabular-nums}
+.kpi .v.nil{color:var(--ink-3)}
+.kpi .v small{font-size:13px;font-weight:400;color:var(--ink-3)}
+.kpi .d{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.kpi .d.up{color:var(--good)} .kpi .d.down{color:var(--crit)}
+.na{border-style:dashed;color:var(--ink-3)}
+.na p{margin:0;font-size:14px}
+.empty{padding:22px;text-align:center;color:var(--ink-3);font-size:14px}
+.ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px 16px}
+.stat{display:flex;flex-direction:column}
+.stat .l{order:-1;font-size:13px;color:var(--ink-3)}
+.stat .v{font-weight:500;font-size:19px;font-variant-numeric:tabular-nums}
+.stat.bad .v{color:var(--crit)}
+summary{cursor:pointer;color:var(--ink-2)}
+
+/* dashboard: four numbers that pick the chart, the chart, and what to know */
+.heroes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+button.kpi{font:inherit;color:inherit;text-align:left;cursor:pointer;padding:18px 20px}
+button.kpi .v{font-size:36px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+button.kpi:hover{border-color:var(--field)}
+button.kpi[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-wash)}
+.focus{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+#standout{background:var(--surface);border-color:transparent}
+.said{margin:0;padding:0;list-style:none;font-size:14px}
+.said li{padding:9px 0;border-top:1px solid var(--line);color:var(--ink-2)}
+.said li:first-child{border-top:0;padding-top:0}
+.said b{display:block;font-weight:600;color:var(--ink)}
+.said+details{border-top:1px solid var(--line);padding-top:9px;font-size:14px}
+.said+details .said{margin-top:9px}
+.fold{margin-top:16px;border:1px solid var(--line);border-radius:var(--r-lg)}
+.fold>summary{padding:14px 18px;font-weight:500;color:var(--ink)}
+.fold>div{padding:2px 18px 18px}
+
+/* charts */
+.chart svg{display:block;width:100%;height:auto}
+.linechart svg{display:block;width:100%;touch-action:pan-y}
+.linechart{margin:0}
+.linechart figcaption{display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap;margin-bottom:8px;font-weight:600}
+.linechart figcaption span{font-weight:400;font-size:14px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.linechart text{fill:var(--ink-3);font-size:12px}
+.linechart .gl{stroke:var(--line)} .linechart .cross{stroke:var(--ink-3)}
+.linechart .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.linechart .pt{fill:var(--accent);stroke:var(--ground);stroke-width:2}
+.linechart details{font-size:13px;margin-top:6px}
+.linechart details>div{max-height:240px;overflow:auto}
+.hbar{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 3.2rem;gap:12px;align-items:center;padding:5px 0;font-size:14px}
+.hbar .n{text-align:right;font-variant-numeric:tabular-nums}
+.hbar .t i,.cellbar i,.fun .t i{display:block;height:12px;background:var(--accent);border-radius:0 4px 4px 0;min-width:2px}
+.cellbar{min-width:48px} .cellbar i{height:8px}
+.hbar .lab,.fun .lab{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .pct{font-size:12px;color:var(--ink-3);margin-left:6px}
+.split{display:flex;gap:2px;height:14px;margin:8px 0}
+.split i{display:block;height:100%;border-radius:2px}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--ink-3);margin-top:8px}
+.legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.fun{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr) 4.6rem 4.4rem 4.6rem;gap:8px 12px;align-items:center;font-size:14px}
+.two .fun,.halves .fun{grid-template-columns:minmax(0,9.5rem) minmax(20px,1fr) 3.4rem 3.6rem 4.2rem}
+.fun .h{font-size:13px;color:var(--ink-3)}
+.fun .n{text-align:right;font-variant-numeric:tabular-nums}
+.fun .drop{color:var(--crit);font-weight:500}
+.fun .lab small{display:block;color:var(--ink-3);font-size:12px}
+.fun .lab small.drop{color:var(--crit)}
+
+/* tables */
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 14px 9px 0;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:top}
+th{color:var(--ink-3);font-weight:400;font-size:13px}
+tr[data-uid]{cursor:pointer}
+tr[data-uid]:hover td,tr[data-uid]:focus-visible td{background:var(--surface)}
+tr[data-uid]:focus-visible{outline-offset:-2px}
+td.empty{text-align:center;padding:26px}
+table.data .n{text-align:right;font-variant-numeric:tabular-nums}
+table.data td{vertical-align:middle}
+table.data td.k{max-width:16rem;overflow:hidden;text-overflow:ellipsis}
+table.data tr>:last-child{padding-right:0}
+.card table tbody tr:last-child>*{border-bottom:0}
+.who b{font-weight:500}
+.who small{display:block;color:var(--ink-3);font-size:13px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--field)}
+.dot.live{background:var(--good)}
+.heat{overflow-x:auto}
+.heat td,.heat th,.heat tr>:last-child{padding:8px 9px!important;text-align:center}
+.heat td.k,.heat th.k{text-align:left!important}
+.heat td.c{font-variant-numeric:tabular-nums;font-size:13px;min-width:3.4rem}
+.more{display:flex;justify-content:center;gap:10px;align-items:center;margin-top:14px}
+
+/* one person */
+.back{display:inline-block;margin-bottom:12px;text-decoration:none;font-size:14px}
+.uhead{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
+.facts{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+.facts b{display:block;font-size:13px;font-weight:400;color:var(--ink-3)}
+.stepper{display:flex;margin:14px 0 2px;overflow-x:auto;padding-bottom:4px}
+.step{flex:1;min-width:92px;text-align:center;font-size:13px;color:var(--ink-3);position:relative;padding-top:24px}
+.step::before{content:"";position:absolute;top:6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--ground);border:2px solid var(--field);z-index:1}
+.step::after{content:"";position:absolute;top:11px;left:-50%;width:100%;height:2px;background:var(--field)}
+.step:first-child::after{display:none}
+.step.done{color:var(--ink)}
+.step.done::before,.step.done::after{background:var(--accent);border-color:var(--accent)}
+.step.now{font-weight:600}
+.sess{margin-top:12px;padding:0;overflow:hidden}
+.sess>summary{list-style:none;padding:14px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center;color:var(--ink)}
+.sess>summary::-webkit-details-marker{display:none}
+.sess>summary:focus-visible{outline-offset:-2px}
+.sess .when{font-weight:500}
+.sess .meta{font-size:13px;color:var(--ink-3);text-align:right}
+.sess .chev{display:inline-block;margin-left:8px}
+.sess[open] .chev{transform:rotate(90deg)}
+.flow{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--ink-3)}
+.flow .sc{background:var(--surface);border-radius:6px;padding:2px 8px;color:var(--ink-2)}
+.flow .end{color:var(--accent);font-weight:500}
+.tl{border-top:1px solid var(--line);padding:6px 18px 12px}
+.ev{display:grid;grid-template-columns:4.8rem 3.6rem 1.4rem minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ev:last-child{border-bottom:0}
+.ev .tm,.ev .off{font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-3)}
+.ev .ic{font-weight:600;text-align:center}
+.ev .what small{color:var(--ink-3);margin-left:6px}
+.ev .tag{font-size:12px;padding:1px 7px;border-radius:6px;background:var(--surface);color:var(--ink-2);margin-left:6px}
+.ev.screen .what{font-weight:500}
+.ty-screen{color:var(--accent)} .ty-tap,.ty-open,.ty-hide{color:var(--ink-3)} .ty-change{color:var(--series-2)} .ty-server{color:var(--good)} .ty-error{color:var(--crit)}
+.keys{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.msgs{display:flex;flex-direction:column;gap:8px}
+.m{max-width:46rem;padding:8px 14px;border-radius:var(--r);background:var(--surface);font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.m.user{align-self:flex-end;background:var(--accent-wash)}
+.m .meta{display:block;font-size:12px;color:var(--ink-3);margin-bottom:2px}
+
+/* gate, loading */
+.gate{max-width:420px;margin:12vh auto 0;padding:0 16px}
+.gate .card{padding:22px 26px}
+.gate input{width:100%;margin:8px 0 10px}
+.gate .btn{width:100%;justify-content:center}
+.glass{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:14px}
+.skel{height:14px;border-radius:6px;background:var(--surface);margin:8px 0}
+
+@media (max-width:1000px){.focus,.two,.halves{grid-template-columns:minmax(0,1fr)}.heroes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){
+  .shell{display:block}
+  .side-nav{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:12px 16px 8px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;align-items:center}
+  .side-nav .name{margin:0}
+  .whoami{grid-area:1/2;margin:0;padding:0;text-align:right}
+  .areas{grid-column:1/-1;flex-direction:row;overflow-x:auto;margin:0 -16px;padding:0 16px 6px}
+  .areas a{padding:4px 10px}
+  nav.tabs{grid-column:1/-1;flex-direction:row;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}
+  nav.tabs::-webkit-scrollbar{display:none}
+  nav.tabs a{padding:6px 10px} nav.tabs a.gap{margin-top:0}
+  .content{padding:18px 16px 40px}
+}
+@media (max-width:640px){.fun,.two .fun,.halves .fun{grid-template-columns:minmax(0,1fr) 4rem 4rem}.fun .t,.fun .hide-s{display:none}button.kpi{padding:14px 16px}button.kpi .v{font-size:28px}.export div{right:auto;left:0}}
+@media (prefers-reduced-motion:no-preference){.card,.chip,.btn{transition:border-color .15s}.sess .chev{transition:transform .2s}}
+</style>
+</head>
+<body>
+<div id="gate" class="gate" hidden>
+  <div class="card">
+    <div class="name">My Sign admin</div>
+    <p id="gateMsg" style="margin:.8rem 0 0">Checking who you are…</p>
+    <p id="gateHow" class="muted" style="margin:.6rem 0 0" hidden><a id="gateLink" href="/">Sign in</a> with the email your admin added.</p>
+    <p class="err" id="gateErr" role="alert"></p>
+    <details id="glass" class="glass" hidden>
+      <summary class="muted">Use break-glass token</summary>
+      <form id="gateForm">
+        <p class="muted" style="margin:.6rem 0 0;font-size:.85rem">For when no operator can sign in. Every use is logged.
+          The token is kept only in this tab and is gone when you close it.</p>
+        <label for="tok" class="muted" style="display:block;margin-top:14px;font-size:.85rem">Break-glass token</label>
+        <input id="tok" type="password" autocomplete="off" spellcheck="false" required>
+        <button class="btn primary" type="submit">Open dashboard</button>
+      </form>
+    </details>
+  </div>
+</div>
+
+<div id="app" class="shell" hidden>
+  <div class="side-nav">
+    <a class="name" id="homeLink">My Sign admin</a>
+    <nav class="areas" id="areas" aria-label="Areas"></nav>
+    <nav class="tabs" aria-label="Sections">
+      <a class="main" href="#/overview" data-area="analytics" data-tab="overview" data-role="analyst">Dashboard</a>
+      <a class="gap" href="#/acquisition" data-area="analytics" data-tab="acquisition" data-role="analyst">Acquisition</a>
+      <a href="#/funnel" data-area="analytics" data-tab="funnel" data-role="analyst">Funnel</a>
+      <a href="#/engagement" data-area="analytics" data-tab="engagement" data-role="analyst">Engagement</a>
+      <a href="#/retention" data-area="analytics" data-tab="retention" data-role="analyst">Retention</a>
+      <a href="#/notifications" data-area="analytics" data-tab="notifications" data-role="analyst">Notifications</a>
+      <a href="#/users" data-area="manage" data-tab="users" data-role="safety">Users</a>
+      <a href="#/safety" data-area="manage" data-tab="safety" data-role="safety">Safety</a>
+      <a href="#/health" data-area="manage" data-tab="health" data-role="analyst">System health</a>
+      <a href="#/admin" data-area="manage" data-tab="admin" data-role="admin">Admin</a>
+    </nav>
+    <div class="whoami" id="whoami"></div>
+  </div>
+  <div class="content">
+    <div class="subbar" id="subbar">
+      <div class="chips" role="group" aria-label="Date range">
+        <button class="chip" type="button" data-preset="today">Today</button>
+        <button class="chip" type="button" data-preset="7d">7 days</button>
+        <button class="chip" type="button" data-preset="28d">28 days</button>
+        <button class="chip" type="button" data-preset="90d">90 days</button>
+        <button class="chip" type="button" data-preset="custom">Custom</button>
+      </div>
+      <form class="custom" id="custom" hidden>
+        <label for="from">From</label><input type="date" id="from" required>
+        <label for="to">to</label><input type="date" id="to" required>
+        <button class="btn sm" type="submit">Apply</button>
+        <span class="err" id="rangeErr" role="alert"></span>
+      </form>
+      <span class="rangetxt" id="rangetxt" aria-live="polite"></span>
+      <div class="spacer"></div>
+      <label class="toggle" id="cmpWrap"><input type="checkbox" id="compare"> Compare to previous period</label>
+      <button class="btn" id="refresh" type="button" title="Reload the data">Refresh</button>
+      <button class="btn" id="lock" type="button" title="Forget the break-glass token in this tab" hidden>Lock</button>
+    </div>
+    <main id="view" tabindex="-1"></main>
+  </div>
+</div>
+
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let TOKEN = '';                      // break-glass only; a signed-in operator needs none
+try { TOKEN = sessionStorage.getItem('ops_token') || ''; } catch (e) {}
+let ME = null;                       // {uid, role, via, email_masked, roles}
+const ROLES = ['analyst', 'safety', 'admin'];
+// Two areas over one page: what the numbers say, and running the app. /ops (its old
+// address, and local development) shows both.
+const AREA = {'/analytics': 'analytics', '/manage': 'manage'}[location.pathname.replace(/\/$/, '')] || '';
+const areaOf = page => { const a = $(`nav.tabs a[data-tab="${page}"]`); return a ? a.dataset.area : ''; };
+const ONE_LOGIN = !!AREA;            // on the admin platform, its own sign-in page is at /
+const can = role => !!ME && ROLES.indexOf(ME.role) >= ROLES.indexOf(role);
+
+/* --------------------------------------------------------- the range
+   One date range for every tab, in UTC days like the reports themselves. */
+const iso = d => d.toISOString().slice(0, 10);
+const todayUTC = () => iso(new Date());
+const addDays = (s, n) => { const d = new Date(s + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
+function span(a, b){ const out = []; for (let d = a; d <= b && out.length < 800; d = addDays(d, 1)) out.push(d); return out; }
+const PRESETS = {today: 1, '7d': 7, '28d': 28, '90d': 90};
+const STATE = {preset: '28d', from: '', to: '', compare: false};
+try { Object.assign(STATE, JSON.parse(sessionStorage.getItem('ops_range') || '{}')); } catch (e) {}
+function setPreset(p){
+  STATE.preset = p;
+  if (PRESETS[p]) { STATE.to = todayUTC(); STATE.from = addDays(STATE.to, 1 - PRESETS[p]); }
+}
+if (PRESETS[STATE.preset] || !STATE.from || !STATE.to) setPreset(PRESETS[STATE.preset] ? STATE.preset : '28d');
+const rangeDays = () => span(STATE.from, STATE.to).length;
+const daysBack = max => Math.max(1, Math.min(max, span(STATE.from, todayUTC()).length));   // "last N days" endpoints
+const fmtD = s => new Date(s + 'T00:00:00Z').toLocaleDateString([], {month: 'short', day: 'numeric', timeZone: 'UTC'});
+const fmtRange = (a, b) => a === b ? fmtD(a) : `${fmtD(a)} – ${fmtD(b)}`;
+function prevRange(){ const n = rangeDays(); const to = addDays(STATE.from, -1); return [addDays(to, 1 - n), to]; }
+function paintRange(){
+  $$('.chip[data-preset]').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.preset === STATE.preset)));
+  $('#custom').hidden = STATE.preset !== 'custom';
+  $('#from').value = STATE.from; $('#to').value = STATE.to; $('#to').max = $('#from').max = todayUTC();
+  $('#compare').checked = STATE.compare;
+  const [pa, pb] = prevRange();
+  $('#rangetxt').textContent = fmtRange(STATE.from, STATE.to) + ' · UTC' + (STATE.compare ? ` · vs ${fmtRange(pa, pb)}` : '');
+  try { sessionStorage.setItem('ops_range', JSON.stringify(STATE)); } catch (e) {}
+}
+function rangeChanged(){ paintRange(); route(); }
+
+/* ---------------------------------------------------------- formatting
+   Nothing reaches the page as NaN or undefined: missing is a dash. */
+const isNum = v => typeof v === 'number' && isFinite(v);
+const N = (v, d = 0) => isNum(v) ? v.toLocaleString(undefined, {maximumFractionDigits: d}) : '—';
+const N1 = v => N(v, 1);
+const P = (v, d = 1) => isNum(v) ? (v * 100).toFixed(d).replace(/\.0+$/, '') + '%' : '—';
+const pad2 = n => String(n).padStart(2, '0');
+function D(s){                       // m:ss under an hour, h:mm from there
+  if (!isNum(s)) return '—';
+  s = Math.max(0, Math.round(s));
+  return s < 3600 ? `${Math.floor(s / 60)}:${pad2(s % 60)}` : `${Math.floor(s / 3600)}:${pad2(Math.floor(s % 3600 / 60))}`;
+}
+const Dl = s => isNum(s) ? `${D(s)}<small> ${s < 3600 ? 'm:ss' : 'h:mm'}</small>` : '—';
+const MS = v => isNum(v) ? (v >= 1000 ? (v / 1000).toFixed(2) + ' s' : Math.round(v) + ' ms') : '—';
+const ratio = (a, b) => isNum(a) && isNum(b) && b > 0 ? a / b : null;
+const sum = xs => xs.filter(isNum).reduce((a, b) => a + b, 0);
+const get = (o, path) => path.split('.').reduce((x, k) => x == null ? undefined : x[k], o);
+
+function delta(cur, prev, {rate = false, bad = false} = {}){
+  if (!STATE.compare) return '';
+  if (!isNum(cur) || !isNum(prev)) return '<div class="d" title="Nothing to compare with in the previous period">vs previous —</div>';
+  const up = cur > prev, flat = cur === prev;
+  const cls = flat ? '' : (up !== bad ? 'up' : 'down');
+  const arrow = flat ? '±' : up ? '▲' : '▼';
+  let txt;
+  if (rate) txt = `${(Math.abs(cur - prev) * 100).toFixed(1)} pts`;
+  else if (prev === 0) txt = flat ? '0%' : 'new';
+  else txt = `${(Math.abs(cur - prev) / prev * 100).toFixed(prev && Math.abs(cur - prev) / prev < .1 ? 1 : 0)}%`;
+  const word = flat ? 'No change' : up ? 'Up' : 'Down';
+  return `<div class="d ${cls}"><span aria-hidden="true">${arrow} ${txt}</span><span class="sr">${word} ${txt}</span> <span aria-hidden="true">vs previous</span></div>`;
+}
+function kpi(label, cur, prev, {fmt = N, rate = false, bad = false, title = '', plain = false} = {}){
+  return `<div class="card kpi"${title ? ` title="${esc(title)}"` : ''}><div class="v${isNum(cur) ? '' : ' nil'}">${fmt(cur)}</div>
+    <div class="l">${label}</div>${plain ? '' : delta(cur, prev, {rate, bad})}</div>`;
+}
+function stat(label, v, {fmt = N, bad = false} = {}){
+  // bad: true marks any non-zero value; a number marks values above that threshold.
+  const lim = bad === true ? 0 : bad;
+  return `<div class="stat${bad !== false && isNum(v) && v > lim ? ' bad' : ''}"><div class="v">${fmt(v)}</div><div class="l">${label}</div></div>`;
+}
+const NA_WHY = 'Not available until analytics is deployed.';
+const na = (title, why = NA_WHY) => `<div class="card na"><h2>${esc(title)}</h2><p>${esc(why)}</p></div>`;
+const empty = r => !r || r.unavailable || !r.totals || !Object.keys(r.totals).length;
+
+/* ---------------------------------------------------------------- api */
+// x-ops-request on everything: the server insists on it for changes made
+// with the session cookie, which a cross-site form cannot send.
+async function ops(path, {method = 'GET', body} = {}){
+  const headers = {'x-ops-request': '1'};
+  if (TOKEN) headers['x-ops-token'] = TOKEN;
+  if (body !== undefined) headers['content-type'] = 'application/json';
+  const r = await fetch('/api/ops/' + path, {method, headers, credentials: 'same-origin', cache: 'no-store',
+    body: body === undefined ? undefined : JSON.stringify(body)});
+  if (r.status === 401 && ONE_LOGIN && !TOKEN) { toSignIn(); throw new Error('locked'); }
+  if (r.status === 401) { lock(TOKEN ? 'That token wasn’t accepted.' : 'Your session has ended.', 401); throw new Error('locked'); }
+  if (!r.ok) {
+    let d = ''; try { d = (await r.json()).detail; } catch (e) {}
+    const err = new Error(d || `Request failed (${r.status})`);
+    err.status = r.status;
+    throw err;
+  }
+  return r.json();
+}
+const CACHE = new Map();             // per page view; Refresh and range changes clear it
+function cached(path){
+  if (!CACHE.has(path)) CACHE.set(path, ops(path).catch(e => { CACHE.delete(path); throw e; }));
+  return CACHE.get(path);
+}
+const rq = (extra = '') => `from=${STATE.from}&to=${STATE.to}${extra}`;
+const rep = name => cached(`report/${name}?${rq(STATE.compare ? '&compare=1' : '')}`);
+const prevT = r => (r && r.previous && r.previous.totals) || {};
+
+// Signed-in operators download with their cookie, so a plain link works; the
+// break-glass token lives in a header, which a link can't send.
+const csvHref = name => `/api/ops/report/${name}.csv?${rq(STATE.compare ? '&compare=1' : '')}`;
+const csvBtn = (name, label) => `<a class="btn sm" href="${csvHref(name)}" data-csv="${name}" download
+  aria-label="Export ${esc(label || name)} as CSV">${esc(label || name)} CSV</a>`;
+document.addEventListener('click', async e => {
+  const a = e.target.closest && e.target.closest('a[data-csv]');
+  if (!a || !TOKEN) return;
+  e.preventDefault();
+  try {
+    const r = await fetch(a.href, {headers: {'x-ops-token': TOKEN}, credentials: 'same-origin', cache: 'no-store'});
+    if (!r.ok) throw new Error(`Export failed (${r.status})`);
+    const url = URL.createObjectURL(await r.blob());
+    const dl = document.createElement('a');
+    dl.href = url; dl.download = `mysign-${a.dataset.csv}-${STATE.from}-${STATE.to}.csv`;
+    document.body.appendChild(dl); dl.click(); dl.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (err) { alert(err.message); }
+});
+
+function badges(reps){
+  reps = reps.filter(Boolean);
+  const out = [];
+  if (reps.some(r => r.source === 'live'))
+    out.push('<span class="badge" title="The analytics rollups have no days in this range, so these come from the app’s own day counters. Some figures can’t be counted that way.">Live counters — rollups not deployed yet</span>');
+  else if (reps.length) out.push('<span class="badge ok" title="Daily rollups from the analytics lake">Rollups</span>');
+  if (reps.some(r => r.clamped_to_days)) out.push(`<span class="badge" title="The live counters only go back 90 days">Last ${reps.find(r => r.clamped_to_days).clamped_to_days} days only</span>`);
+  if (reps.some(r => (r.days || []).some(d => d.final === false && r.source === 'rollup'))) out.push('<span class="badge" title="At least one day is still being counted">Includes provisional days</span>');
+  return out.join('');
+}
+function head(title, sub, reps = [], csv = []){
+  return `<div class="phead"><div><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div>
+    <div class="pact">${badges(reps)}${csv.length ? `<details class="export"><summary class="btn sm">Export</summary><div>${csv.map(([n, l]) => csvBtn(n, l)).join('')}</div></details>` : ''}</div></div>`;
+}
+
+/* -------------------------------------------------------------- charts */
+function bars(rows, {max, pct, cls = '', fmt = N} = {}){
+  rows = rows.filter(r => isNum(r.count));
+  if (!rows.length) return '<div class="empty">Nothing yet in this range.</div>';
+  const top = max || Math.max(...rows.map(r => r.count), 1);
+  return `<div class="${cls}">` + rows.map(r => `
+    <div class="hbar"><span class="lab" title="${esc(r.label)}">${esc(r.label)}</span>
+      <span class="t"><i style="width:${(r.count / top * 100).toFixed(1)}%"></i></span>
+      <span class="n">${fmt(r.count)}${pct && r.pct != null ? `<span class="pct">${r.pct}%</span>` : ''}</span></div>`).join('') + '</div>';
+}
+// Bars per day (or hour): nulls are gaps, not zeros.
+function columns(points, {color = 'var(--accent)', label = '', W = 560, H = 120, fmt = N, overlay, overlayColor = 'var(--crit)'} = {}){
+  const P = 22, n = Math.max(points.length, 1);
+  const vals = points.map(p => p.v).filter(isNum);
+  if (!vals.length) return '<div class="empty">Nothing yet in this range.</div>';
+  const top = Math.max(1, ...vals, ...(overlay ? points.map(p => p.o).filter(isNum) : []));
+  const bw = (W - P * 2) / n, every = Math.ceil(n / Math.max(3, Math.round(W / 80)));
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">
+    <line x1="${P}" x2="${W - P}" y1="${H - P}" y2="${H - P}" stroke="var(--field)"/>
+    <line x1="${P}" x2="${W - P}" y1="${P / 2}" y2="${P / 2}" stroke="var(--line)" stroke-dasharray="2 3"/>
+    <text x="${W - P}" y="${P / 2 - 3}" font-size="12" fill="var(--ink-3)" text-anchor="end">${esc(fmt(top))}</text>
+    ${points.map((p, i) => {
+      const x = P + bw * i;
+      let s = '';
+      if (isNum(p.v)) {
+        const h = p.v / top * (H - P * 1.5);
+        s += `<rect x="${(x + bw * .15).toFixed(1)}" y="${(H - P - h).toFixed(1)}" width="${Math.max(bw * .7, 1).toFixed(1)}" height="${Math.max(h, p.v ? 1.5 : 0).toFixed(1)}" rx="2" fill="${color}"><title>${esc(p.x)}: ${esc(fmt(p.v))}${overlay && isNum(p.o) ? ` · ${esc(overlay)} ${esc(fmt(p.o))}` : ''}</title></rect>`;
+      }
+      if (overlay && isNum(p.o) && p.o > 0) {
+        const h = p.o / top * (H - P * 1.5);
+        s += `<rect x="${(x + bw * .15).toFixed(1)}" y="${(H - P - h).toFixed(1)}" width="${Math.max(bw * .7, 1).toFixed(1)}" height="${Math.max(h, 1.5).toFixed(1)}" rx="2" fill="${overlayColor}"/>`;
+      }
+      if (i === n - 1 || (i % every === 0 && n - 1 - i >= every * .7)) s += `<text x="${(x + bw / 2).toFixed(1)}" y="${H - 6}" font-size="12" fill="var(--ink-3)" text-anchor="middle">${esc(p.tick ?? '')}</text>`;
+      return s;
+    }).join('')}
+  </svg>`;
+}
+const byDay = (r, f) => { const m = new Map((r.days || []).map(d => [d.date, f(d)])); return span(STATE.from, STATE.to).map(d => ({day: d, x: fmtD(d), tick: d.slice(5), v: m.has(d) ? m.get(d) : (r.unavailable ? null : 0)})); };
+// One series over days, one axis: the title names it. Hover or the arrow keys read a day; the table has them all.
+const LINES = new Map();
+let LINE_N = 0;
+function line(title, points, {fmt = N, note = '', H = 190} = {}){
+  // Today is still being counted: as a last point it always looks like a drop.
+  const all = points;
+  if (points.length > 2 && points[points.length - 1].day === todayUTC()) points = points.slice(0, -1);
+  const cut = points.length < all.length;
+  const ys = points.map(p => p.v).filter(isNum);
+  const cap = s => `<figcaption>${esc(title)}<span>${s}</span></figcaption>`;
+  if (!ys.length) return `<figure class="linechart">${cap('')}<div class="empty">Nothing yet in this range.</div></figure>`;
+  const last = points.map(p => isNum(p.v)).lastIndexOf(true);
+  if (points.length < 2) return `<figure class="linechart">${cap('')}<p class="muted">${esc(fmt(points[last].v))} on ${esc(points[last].x)}. The line starts with the second day.</p></figure>`;
+  const id = 'ln' + (++LINE_N), hi = Math.max(1, ...ys), idle = note || `Latest: ${fmt(points[last].v)}`;
+  if (LINES.size > 60) LINES.clear();
+  LINES.set(id, {points, hi, H, fmt, idle, at: null});
+  return `<figure class="linechart" id="${id}">${cap(esc(idle))}
+    <svg height="${H}" role="img" aria-label="${esc(title)}, ${points.length} days" tabindex="0"></svg>
+    <details><summary>Table</summary><div><table class="data"><tbody>${all.map((p, i) => `<tr><td>${esc(p.x)}${cut && i === all.length - 1 ? ' (so far)' : ''}</td><td class="n">${esc(fmt(p.v))}</td></tr>`).join('')}</tbody></table></div></details></figure>`;
+}
+// Drawn at its real width, so the text is the same size in every card.
+function drawLine(fig){
+  const s = LINES.get(fig.id), svg = fig.querySelector('svg');
+  const W = Math.round(fig.clientWidth);
+  if (!s || !svg || !W || s.W === W) return;
+  const {points, hi, H} = s, L = 48, R = 14, T = 14, B = 26, n = points.length;
+  const X = i => L + i / (n - 1) * (W - L - R), Y = v => H - B - v / (hi * 1.1) * (H - T - B);
+  Object.assign(s, {W, X, Y, at: null});
+  const runs = [[]];
+  points.forEach((p, i) => { const r = runs[runs.length - 1]; if (isNum(p.v)) r.push([X(i), Y(p.v)]); else if (r.length) runs.push([]); });
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = (hi < 2 ? [0, hi] : [0, hi / 2, hi]).map(v => `<line class="gl" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end">${esc(N(v, hi < 10 ? 1 : 0))}</text>`).join('')
+    + `<text x="${L}" y="${H - 6}">${esc(points[0].x)}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${esc(points[n - 1].x)}</text>
+      <line class="cross" y1="${T}" y2="${H - B}" visibility="hidden"/>`
+    + runs.map(r => r.length === 1 ? `<circle class="pt" cx="${r[0][0]}" cy="${r[0][1]}" r="4"/>` : r.length ? `<polyline class="ln" points="${r.map(q => q.map(x => x.toFixed(1)).join(',')).join(' ')}"/>` : '').join('')
+    + '<circle class="pt hover" r="5" visibility="hidden"/>';
+}
+const drawLines = () => $$('#view .linechart[id]').forEach(drawLine);
+new MutationObserver(drawLines).observe($('#view'), {childList: true, subtree: true});
+addEventListener('resize', drawLines);
+function pickDay(fig, i){
+  const s = LINES.get(fig.id); if (!s || !s.X) return;
+  s.at = i;
+  const p = i === null ? null : s.points[i], on = !!p && isNum(p.v);
+  const cross = fig.querySelector('.cross'), dot = fig.querySelector('.hover');
+  cross.setAttribute('visibility', p ? 'visible' : 'hidden'); dot.setAttribute('visibility', on ? 'visible' : 'hidden');
+  if (p) { cross.setAttribute('x1', s.X(i)); cross.setAttribute('x2', s.X(i)); }
+  if (on) { dot.setAttribute('cx', s.X(i)); dot.setAttribute('cy', s.Y(p.v)); }
+  fig.querySelector('figcaption span').textContent = p ? `${p.x}: ${s.fmt(p.v)}` : s.idle;
+}
+const lineOf = e => e.target.closest && e.target.closest('.linechart svg') && e.target.closest('.linechart');
+$('#view').addEventListener('pointermove', e => {
+  const fig = lineOf(e), s = fig && LINES.get(fig.id); if (!s || !s.X) return;
+  const r = fig.querySelector('svg').getBoundingClientRect(), x = (e.clientX - r.left) / r.width * s.W;
+  const n = s.points.length - 1;
+  pickDay(fig, Math.max(0, Math.min(n, Math.round((x - s.X(0)) / (s.X(n) - s.X(0)) * n))));
+});
+$('#view').addEventListener('pointerout', e => { const fig = lineOf(e); if (fig && !fig.querySelector('svg').contains(e.relatedTarget)) pickDay(fig, null); });
+$('#view').addEventListener('focusout', e => { const fig = lineOf(e); if (fig) pickDay(fig, null); });
+$('#view').addEventListener('keydown', e => {
+  const fig = lineOf(e), s = fig && LINES.get(fig.id);
+  if (!s || !s.X || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+  e.preventDefault();
+  const n = s.points.length;
+  pickDay(fig, e.key === 'ArrowLeft' ? Math.max(0, (s.at ?? n) - 1) : Math.min(n - 1, (s.at ?? -1) + 1));
+});
+function spark(title, r, f, {fmt = N, total, of = 'total'} = {}){
+  if (empty(r) && r.unavailable) return na(title);
+  return `<div class="card">${line(title, byDay(r, f), {fmt, note: isNum(total) ? `${fmt(total)} ${of}` : ''})}</div>`;
+}
+// A table of segments with a bar for the main metric.
+function segTable(rows, {key = 'key', metric, cols, label = 'Segment', max = 12, bar = true}){
+  rows = (rows || []).slice(0, max);
+  if (!rows.length) return '<div class="empty">Nothing yet in this range.</div>';
+  const top = Math.max(1, ...rows.map(r => r[metric]).filter(isNum));
+  return `<div class="tablewrap" style="border:0"><table class="data"><thead><tr><th>${esc(label)}</th>${bar ? '<th style="width:22%"><span class="sr">Share</span></th>' : ''}
+    ${cols.map(([, l]) => `<th class="n">${esc(l)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>
+    <td class="k" title="${esc(r[key])}">${esc(r[key] ?? '—')}</td>
+    ${bar ? `<td><div class="cellbar"><i style="width:${isNum(r[metric]) ? (r[metric] / top * 100).toFixed(1) : 0}%"></i></div></td>` : ''}
+    ${cols.map(([c, , f]) => `<td class="n">${(f || N)(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+// Steps with counts: bar, share of the first, step-to-step, and the worst drop marked.
+function funnelRows(steps, prev){
+  const known = steps.filter(s => isNum(s.count));
+  const base = (known.find(s => s.count > 0) || {}).count;
+  let last = null, worst = null, worstRate = 2;
+  const rows = steps.map(s => {
+    const step = isNum(s.count) && isNum(last) && last > 0 ? s.count / last : null;
+    if (isNum(step) && step < worstRate) { worstRate = step; worst = s.step; }
+    if (isNum(s.count)) last = s.count;
+    return {...s, overall: isNum(s.count) && base ? s.count / base : null, stepRate: step};
+  });
+  const pm = new Map((prev || []).map(s => [s.step, s.count]));
+  return `<div class="fun" role="table" aria-label="Funnel">
+    <span class="h" role="columnheader">Step</span><span class="h hide-s" role="columnheader"><span class="sr">Bar</span></span>
+    <span class="h n" role="columnheader">People</span><span class="h n hide-s" role="columnheader">Of first</span><span class="h n" role="columnheader">From prev</span>
+    ${rows.map(r => `<span class="lab${r.step === worst ? ' worst' : ''}" role="cell" title="${esc(r.label)}">${esc(r.label)}${r.step === worst ? '<small class="drop">biggest drop-off</small>' : ''}${!isNum(r.count) ? '<small>not counted by the live counters</small>' : ''}${STATE.compare ? `<small>${delta(r.count, pm.get(r.step)).replace(/<\/?div[^>]*>/g, '')}</small>` : ''}</span>
+      <span class="t hide-s" role="cell"><i style="width:${isNum(r.overall) ? Math.max(r.overall * 100, r.count ? 1 : 0).toFixed(1) : 0}%"></i></span>
+      <span class="n" role="cell">${N(r.count)}</span>
+      <span class="n hide-s" role="cell">${P(r.overall)}</span>
+      <span class="n${isNum(r.stepRate) && r.stepRate < .5 ? ' drop' : ''}" role="cell">${P(r.stepRate)}</span>`).join('')}
+  </div>`;
+}
+function splitBar(parts){
+  const total = sum(parts.map(p => p.v));
+  if (!total) return '<div class="empty">Nothing yet in this range.</div>';
+  return `<div class="split" role="img" aria-label="${esc(parts.map(p => `${p.label} ${N(p.v)}`).join(', '))}">${parts.map(p =>
+    `<i style="width:${((p.v || 0) / total * 100).toFixed(1)}%;background:${p.color}" title="${esc(p.label)}: ${N(p.v)}"></i>`).join('')}</div>
+    <div class="legend">${parts.map(p => `<span><b style="background:${p.color}"></b>${esc(p.label)} ${N(p.v)} · ${P(p.v / total)}</span>`).join('')}</div>`;
+}
+
+/* ------------------------------------------------------------- labels
+   Events arrive as control ids ("nav_ppl", "c_go"). Here they become words. */
+const SCREENS = {sign_in:'Sign in', consent:'Consent', onboard:'Onboarding', chart:'Chart', home:'Home',
+  place:'Place', people:'People', memory:'Memory', settings:'Settings', chat:'Chat', today:'Today'};
+const ACTIONS = {
+  auth_go:'Asked for a sign-in code', re_send:'Asked for a new code', re_email:'Changed email', re_email2:'Changed email',
+  consent_go:'Agreed to the terms', ai_ok:'Ticked the AI consent box',
+  go:'Pressed “Build my chart”', no_time:'Skipped birth time', add_time:'Added a birth time',
+  rect_go:'Tried finding their birth time', share_chart:'Shared their chart card', share_today:'Shared today’s card',
+  share_line:'Shared the daily line', sky_why:'Opened “the sky behind it”', rd_own:'Asked their own question (chart)',
+  rd_retry:'Retried the reading', ci_go:'Pressed “Check in”', send:'Pressed send',
+  nav_home:'Home tab', nav_chart:'Chart tab', nav_ppl:'People tab', nav:'Memory tab', nav_set:'Settings tab',
+  c_open:'Opened “Check someone new”', c_go:'Ran a compatibility check', c_cancel:'Cancelled adding someone',
+  c_kind:'Changed relationship type', c_prec:'Changed birth-time certainty', invite_btn:'Opened invite',
+  push_btn:'Notifications button', n_time:'Changed notification time', n_style:'Changed notification style',
+  h_sys:'Changed house system', share_mood_btn:'Toggled mood sharing', usage_btn:'Toggled usage sharing',
+  country_btn:'Changed country', export_btn:'Exported their data', del_acct:'Started deleting account',
+  sign_out:'Signed out', sheet_ok:'Confirmed a dialog', sheet_cancel:'Dismissed a dialog',
+  // server-side
+  consented:'Consent saved', chart_built:'Chart built', checked_in:'Check-in saved',
+  message_sent:'Message sent', person_added:'Person added',
+  // app
+  app:'App',
+};
+// Taps inside a container with no id of their own: what tapping anything in
+// it means, then what the container is called.
+const IN = {ac:'Picked a birth city', c_ac:'Picked their birth city', moods:'Picked a mood',
+  rd_starters:'Tapped a starter question', sheet_tog_box:'Ticked the dialog option', invite_bar:'Used the invite banner',
+  c_paywall:'Tapped the Plus offer', tabbar:'Tab bar'};
+const HOST = {thread:'the chat', today:'the Today card', ppl_today:'people’s days', p_body:'a person’s page',
+  p_compare:'the comparison', m_body:'Memory', c_box:'the add-someone form', checkin:'the check-in',
+  composer:'the message box', dock:'the dock', sheet:'a dialog', greet:'the greeting', oneline:'the daily line',
+  rd_sky:'the chart’s sky section', rd_big3:'the big three', rd_receipts:'the receipts', rd_wiring:'the wiring section',
+  rd_profile:'the chart profile', rd_now:'the chart’s now section', rd_personal:'the personal section',
+  rd_balance:'the balance section', rd_standout:'the standout', rd_open:'the reading', rd_old:'the older reading'};
+const pretty = s => String(s).replace(/[._:-]+/g, ' ').replace(/^\w/, c => c.toUpperCase());
+function actionLabel(name, type){
+  if (type === 'open') return 'Opened the app';
+  if (type === 'hide') return 'Left the app';
+  if (type === 'error') return 'Error on ' + name.replace(/\./g, '/');
+  if (ACTIONS[name]) return ACTIONS[name];
+  const [host, kind] = name.split('.');
+  if (kind && IN[host]) return IN[host];
+  if (kind) return `${pretty(kind)} in ${HOST[host] || SCREENS[host] || pretty(host)}`;
+  return pretty(name);
+}
+const screenLabel = s => SCREENS[s] || pretty(s || '—');
+const ICON = {screen:'▸', tap:'●', change:'⇄', server:'✦', error:'!', open:'↑', hide:'↓'};
+const TYPE_NAME = {screen:'Opened screen', tap:'Tapped', change:'Changed setting', server:'Saved on server',
+  error:'Error', open:'App opened', hide:'App closed'};
+const PROP_LABEL = {mood:'mood', tier:'safety', kind:'type', precision:'birth time', count:'#', value:'value',
+  status:'HTTP', band:'band', style:'style', source:'from', step:'step'};
+
+/* --------------------------------------------------------------- time */
+const fmtTime = t => new Date(t * 1000).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false});
+const fmtClock = t => new Date(t * 1000).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+const fmtDay = t => new Date(t * 1000).toLocaleDateString([], {weekday:'short', month:'short', day:'numeric'});
+function ago(t){
+  if (!t) return '—';
+  const s = Date.now() / 1000 - t;
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  if (s < 86400 * 30) return Math.floor(s / 86400) + 'd ago';
+  return fmtDay(t);
+}
+function dur(s){
+  if (s < 60) return Math.max(0, Math.round(s)) + 's';
+  if (s < 3600) return Math.round(s / 60) + 'm';
+  return (s / 3600).toFixed(1) + 'h';
+}
+const toTs = v => typeof v === 'number' ? v : (v ? Date.parse(v) / 1000 : 0);
+
+
+/* ------------------------------------------------------ what stands out
+   Sentences from the numbers on every tab; nothing is said without its numbers. */
+const CHANNEL = {paid: 'Paid ad', instagram: 'Instagram (organic, bio)', facebook: 'Facebook', google: 'Google',
+  ig_probe: 'Instagram probe (bot)', direct: 'Direct or unknown'};
+const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const pct0 = (a, b) => P(ratio(a, b), 0);
+const s_ = (n, one, many) => `${N(n)} ${n === 1 ? one : many || one + 's'}`;
+function insights({v, s, a, si, us}){
+  const out = [], st = si.totals || {}, step = k => ((st.steps || []).find(x => x.step === k) || {}).count;
+  const paid = (st.channels || []).find(c => c.key === 'paid');
+  if (paid && paid.pageviews) out.push(['Paid ads:', `${s_(paid.pageviews, 'page view')}, ${N(paid.scrolled)} scrolled past the hero, ${N(paid.opened)} opened sign-up.`
+    + (paid.scrolled ? '' : ' Every paid visitor stopped at the hero: check that the ad matches the page, and the hero button in Instagram’s browser.')]);
+  const landed = step('landed');
+  if (landed) out.push(['Landing page:', `${N(landed)} identifiable visitors → ${N(step('scrolled'))} scrolled (${pct0(step('scrolled'), landed)}) → ${N(step('opened'))} opened sign-up (${pct0(step('opened'), landed)}) → ${N(step('verified'))} verified (${pct0(step('verified'), landed)}).`]);
+  const len = st.lengths || [], ses = sum(len.map(r => r.sessions));
+  if (ses) out.push(['Visit quality:', `${N(len[0].sessions)} of ${s_(ses, 'visit')} (${pct0(len[0].sessions, ses)}) lasted under 2 seconds.`]);
+  const vt = get(v, 'totals.totals') || {};
+  if (vt.private_visits && vt.visits) out.push(['Blind spot:', `${N(vt.private_visits)} of ${s_(vt.visits, 'visit')} (${pct0(vt.private_visits, vt.visits)}) came from browsers that asked not to be followed, so visitor counts and the landing funnel run low.`]);
+  const pv = get(st, 'totals.pageviews'), seg = (dim, k) => ((get(st, 'by.' + dim) || []).find(r => r.key === k) || {}).pageviews || 0;
+  if (pv) out.push(['Audience:', `${pct0(seg('browser_family', 'in_app'), pv)} of page views were inside Instagram’s or another app’s browser; ${pct0(seg('os_family', 'ios') + seg('os_family', 'android'), pv)} were on a phone or tablet system.`]);
+  const at = a.totals || {};
+  if (isNum(at.new) && isNum(at.returning) && at.new + at.returning) out.push(['People:', `${N(at.new)} new and ${N(at.returning)} returning person-days in the app.`]);
+  const best = (us.days || []).reduce((m, d) => (get(d, 'totals.events') || 0) > (get(m, 'totals.events') || 0) ? d : m, null);
+  if (best) out.push(['Busiest day:', `${fmtD(best.date)}, with ${s_(get(best, 'totals.events'), 'event')}.`]);
+  const top = get(us, 'totals.screens.0');
+  if (top) out.push(['In the app:', `${s_(get(us, 'totals.totals.app_opens'), 'open')}; the most-opened screen is ${screenLabel(top.key)}.`]);
+  return out;
+}
+// Any list that came as {key, uses} as bars.
+const useBars = (rows, label, max = 12) => bars((rows || []).slice(0, max).map(r => ({label: label ? label(r.key) : r.key, count: r.uses})));
+function hourChart(r, f, label, color){
+  const h = new Map((get(r, 'totals.by_hour') || []).map(x => [x.hour, x]));
+  // Stored in UTC; shown on the clock of whoever is looking.
+  const off = Math.round(-new Date().getTimezoneOffset() / 60);
+  return columns(Array.from({length: 24}, (_, i) => { const u = ((i - off) % 24 + 24) % 24;
+    return {x: `${pad2(i)}:00`, tick: pad2(i), v: h.size ? f(h.get(u) || {}) || 0 : null}; }), {label, color});
+}
+function dowChart(r, f, label){
+  const t = Array(7).fill(0);
+  for (const d of r.days || []) t[new Date(d.date + 'T00:00:00Z').getUTCDay()] += f(d) || 0;
+  return columns([1, 2, 3, 4, 5, 6, 0].map(i => ({x: DOW[i], tick: DOW[i].slice(0, 3), v: (r.days || []).length ? t[i] : null})), {label});
+}
+const ZONE = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { return 'local time'; } })();
+
+/* ---------------------------------------------------------- dashboard */
+let FOCUS = 'visitors', REST = false;   // the dashboard's chart, and whether the rest is unfolded
+async function renderOverview(){
+  const [v, s, a, m, si, us, o] = await Promise.all([...['visits', 'signups', 'active', 'monetization', 'site', 'usage'].map(rep),
+    cached(`activity/overview?days=${Math.min(rangeDays(), 90)}`)]);
+  const ut = get(us, 'totals.totals') || {}, up = prevT(us).totals || {};
+  const said = insights({v, s, a, si, us});
+  const vt = get(v, 'totals.totals') || {}, vp = prevT(v).totals || {};
+  const st = s.totals || {}, sp = prevT(s);
+  const at = a.totals || {}, ap = prevT(a);
+  const mt = get(m, 'totals.totals') || {}, mp = prevT(m).totals || {};
+  const signups = get(st, 'verified.new'), visitors = vt.visitors;
+  const tiers = (get(m, 'totals.by_tier') || []).map(r => ({label: r.key, count: r.started}));
+  // The four numbers that matter. Each is a button that puts its days in the chart.
+  const focus = {
+    visitors: {tile: 'Visitors', chart: 'Visitors per day', v: visitors, p: vp.visitors, r: v, f: d => get(d, 'totals.visitors')},
+    signups: {tile: 'New sign-ups', chart: 'New sign-ups per day', v: signups, p: get(sp, 'verified.new'), r: s, f: d => get(d, 'verified.new')},
+    active: {tile: 'Daily active', chart: 'Active people per day', v: at.dau, p: ap.dau, r: a, f: d => d.dau, fmt: N1},
+    paid: {tile: 'Paid starts', chart: 'Paid starts per day', v: mt.started, p: mp.started, r: m, f: d => get(d, 'totals.started')},
+  };
+  if (!focus[FOCUS]) FOCUS = 'visitors';
+  const li = x => `<li><b>${esc(x[0].replace(/:$/, ''))}</b> ${esc(x[1])}</li>`;
+  $('#view').innerHTML = head('Dashboard', '',
+      [v, s, a, m, si, us], [['visits', 'Visits'], ['signups', 'Sign-ups'], ['active', 'Active'], ['monetization', 'Monetization']]) + `
+    <div class="heroes" role="group" aria-label="Show in the chart">${Object.entries(focus).map(([k, x]) =>
+      `<button type="button" class="card kpi" data-focus="${k}"><span class="v${isNum(x.v) ? '' : ' nil'}">${(x.fmt || N)(x.v)}</span>
+        <span class="l">${x.tile}</span>${delta(x.v, x.p).replace(/<(\/?)div/g, '<$1span')}</button>`).join('')}</div>
+    <div class="grid focus section">
+      <div class="card" id="focus"></div>
+      ${said.length ? `<div class="card" id="standout"><h2>What stands out</h2><ul class="said">${said.slice(0, 3).map(li).join('')}</ul>
+        ${said.length > 3 ? `<details><summary>${N(said.length - 3)} more</summary><ul class="said">${said.slice(3).map(li).join('')}</ul></details>` : ''}</div>` : ''}
+    </div>
+    <details class="fold" id="rest"${REST ? ' open' : ''}><summary>All numbers</summary><div>
+      <div class="grid kpis">
+        ${kpi('Visitor → sign-up', st.conversion ?? ratio(signups, visitors), sp.conversion, {fmt: P, rate: true})}
+        ${kpi('Weekly active', at.wau, ap.wau)}
+        ${kpi('Monthly active', at.mau, ap.mau)}
+        ${kpi('Stickiness (DAU/MAU)', at.stickiness, ap.stickiness, {fmt: P, rate: true})}
+        ${kpi('New people', at.new, ap.new)}
+        ${kpi('Returning people', at.returning, ap.returning)}
+        ${kpi('Busiest day (active)', at.dau_max, ap.dau_max)}
+        ${kpi('Accounts (all time)', get(o, 'kpis.users_total'), null, {plain: true})}
+        ${kpi('Codes requested', get(st, 'code_requested.total'), get(sp, 'code_requested.total'))}
+        ${kpi('Sign-ins verified', get(st, 'verified.total'), get(sp, 'verified.total'))}
+        ${kpi('App opens', ut.app_opens, up.app_opens, {title: us.unavailable ? NA_WHY : ''})}
+        ${kpi('Events recorded', ut.events, up.events, {title: us.unavailable ? NA_WHY : 'Everything the site, the app and the server sent'})}
+      </div>
+      <div class="grid halves section" style="align-items:start">
+        <div class="card"><h2>Paid starts by plan</h2>
+          ${m.source === 'live' ? `<p class="hint">Paid starts need the analytics rollups; the live counters can’t tell billing from operator grants.</p>` : ''}
+          ${bars(tiers)}</div>
+        <div class="card"><h2>Paywall</h2>
+          <div class="statgrid">${stat('Paywall shown', mt.shown)}${stat('People shown', mt.shown_users)}${stat('Started', mt.started)}
+            ${stat('Renewed', mt.renewed)}${stat('Canceled', mt.canceled)}${stat('Conversion', mt.conversion, {fmt: P})}
+            ${stat('Operator grants', mt.operator_grants)}</div></div>
+      </div></div></details>
+    <p class="note">Since Nov 3 a visitor is counted only if they allowed the random id, so visitor → sign-up reads high and visits run close to page views.
+      Daily active is the range’s average. Someone active on two days counts twice, except in weekly and monthly active, which are as of the last day.</p>`;
+  const paint = () => {
+    const x = focus[FOCUS];
+    $$('button[data-focus]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.focus === FOCUS)));
+    $('#focus').innerHTML = empty(x.r) && x.r.unavailable ? `<h2>${esc(x.chart)}</h2><p class="hint">${esc(NA_WHY)}</p>`
+      : line(x.chart, byDay(x.r, x.f), {H: 340});
+  };
+  $$('button[data-focus]').forEach(b => b.onclick = () => { FOCUS = b.dataset.focus; paint(); });
+  $('#rest').ontoggle = () => { REST = $('#rest').open; };
+  paint();
+}
+
+/* -------------------------------------------------------- acquisition */
+const VISIT_DIMS = [['utm_source', 'Source (utm_source)'], ['utm_campaign', 'Campaign'], ['referrer_domain', 'Referrer'],
+  ['landing_path', 'Landing page'], ['country', 'Country'], ['device_class', 'Device']];
+const VISIT_COLS = [['visitors', 'Visitors'], ['visits', 'Visits'], ['pageviews', 'Pageviews']];
+async function renderAcquisition(){
+  const [v, s, f, si, us] = await Promise.all(['visits', 'signups', 'funnel', 'site', 'usage'].map(rep));
+  const x = si.totals || {}, xp = prevT(si), noSite = empty(si);
+  const paidOf = t => ((t.channels || []).find(c => c.key === 'paid') || {pageviews: t.channels ? 0 : undefined}).pageviews;
+  const vt = get(v, 'totals.totals') || {}, vp = prevT(v).totals || {};
+  const st = s.totals || {};
+  const steps = (get(f, 'totals.steps') || []).filter(x => ['visit', 'start_open', 'code_requested', 'verified'].includes(x.step));
+  const ch = get(st, 'code_requested.by_channel') || {};
+  const attr = st.attribution;
+  $('#view').innerHTML = head('Acquisition', `${fmtRange(STATE.from, STATE.to)} · site visits and the sign-ups they lead to.`,
+      [v, s, f, si], [['visits', 'Visits'], ['signups', 'Sign-ups'], ['site', 'Landing page']]) + `
+    ${v.unavailable ? na('Site visits') : `<div class="grid kpis k6">
+      ${kpi('Visits', vt.visits, vp.visits)}${kpi('Visitors', vt.visitors, vp.visitors)}
+      ${kpi('Pageviews', vt.pageviews, vp.pageviews)}${kpi('Private visits', vt.private_visits, vp.private_visits, {title: 'Visits from browsers that asked not to be tracked: counted, never followed'})}
+      ${kpi('Paid-ad page views', paidOf(x), paidOf(xp))}
+      ${kpi('Countries', get(x, 'totals.countries'), get(xp, 'totals.countries'), {title: 'On the busiest day for it: distinct countries don’t add up over days'})}</div>`}
+    <div class="grid two section">
+      <div class="card"><h2>Landing → verified</h2>
+        <p class="hint">From the site to a verified sign-in code, in the range.</p>
+        ${steps.length ? funnelRows(steps, get(f, 'previous.totals.steps')) : '<div class="empty">Nothing yet in this range.</div>'}</div>
+      <div class="card"><h2>Code requests by channel</h2>
+        ${isNum(ch.sms) || isNum(ch.email) ? splitBar([{label: 'SMS', v: ch.sms || 0, color: 'var(--accent)'}, {label: 'Email', v: ch.email || 0, color: 'var(--series-2)'}])
+          : `<p class="hint">${s.source === 'live' ? NA_WHY : 'No code requests in this range.'}</p>`}
+        <div class="statgrid section">${stat('Codes requested', get(st, 'code_requested.total'))}${stat('Verified', get(st, 'verified.total'))}
+          ${stat('New accounts', get(st, 'verified.new'))}${stat('Returning sign-ins', get(st, 'verified.returning'))}</div></div>
+    </div>
+    ${v.unavailable ? '' : `<div class="grid halves section">${VISIT_DIMS.map(([k, l]) => `<div class="card"><h2>${esc(l)}</h2>
+      ${segTable(get(v, 'totals.by.' + k), {metric: 'visitors', cols: VISIT_COLS, label: l.replace(/ \(.*\)$/, '')})}</div>`).join('')}</div>`}
+    <h2>On the landing page</h2>
+    ${noSite ? na('Landing page', si.unavailable ? NA_WHY : 'Nothing yet in this range.') : `<div class="grid halves">
+      <div class="card"><h2>Landing page, step by step</h2><p class="hint">Visitors with an id. Browsers that asked not to be followed aren’t in here.</p>
+        ${funnelRows(x.steps || [], xp.steps)}</div>
+      <div class="card"><h2>Channel quality</h2><p class="hint">Every page view, with or without an id.</p>
+        ${segTable((x.channels || []).map(c => ({...c, key: CHANNEL[c.key] || c.key})), {metric: 'pageviews', label: 'Channel', bar: false,
+          cols: [['pageviews', 'Views'], ['events', 'Events'], ['scrolled', 'Scrolled'], ['opened', 'Sign-up']]})}
+        <p class="hint" style="margin:8px 0 0">Scrolled: past the hero. Sign-up: opened the sign-up sheet.</p></div>
+    </div>
+    <div class="grid halves section">
+      <div class="card"><h2>Page sections viewed</h2>${useBars(x.sections, pretty)}</div>
+      <div class="card"><h2>Landing page actions</h2>${useBars(x.taps, pretty)}</div>
+      <div class="card"><h2>Visit length</h2>${bars((x.lengths || []).map(r => ({label: r.key, count: r.sessions})))}</div>
+      <div class="card chart"><h2>Page views by hour</h2>${hourChart(us, h => h.pageviews, 'Landing page views by hour')}<p class="hint" style="margin:8px 0 0">Hours in ${esc(ZONE)}.</p></div>
+    </div>
+    <div class="grid three section">${[['os_family', 'Operating system'], ['browser_family', 'Browser'], ['utm_medium', 'Medium (utm_medium)']].map(([k, l]) =>
+      `<div class="card"><h2>${esc(l)}</h2>${segTable(get(x, 'by.' + k), {metric: 'pageviews', cols: [['pageviews', 'Views'], ['visitors', 'Visitors']], label: k === 'os_family' ? 'System' : l.replace(/ \(.*\)$/, ''), bar: false})}</div>`).join('')}</div>`}
+    <h2>Sign-ups by source</h2>
+    ${attr ? `<p class="hint">${N(attr.signups)} sign-ups · ${N(attr.from_site)} came through the site.</p>
+      <div class="grid three">${[['utm_source', 'Source'], ['referrer_domain', 'Referrer'], ['landing_path', 'Landing page']].map(([k, l]) =>
+        `<div class="card"><h2>${esc(l)}</h2>${segTable(get(attr, 'by.' + k), {metric: 'signups', cols: [['signups', 'Sign-ups'], ['from_site', 'From site']], label: l, bar: false})}</div>`).join('')}</div>`
+      : na('Sign-ups by source', s.source === 'live' ? NA_WHY : 'No sign-ups in this range.')}`;
+}
+
+/* -------------------------------------------------------------- funnel */
+const EXTRA = {code_requested_sms: 'Codes requested by SMS', code_requested_email: 'Codes requested by email',
+  verified_new: 'Verified, new account', signed_up: 'Signed up (app funnel)', paywall_intent: 'Looked at Plus',
+  funnel_paid: 'On Plus (incl. operator grants)'};
+async function renderFunnel(){
+  const f = await rep('funnel');
+  const t = f.totals || {}, ex = t.extra || {};
+  const sms = ex.code_requested_sms, email = ex.code_requested_email;
+  $('#view').innerHTML = head('Funnel', `${fmtRange(STATE.from, STATE.to)} · people who reached each step in the range.`,
+      [f], [['funnel', 'Funnel']]) + `
+    <div class="card section">${(t.steps || []).length ? funnelRows(t.steps, get(f, 'previous.totals.steps'))
+      : '<div class="empty">Nothing yet in this range.</div>'}
+      <p class="hint" style="margin:14px 0 0">“Of first” is the share of the first counted step; “from prev” the share of the step before. Under 50% is marked.</p></div>
+    <div class="grid halves section">
+      <div class="card"><h2>Code requests · SMS vs email</h2>
+        ${isNum(sms) || isNum(email) ? splitBar([{label: 'SMS', v: sms || 0, color: 'var(--accent)'}, {label: 'Email', v: email || 0, color: 'var(--series-2)'}])
+          : `<p class="hint">${f.source === 'live' ? NA_WHY : 'No code requests in this range.'}</p>`}</div>
+      <div class="card"><h2>Also counted</h2>
+        <div class="statgrid">${Object.entries(ex).filter(([k]) => !k.startsWith('code_requested_')).map(([k, val]) =>
+          stat(EXTRA[k] || k, val)).join('') || '<div class="empty">Nothing yet in this range.</div>'}</div></div>
+    </div>`;
+}
+
+/* ---------------------------------------------------------- engagement */
+async function renderEngagement(){
+  const [a, fe, t, us, o] = await Promise.all([rep('active'), rep('features'), rep('time'), rep('usage'),
+    cached(`activity/overview?days=${Math.min(rangeDays(), 90)}`)]);
+  const at = a.totals || {}, ap = prevT(a), tt = t.totals || {}, tp = prevT(t);
+  const feats = get(fe, 'totals.features') || [];
+  const pf = new Map((prevT(fe).features || []).map(r => [r.feature, r]));
+  const approx = new Set(tt.approximate || []);
+  const ut = get(us, 'totals.totals') || {};
+  $('#view').innerHTML = head('Engagement', `${fmtRange(STATE.from, STATE.to)} · active people, features and time in the app.`,
+      [a, fe, t, us], [['active', 'Active'], ['features', 'Features'], ['time', 'Time'], ['usage', 'Activity']]) + `
+    <div class="grid kpis">
+      ${kpi('Daily active (avg)', at.dau, ap.dau, {fmt: N1})}${kpi('Busiest day', at.dau_max, ap.dau_max)}
+      ${kpi('Weekly active', at.wau, ap.wau)}${kpi('Monthly active', at.mau, ap.mau)}
+      ${kpi('Stickiness (DAU/MAU)', at.stickiness, ap.stickiness, {fmt: P, rate: true})}
+    </div>
+    <div class="grid two section">
+      ${spark('Daily active people', a, d => d.dau, {total: at.dau, fmt: N1, of: 'average'})}
+      <div class="card"><h2>New vs returning</h2>${splitBar([{label: 'New', v: at.new || 0, color: 'var(--series-2)'},
+        {label: 'Returning', v: at.returning || 0, color: 'var(--accent)'}])}</div>
+    </div>
+    <div class="card section"><div class="ch"><h2>Features</h2><span class="muted" style="font-size:.82rem">${N(get(fe, 'totals.active_users'))} active people</span></div>
+      ${fe.source === 'live' ? '<p class="hint">Live counters count uses, not people: “people” and “share” need the rollups.</p>' : ''}
+      ${segTable(feats.map(r => ({...r, prevUses: (pf.get(r.feature) || {}).uses})),
+        {key: 'label', metric: feats.some(r => isNum(r.users)) ? 'users' : 'uses', label: 'Feature', max: 20,
+         cols: [['users', 'People'], ['uses', 'Uses'], ['uses_per_user', 'Uses / person', N1], ['share', 'Share of active', P]]})}</div>
+    <h2>Time in the app</h2>
+    ${t.unavailable || empty(t) ? na('Time in the app', t.unavailable ? NA_WHY : 'No sessions in this range.') : `
+    <div class="grid kpis">
+      ${kpi('Sessions', tt.sessions, tp.sessions)}${kpi('People', tt.users, tp.users)}
+      ${kpi('Total time', tt.seconds, tp.seconds, {fmt: Dl})}
+      ${kpi(`Median session${approx.has('median_session_s') ? ' ≈' : ''}`, tt.median_session_s, tp.median_session_s, {fmt: Dl, title: approx.size ? 'Session-weighted mean of the daily medians' : ''})}
+      ${kpi(`75th percentile${approx.has('p75_session_s') ? ' ≈' : ''}`, tt.p75_session_s, tp.p75_session_s, {fmt: Dl})}
+    </div>
+    <div class="grid kpis k4 section">
+      ${kpi('Sessions per person', tt.sessions_per_user, tp.sessions_per_user, {fmt: N1})}
+      ${kpi('Time per person', tt.seconds_per_user, tp.seconds_per_user, {fmt: Dl})}
+    </div>
+    <div class="card section"><h2>Time per screen</h2>
+      ${segTable(tt.by_screen, {key: 'screen', metric: 'seconds', label: 'Screen', max: 20,
+        cols: [['seconds', 'Time (h:mm / m:ss)', D], ['users', 'People']]})}</div>`}
+    ${!empty(us) ? `
+    <h2>Activity</h2>
+    <div class="grid three">
+      ${spark('App events per day', us, d => get(d, 'totals.app_events'), {total: ut.app_events})}
+      ${spark('App opens per day', us, d => get(d, 'totals.app_opens'), {total: ut.app_opens})}
+      ${spark('All events per day', us, d => get(d, 'totals.events'), {total: ut.events})}
+    </div>
+    <div class="grid halves section">
+      <div class="card chart"><h2>Events by hour</h2>${hourChart(us, h => h.events, 'Events by hour of day')}<p class="hint" style="margin:8px 0 0">Hours in ${esc(ZONE)}.</p></div>
+      <div class="card chart"><h2>Events by weekday</h2>${dowChart(us, d => get(d, 'totals.events'), 'Events by weekday')}<p class="hint" style="margin:8px 0 0">Days in UTC.</p></div>
+      <div class="card"><h2>Screens opened</h2>${useBars(get(us, 'totals.screens'), screenLabel)}</div>
+      <div class="card"><h2>Taps</h2>${useBars(get(us, 'totals.taps'), k => actionLabel(k, 'tap'), 15)}</div>
+      <div class="card"><h2>Settings changed</h2>${useBars(get(us, 'totals.changes'), k => actionLabel(k, 'change'))}</div>
+      <div class="card"><h2>Server events</h2><p class="hint">Sign-ins, funnel steps, saves.</p>${useBars(get(us, 'totals.server'), k => actionLabel(k.replace(/^(auth|funnel)\./, '$1 '), 'server'), 20)}</div>
+    </div>
+    <p class="note">People who switched off “Help improve the app” aren’t counted. Nothing here shows what anyone wrote.</p>` : `
+    <h2>From the app’s day counters</h2>
+    <div class="grid halves">
+      <div class="card"><h2>Most-opened screens</h2>${bars(o.top_screens.map(x => ({label: screenLabel(x.name), count: x.count})))}</div>
+      <div class="card"><h2>Most-used actions</h2>${bars(o.top_actions.map(x => ({label: actionLabel(x.name, x.kind), count: x.count})))}</div>
+    </div>
+    <p class="note">Screens and actions cover the last ${N(o.range.days)} days. People who switched off “Help improve the app” aren’t counted. Nothing here shows what anyone wrote.</p>`}`;
+}
+
+/* ----------------------------------------------------------- retention */
+let RET_DIM = 'cohorts';
+const RET_LABEL = {cohorts: 'Weekly cohorts', by_channel: 'By sign-up channel', by_utm_source: 'By source'};
+async function renderRetention(){
+  const r = await rep('retention');
+  const t = r.totals || {};
+  const points = t.points || ['d1', 'd7', 'd30', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8'];
+  const rows = t[RET_DIM] || [];
+  const hi = Math.max(.01, ...rows.flatMap(row => points.map(p => row[p])).filter(isNum));
+  const cell = (row, p) => {
+    const v = row[p], c = row.counts || {};
+    const title = `${row.cohort}${RET_DIM !== 'cohorts' ? ' · ' + row.key : ''} · ${p.toUpperCase()}: ` +
+      (isNum(v) ? `${N(c[p + '_n'])} of ${N(c[p + '_base'])}` : 'not yet');
+    if (!isNum(v)) return `<td class="c muted" title="${esc(title)}">—</td>`;
+    const pctBg = Math.round(6 + Math.min(v / hi, 1) * 54);   // stops where dark text still reads
+    return `<td class="c" title="${esc(title)}" style="background:color-mix(in srgb,var(--accent) ${pctBg}%,var(--ground))">${P(v, 0)}</td>`;
+  };
+  $('#view').innerHTML = head('Retention', `Sign-up cohorts by week${t.as_of ? `, as of ${esc(t.as_of)}` : ''}. Share of each cohort active on day 1, 7, 30 and in weeks 1–8.`,
+      [r], [['retention', 'Retention']]) + (r.unavailable || empty(r) ? na('Retention', r.unavailable ? NA_WHY : 'No cohorts yet.') : `
+    <div class="tools" style="margin-top:14px"><div class="chips" role="group" aria-label="Group cohorts">
+      ${Object.entries(RET_LABEL).map(([k, l]) => `<button class="chip" type="button" data-ret="${k}" aria-pressed="${RET_DIM === k}">${l}</button>`).join('')}</div></div>
+    <div class="card heat" style="padding:6px">${rows.length ? `<table class="data"><caption class="sr">Retention by cohort</caption><thead><tr>
+      <th class="k" scope="col">Cohort</th>${RET_DIM !== 'cohorts' ? '<th class="k" scope="col">Segment</th>' : ''}<th scope="col">People</th>
+      ${points.map(p => `<th scope="col">${esc(p.toUpperCase())}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(row => `<tr><th class="k" scope="row">${esc(row.cohort)}</th>${RET_DIM !== 'cohorts' ? `<td class="k">${esc(row.key)}</td>` : ''}
+        <td class="c">${N(row.users)}</td>${points.map(p => cell(row, p)).join('')}</tr>`).join('')}</tbody></table>`
+      : '<div class="empty">No cohorts in this grouping yet.</div>'}</div>
+    <p class="note">A dash is a point the cohort hasn’t reached yet. Hover a cell for the counts. Small segments are folded into “(other)”.</p>`);
+  $$('.chip[data-ret]').forEach(c => c.onclick = () => { RET_DIM = c.dataset.ret; renderRetention(); });
+}
+
+/* ------------------------------------------------------- notifications */
+async function renderNotifications(){
+  const n = await rep('notifications');
+  const t = get(n, 'totals.totals') || {}, tp = prevT(n).totals || {};
+  const hours = new Map((get(n, 'totals.by_hour') || []).map(r => [String(r.hour), r]));
+  $('#view').innerHTML = head('Notifications', `${fmtRange(STATE.from, STATE.to)} · sent, opened, and whether people checked in after.`,
+      [n], [['notifications', 'Notifications']]) + (n.unavailable || empty(n) ? na('Notifications', n.unavailable ? NA_WHY : 'Nothing sent in this range.') : `
+    <div class="grid kpis k6">
+      ${kpi('Sent', t.sent, tp.sent)}${kpi('Opened', t.opened, tp.opened)}${kpi('Open rate', t.open_rate, tp.open_rate, {fmt: P, rate: true})}
+      ${kpi('People sent to', t.users_sent, tp.users_sent)}${kpi('People who opened', t.users_opened, tp.users_opened)}${kpi('Checked in after', t.checked_in, tp.checked_in)}
+    </div>
+    <div class="grid two section">
+      <div class="card"><h2>Sent → opened → checked in</h2>
+        ${funnelRows([{step: 'sent', label: 'Sent', count: t.sent}, {step: 'opened', label: 'Opened', count: t.opened},
+          {step: 'checked_in', label: 'Checked in', count: t.checked_in}],
+          [{step: 'sent', count: tp.sent}, {step: 'opened', count: tp.opened}, {step: 'checked_in', count: tp.checked_in}])}</div>
+      <div class="card chart"><h2>By hour sent (UTC)</h2>
+        ${columns(Array.from({length: 24}, (_, h) => { const r = hours.get(String(h)) || {}; return {x: `${pad2(h)}:00 UTC`, tick: pad2(h), v: r.sent ?? 0, o: r.opened ?? 0}; }),
+          {label: 'Notifications sent per hour, UTC', overlay: 'opened', overlayColor: 'var(--series-2)'})}
+        <div class="legend"><span><b style="background:var(--accent)"></b>Sent</span><span><b style="background:var(--series-2)"></b>Opened</span></div></div>
+    </div>
+    <div class="card section"><h2>By kind</h2>
+      ${segTable(get(n, 'totals.by_kind'), {metric: 'sent', label: 'Kind', cols: [['sent', 'Sent'], ['opened', 'Opened'],
+        ['open_rate', 'Open rate', P], ['checked_in', 'Checked in']]})}</div>`);
+}
+
+/* --------------------------------------------------------------- users */
+let UF = {q: '', stage: ''};
+let STAGES = null;                   // {list, labels} from the server
+const userDays = () => daysBack(90);
+function userRow(x){
+  const labels = (STAGES || {}).labels || {};
+  return `<tr data-uid="${esc(x.uid)}" tabindex="0">
+    <td class="who"><b>${esc(x.email || '(no email)')}</b>${x.team ? ' <span class="pill" title="One of ours, or a test account">team</span>' : ''}<small>${esc(x.uid)}</small></td>
+    <td><span class="pill s-${esc(x.stage)}">${esc(labels[x.stage] || x.stage)}</span></td>
+    <td>${live(x.last_seen)}${ago(toTs(x.last_seen))}</td>
+    <td class="muted">${x.created_at ? fmtDay(toTs(x.created_at)) : '—'}</td>
+    <td>${N(x.active_days)}</td><td>${N(x.people)}</td>
+    <td>${x.plan === 'plus' ? '<span class="pill s-paid">Plus</span>' : '<span class="muted">Free</span>'}</td>
+    <td class="muted">${esc(x.country || '—')}${x.tz ? `<small style="display:block">${esc(x.tz)}</small>` : ''}${x.analytics_off ? ' <span class="pill" title="Switched off usage sharing">opted out</span>' : ''}</td>
+  </tr>`;
+}
+async function renderUsers(){
+  const qs = () => `activity/users?days=${userDays()}&limit=50${UF.q ? '&q=' + encodeURIComponent(UF.q) : ''}${UF.stage ? '&stage=' + UF.stage : ''}`;
+  const u = await ops(qs());
+  STAGES = {list: u.stages, labels: u.stage_labels};
+  let next = u.next_cursor, shown = u.users.length;
+  const count = () => `${N(shown)} shown${isNum(u.total) ? ` of ${N(u.total)} accounts` : ''}`;
+  $('#view').innerHTML = `<div class="phead"><div><h1>Users</h1>
+      <p class="sub">Most recently seen first. Click anyone to see their journey, session by session — each view is logged.</p></div></div>
+    <div class="tools">
+      <form id="qf" role="search" style="display:flex;gap:8px;flex:1;min-width:240px">
+        <input type="search" id="q" placeholder="Exact email, phone or id — or part of an id" value="${esc(UF.q)}" aria-label="Search people" style="flex:1">
+        <button class="btn" type="submit">Search</button></form>
+      <div class="chips" role="group" aria-label="Filter by stage">
+        <button class="chip" type="button" data-stage="" aria-pressed="${!UF.stage}">Everyone</button>
+        ${u.stages.map(s => `<button class="chip" type="button" data-stage="${esc(s)}" aria-pressed="${UF.stage === s}">${esc(u.stage_labels[s])}</button>`).join('')}
+      </div>
+    </div>
+    ${isNum(u.total) ? '' : '<p class="hint">Still indexing older accounts — each visit here adds more. An admin can finish it with tools/backfill_ops_index.py.</p>'}
+    <div class="tablewrap"><table>
+      <thead><tr><th>Person</th><th>Stage</th><th>Last seen</th><th>Joined</th><th>Active days</th><th>People added</th><th>Plan</th><th>Country</th></tr></thead>
+      <tbody id="rows">${u.users.length ? u.users.map(userRow).join('') : '<tr><td colspan="8" class="empty">No one matches.</td></tr>'}</tbody></table></div>
+    <div class="more"><span class="muted" id="count" style="font-size:.85rem">${count()}</span>
+      <button class="btn" id="more" type="button" ${next ? '' : 'hidden'}>Load more</button></div>
+    <p class="note">Active days count the last ${userDays()} days. Searching for part of an address looks through a few hundred people at a time; an exact address, phone number or id finds that person directly.</p>`;
+  wireRows();
+  $('#qf').onsubmit = e => { e.preventDefault(); UF.q = $('#q').value.trim(); renderUsers().catch(fail); };
+  $$('.chip[data-stage]').forEach(c => c.onclick = () => { UF.stage = c.dataset.stage; renderUsers().catch(fail); });
+  $('#more').onclick = async () => {
+    const b = $('#more'); b.disabled = true; b.textContent = 'Loading…';
+    try {
+      const p = await ops(qs() + '&cursor=' + encodeURIComponent(next));
+      $('#rows').insertAdjacentHTML('beforeend', p.users.map(userRow).join(''));
+      shown += p.users.length; next = p.next_cursor;
+      $('#count').textContent = count();
+      wireRows();
+    } catch (err) { fail(err); }
+    b.disabled = false; b.textContent = 'Load more'; b.hidden = !next;
+  };
+}
+const live = t => { t = toTs(t); return `<span class="dot${t && Date.now() / 1000 - t < 600 ? ' live' : ''}"></span>`; };
+function wireRows(){
+  $$('tr[data-uid]').forEach(tr => {
+    if (tr.dataset.wired) return;
+    tr.dataset.wired = '1';
+    const go = () => { location.hash = '#/users/' + encodeURIComponent(tr.dataset.uid); };
+    tr.onclick = go;
+    tr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
+  });
+}
+/* ------------------------------------------------------------ journey */
+function evProps(p){
+  const parts = Object.entries(p || {}).map(([k, v]) => `${PROP_LABEL[k] || k}: ${v}`);
+  return parts.length ? `<small>${esc(parts.join(' · '))}</small>` : '';
+}
+// Repeated taps on the same thing fold into one row ("× 3").
+function fold(events){
+  const out = [];
+  for (const e of events) {
+    const prev = out[out.length - 1];
+    if (prev && prev.type === e.type && prev.name === e.name && e.type !== 'screen'
+        && JSON.stringify(prev.props) === JSON.stringify(e.props) && e.at - prev.last < 20) {
+      prev.n++; prev.last = e.at;
+    } else out.push({...e, n: 1, last: e.at});
+  }
+  return out;
+}
+function sessionCard(s, i){
+  const evs = fold(s.events);
+  const taps = s.events.filter(e => e.type === 'tap' || e.type === 'change').length;
+  const errors = s.events.filter(e => e.type === 'error').length;
+  const path = s.path.length ? s.path : [];
+  const flow = path.map((p, j) => `<span class="sc${j === path.length - 1 ? ' end' : ''}" ${j === path.length - 1 ? 'title="Last screen in this session"' : ''}>${esc(screenLabel(p))}</span>`)
+    .join('<span class="ar" aria-hidden="true">→</span>');
+  const server = s.id === 'server';
+  return `<details class="card sess" ${i === 0 ? 'open' : ''}>
+    <summary>
+      <span class="when">${fmtDay(s.start)} · ${fmtClock(s.start)}${server ? ' <span class="pill">server only</span>' : ''}</span>
+      <span class="meta">${dur(s.duration_s)} · ${s.events.length} events · ${taps} taps${errors ? ` · <span style="color:var(--crit)">${errors} error${errors > 1 ? 's' : ''}</span>` : ''}<span class="chev" aria-hidden="true">›</span></span>
+      ${flow ? `<div class="flow" aria-label="Screens in order">${flow}</div>` : ''}
+    </summary>
+    <div class="tl">
+      ${evs.map(e => `<div class="ev ${e.type}">
+        <span class="tm">${fmtTime(e.at)}</span>
+        <span class="off">+${dur(e.at - s.start)}</span>
+        <span class="ic ty-${e.type}" title="${esc(TYPE_NAME[e.type] || e.type)}" aria-label="${esc(TYPE_NAME[e.type] || e.type)}">${ICON[e.type] || '·'}</span>
+        <span class="what">${e.type === 'screen' ? 'Opened ' + esc(screenLabel(e.name)) : esc(actionLabel(e.name, e.type))}${e.n > 1 ? ` <span class="tag">× ${e.n}</span>` : ''}
+          ${e.type !== 'screen' && e.screen ? `<span class="tag">${esc(screenLabel(e.screen))}</span>` : ''}${evProps(e.props)}</span>
+      </div>`).join('')}
+    </div>
+  </details>`;
+}
+
+/* ------------------------------------------------------------ journey */
+async function renderUser(uid){
+  const j = await ops(`activity/user/${encodeURIComponent(uid)}?days=${userDays()}`);
+  const p = j.user, sm = j.summary;
+  const order = j.stages || [], labels = j.stage_labels || {}, at = order.indexOf(p.stage);
+  $('#view').innerHTML = `
+    <a class="back" href="#/users">← Everyone</a>
+    <div class="uhead">
+      <div><h1>${esc(p.email || p.uid)}</h1>
+        <p class="sub mono" style="margin-bottom:0">${esc(p.uid)}</p></div>
+      <div class="facts">
+        <span><b>Joined</b>${p.created_at ? fmtDay(toTs(p.created_at)) : '—'}</span>
+        <span><b>Last seen</b>${live(p.last_seen)}${ago(toTs(p.last_seen))}</span>
+        <span><b>Country</b>${esc(p.country || '—')}</span>
+        <span><b>People added</b>${N(p.people)}</span>
+      </div>
+    </div>
+    ${order.length ? `<div class="card section">
+      <h2>Journey so far</h2>
+      <div class="stepper">${order.map((s, i) => `<div class="step${i <= at ? ' done' : ''}${i === at ? ' now' : ''}">${esc(labels[s] || s)}</div>`).join('')}</div>
+    </div>` : ''}
+    ${p.analytics_off ? `<div class="card section"><p style="margin:0"><b>Usage sharing is off for this person.</b>
+      <span class="muted">Nothing about how they use the app is kept, so there's no journey to show. The stage above comes from account milestones only.</span></p></div>` : ''}
+    <div class="grid kpis k4 section">
+      <div class="card kpi"><div class="v">${N(sm.sessions)}</div><div class="l">Sessions · ${userDays()} days</div></div>
+      <div class="card kpi"><div class="v">${Dl(sm.time_s)}</div><div class="l">Time in the app</div></div>
+      <div class="card kpi"><div class="v">${N(sm.events)}</div><div class="l">Events</div></div>
+      <div class="card kpi"><div class="v">${sm.sessions ? Dl(sm.time_s / sm.sessions) : '—'}</div><div class="l">Average session</div></div>
+    </div>
+    <div class="grid halves section">
+      <div class="card"><h2>Screens</h2>${bars(sm.top_screens.map(([n, c]) => ({label: screenLabel(n), count: c})))}</div>
+      <div class="card"><h2>Most-used actions</h2>${bars(sm.top_actions.map(([n, c]) => ({label: actionLabel(n), count: c})))}</div>
+    </div>
+    <div class="section">
+      <h2>Sessions, newest first</h2>
+      <div class="keys" aria-label="Key">${Object.entries(ICON).map(([t, i]) => `<span><b class="ty-${t}">${i}</b> ${TYPE_NAME[t]}</span>`).join('')}</div>
+      ${j.sessions.length ? j.sessions.map(sessionCard).join('') : '<div class="card empty section">No activity in this range.</div>'}
+    </div>`;
+  $('#view').focus({preventScroll: true});
+}
+
+/* -------------------------------------------------------------- safety */
+let SAFE = 'flagged';
+const TIER = {red: 'Red', amber: 'Amber', report: 'Reported'};
+const tierPill = t => `<span class="pill t-${esc(t)}">${esc(TIER[t] || t)}</span>`;
+const subnav = (key, cur, items) => `<div class="chips subnav" role="group" aria-label="Show">${items.map(([k, l]) =>
+  `<button class="chip" type="button" data-${key}="${k}" aria-pressed="${cur === k}">${l}</button>`).join('')}</div>`;
+// One paged table: fetch(cursor) → {rows, next}; row(x) → <tr>.
+async function pagedTable({path, pick, row, cols, emptyText}){
+  const first = await ops(path);
+  let next = first.next_cursor, shown = pick(first).length;
+  const html = `<div class="tablewrap section"><table><thead><tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+    <tbody id="rows">${shown ? pick(first).map(row).join('') : `<tr><td colspan="${cols.length}" class="empty">${emptyText}</td></tr>`}</tbody></table></div>
+    <div class="more"><span class="muted" id="count" style="font-size:.85rem">${N(shown)} shown</span>
+      <button class="btn" id="more" type="button" ${next ? '' : 'hidden'}>Load more</button></div>`;
+  const wire = () => {
+    wireRows();
+    $('#more').onclick = async () => {
+      const b = $('#more'); b.disabled = true; b.textContent = 'Loading…';
+      try {
+        const p = await ops(path + (path.includes('?') ? '&' : '?') + 'cursor=' + encodeURIComponent(next));
+        $('#rows').insertAdjacentHTML('beforeend', pick(p).map(row).join(''));
+        shown += pick(p).length; next = p.next_cursor;
+        $('#count').textContent = `${N(shown)} shown`;
+        wireRows();
+      } catch (err) { fail(err); }
+      b.disabled = false; b.textContent = 'Load more'; b.hidden = !next;
+    };
+  };
+  return {html, wire};
+}
+async function renderSafety(){
+  const flaggedDays = Math.max(1, daysBack(401) - 1);     // the server counts back from today
+  const t = SAFE === 'flagged'
+    ? await pagedTable({path: `flagged?days=${flaggedDays}&limit=100`, pick: d => d.flagged,
+        cols: ['When', 'Person', 'Flag', 'Message'], emptyText: 'Nothing flagged in this range.',
+        row: x => `<tr data-uid="${esc(x.uid)}" data-to="safety" tabindex="0">
+          <td class="muted">${x.at ? fmtDay(toTs(x.at)) + ' ' + fmtClock(toTs(x.at)) : '—'}</td>
+          <td class="who"><b>${esc(x.name || '(no name)')}</b><small>${esc(x.uid)}</small></td>
+          <td>${tierPill(x.kind === 'report' ? 'report' : x.tier)}</td><td class="muted mono">${esc(x.id || '—')}</td></tr>`})
+    : await pagedTable({path: 'roster?limit=50', pick: d => d.participants,
+        cols: ['Person', 'Messages', 'Red', 'Amber', 'Last message', 'Quiet', 'Today’s quota'], emptyText: 'No one yet.',
+        row: x => `<tr data-uid="${esc(x.uid)}" data-to="safety" tabindex="0">
+          <td class="who"><b>${esc(x.name || '(no name)')}</b><small>${esc(x.uid)}${x.consented ? '' : ' · not consented'}${x.onboarded ? '' : ' · not onboarded'}</small></td>
+          <td>${N(x.messages)}</td><td>${x.red ? tierPill('red') + ' ' + N(x.red) : '0'}</td><td>${x.amber ? tierPill('amber') + ' ' + N(x.amber) : '0'}</td>
+          <td class="muted">${x.last_activity ? ago(toTs(x.last_activity)) : '—'}</td>
+          <td>${isNum(x.quiet_days) ? N(x.quiet_days) + 'd' : '—'}</td>
+          <td class="mono">${x.quota ? `${N(x.quota.today)} / ${N(x.quota.daily_max)}` : '—'}</td></tr>`});
+  $('#view').innerHTML = `<div class="phead"><div><h1>Safety</h1>
+      <p class="sub">${SAFE === 'flagged' ? `Red and amber replies and reported messages since ${fmtD(addDays(todayUTC(), -flaggedDays))}, newest first.`
+        : 'Everyone, most recently active first, with their safety counts.'} Opening a conversation is logged.</p></div></div>
+    ${subnav('safe', SAFE, [['flagged', 'Flagged'], ['roster', 'Roster']])}
+    ${t.html}
+    <p class="note">Only conversations with a safety flag or a report can be opened — the server refuses the rest.</p>`;
+  t.wire();
+  $$('.chip[data-safe]').forEach(c => c.onclick = () => { SAFE = c.dataset.safe; renderSafety().catch(fail); });
+}
+async function renderConversation(uid){
+  let c;
+  try { c = await ops('user/' + encodeURIComponent(uid)); }
+  catch (err) {
+    if (err.status !== 403 && err.status !== 404) throw err;
+    $('#view').innerHTML = `<a class="back" href="#/safety">← Safety</a>
+      <div class="card section"><h2>Can’t open this conversation</h2><p class="muted" style="margin:0">${esc(err.message)}</p></div>`;
+    return;
+  }
+  $('#view').innerHTML = `<a class="back" href="#/safety">← Safety</a>
+    <div class="uhead"><div><h1>${esc(c.name || c.uid)}</h1>
+      <p class="sub mono" style="margin-bottom:0">${esc(c.uid)}${c.birth ? ' · born ' + esc(c.birth) : ''}</p></div></div>
+    <p class="hint section">You opened this conversation; it’s in the audit log. Newest at the bottom.</p>
+    <div class="card msgs">${(c.messages || []).map(m => `<div class="m ${m.role === 'user' ? 'user' : 'assistant'}">
+      <span class="meta">${esc(m.role)} · ${m.at ? fmtDay(toTs(m.at)) + ' ' + fmtClock(toTs(m.at)) : ''}${m.tier && m.tier !== 'green' ? ' ' + tierPill(m.tier) : ''}</span>${esc(m.text)}</div>`).join('')
+      || '<div class="empty">No messages.</div>'}</div>`;
+  $('#view').focus({preventScroll: true});
+}
+
+/* -------------------------------------------------------------- health */
+const HEALTH_TRIES = {n: 0};
+async function renderHealth(){
+  const h = await cached(`health?${rq()}`);
+  const pg = (title, sub) => `<div class="phead"><div><h1>${title}</h1><p class="sub">${sub}</p></div>
+    <div class="pact">${h.cached ? '<span class="badge ok" title="Served from the 5-minute cache">cached</span>' : ''}</div></div>`;
+  if (h.unavailable) {
+    $('#view').innerHTML = pg('System health', 'Lambda, app metrics, email and cold starts from CloudWatch.') +
+      na('CloudWatch', `Not available here: ${h.reason || 'no AWS access'}. This tab works on the deployed app.`);
+    return;
+  }
+  const fn = (k, label) => {
+    const f = (h.functions || {})[k];
+    if (!f) return na(label, 'No metrics for this function.');
+    const t = f.totals || {}, ser = f.series || [];
+    const pts = key => ser.map(p => ({x: fmtTs(p.t), tick: tick(p.t), v: p[key]}));
+    return `<div class="card"><div class="ch"><h2>${esc(label)}</h2><span class="muted mono" style="font-size:.75rem">${esc(f.name || '')}</span></div>
+      <div class="statgrid">${stat('Invocations', t.invocations)}${stat('Errors', t.errors, {bad: true})}${stat('Error rate', t.error_rate, {fmt: v => P(v, 2), bad: 0.01})}
+        ${stat('Throttles', t.throttles, {bad: true})}${stat('Duration p95', t.duration_p95_ms, {fmt: MS})}${stat('Peak concurrency', t.concurrency_max)}</div>
+      <div class="chart section"><h3 class="mini">Invocations · errors in red</h3>${columns(ser.map(p => ({x: fmtTs(p.t), tick: tick(p.t), v: p.invocations, o: p.errors})), {label: label + ' invocations', overlay: 'errors'})}</div>
+      <div class="chart"><h3 class="mini">Duration p95</h3>${columns(pts('duration_p95_ms'), {label: label + ' p95 duration', fmt: MS})}</div></div>`;
+  };
+  const at = get(h, 'app.totals') || {}, et = get(h, 'email.totals') || {}, cs = h.cold_starts || {};
+  const ed = h.edge || {}, dt = ed.totals || {};
+  $('#view').innerHTML = pg('System health', `${fmtRange(STATE.from, STATE.to)} · from CloudWatch, ${esc(h.period >= 86400 ? 'daily' : h.period >= 3600 ? 'hourly' : (h.period / 60) + '-minute')} points. Times in UTC.`) + `
+    <div class="grid two section">${fn('app', 'App function')}${fn('cron', 'Scheduled jobs')}</div>
+    <div class="grid halves section">
+      <div class="card"><h2>App signals</h2><p class="hint mono">${esc(get(h, 'app.namespace') || '')}</p>
+        <div class="statgrid">${stat('Chat messages', at.messages)}${stat('Quota refusals', at.quota_refused, {bad: true})}
+          ${stat('Red-tier replies', at.red_tier, {bad: true})}${stat('SMS cap hits', at.sms_cap, {bad: true})}
+          ${stat('App error lines', at.app_errors, {bad: true})}${stat('Unrouted alerts', at.alert_unrouted, {bad: true})}
+          ${stat('Auth unavailable', at.auth_unavailable, {bad: true})}</div></div>
+      <div class="card"><h2>Email (SES)</h2>
+        <div class="statgrid">${stat('Sent', et.send)}${stat('Delivered', et.delivery)}${stat('Bounces', et.bounce, {bad: true})}
+          ${stat('Complaints', et.complaint, {bad: true})}${stat('Bounce rate', et.bounce_rate, {fmt: v => P(v, 2), bad: 0.02})}
+          ${stat('Complaint rate', et.complaint_rate, {fmt: v => P(v, 3), bad: 0.001})}</div></div>
+    </div>
+    <div class="card section"><h2>Edge traffic (CloudFront)</h2>
+      ${ed.status !== 'complete' ? `<p class="hint">Not available: ${esc(ed.reason || 'no distribution configured')}.</p>`
+        : `<div class="statgrid">${stat('Requests', dt.requests)}${stat('Data sent (MB)', isNum(dt.bytes) ? dt.bytes / 1e6 : null, {fmt: N1})}
+          ${stat('4xx rate', dt.rate_4xx, {fmt: v => P(v, 2)})}${stat('5xx rate', dt.rate_5xx, {fmt: v => P(v, 2), bad: 0.01})}</div>
+        <div class="chart section">${columns((ed.series || []).map(p => ({x: fmtTs(p.t), tick: tick(p.t), v: p.requests})), {label: 'CloudFront requests', W: 1100, H: 150})}</div>`}
+      <p class="hint" style="margin:10px 0 0">Every request, including assets, bots and uptime checks: load, not people.</p></div>
+    <div class="card section"><div class="ch"><h2>Cold starts</h2>${cs.status === 'pending' ? '<span class="badge">Still counting…</span>' : ''}</div>
+      ${cs.status === 'unavailable' ? `<p class="hint">Not available: ${esc(cs.reason || 'the log query failed')}.</p>`
+        : `<div class="statgrid">${stat('Cold starts', cs.total)}${stat('Average init', cs.init_ms_avg, {fmt: MS})}${stat('Slowest init', cs.init_ms_max, {fmt: MS})}</div>
+        ${(cs.series || []).length ? `<div class="chart section">${columns(cs.series.map(p => ({x: fmtTs(p.t), tick: tick(p.t), v: p.cold})), {label: 'Cold starts', W: 1100, H: 150})}</div>` : ''}`}
+      <p class="hint" style="margin:10px 0 0">From a CloudWatch Logs Insights query over the app’s log group, capped and cached for 5 minutes.</p></div>`;
+  if (cs.status === 'pending' && HEALTH_TRIES.n < 5 && location.hash.startsWith('#/health')) {
+    HEALTH_TRIES.n++;
+    setTimeout(() => { if (location.hash.startsWith('#/health')) { CACHE.delete(`health?${rq()}`); renderHealth().catch(fail); } }, 4000);
+  } else if (cs.status !== 'pending') HEALTH_TRIES.n = 0;
+}
+const fmtTs = t => new Date(typeof t === 'number' ? t * 1000 : t).toLocaleString([], {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC'});
+const tick = t => { const s = new Date(typeof t === 'number' ? t * 1000 : t).toISOString(); return s.slice(11, 16) === '00:00' ? s.slice(5, 10) : s.slice(11, 16); };
+
+/* --------------------------------------------------------------- admin */
+let ADMIN = 'operators';
+async function renderAdmin(sub){
+  if (sub) ADMIN = sub;
+  const nav = subnav('admin', ADMIN, [['operators', 'Operators'], ['audit', 'Audit log'], ['plan', 'Grant a plan']]);
+  if (ADMIN === 'audit') await renderAudit(nav);
+  else if (ADMIN === 'plan') renderPlan(nav);
+  else await renderOperators(nav);
+  $$('.chip[data-admin]').forEach(c => c.onclick = () => { location.hash = '#/admin/' + c.dataset.admin; });
+}
+function renderPlan(nav){
+  $('#view').innerHTML = `<h1>Grant a plan</h1>
+    <p class="sub">Give a pilot participant Plus by hand (or take it back) until billing exists. Logged in the audit trail.</p>${nav}
+    <div class="card section"><form class="opform" id="planForm">
+      <input id="planUid" type="text" placeholder="Their email, or account id from Users" required aria-label="Email or account id" autocomplete="off">
+      <select id="planTier" aria-label="Plan"><option value="plus">Plus</option><option value="free">Free</option></select>
+      <label class="muted" for="planUntil" style="font-size:.85rem">until</label><input id="planUntil" type="date" aria-label="Until (optional)">
+      <button class="btn primary" type="submit">Grant</button></form>
+      <p class="muted" style="font-size:.82rem;margin:10px 0 0">Leave “until” empty for no end date.</p>
+      <p class="err" id="planErr" role="alert"></p><p class="ok" id="planOk" role="status"></p></div>`;
+  $('#planForm').onsubmit = async e => {
+    e.preventDefault();
+    $('#planErr').textContent = $('#planOk').textContent = '';
+    try {
+      const r = await ops('plan', {method: 'POST', body: {uid: $('#planUid').value.trim(), tier: $('#planTier').value,
+        until: $('#planUntil').value || null}});
+      $('#planOk').textContent = `Done: ${r.tier || $('#planTier').value}${r.until ? ' until ' + r.until : ''}.`;
+    } catch (err) { if (err.message !== 'locked') $('#planErr').textContent = err.message; }
+  };
+}
+
+/* -------------------------------------------------------------- audit */
+const AUDIT_LABEL = {'conversation.open':'Opened a conversation', 'conversation.refused':'Tried an unflagged conversation',
+  'journey.view':'Viewed a journey', 'activity.users':'Listed people', 'activity.overview':'Viewed the overview',
+  'roster':'Viewed the roster', 'flagged':'Viewed the flagged queue', 'funnel':'Viewed the funnel',
+  'plan.grant':'Granted a plan', 'operator.set':'Added or changed an operator', 'operator.remove':'Removed an operator',
+  'operators.list':'Listed operators', 'audit.view':'Viewed the audit log', 'denied':'Refused: role too low',
+  'report':'Viewed a report', 'signin':'Signed in', 'health':'Viewed system health'};
+const SENSITIVE = new Set(['conversation.open', 'conversation.refused', 'journey.view', 'plan.grant',
+  'operator.set', 'operator.remove', 'denied']);
+let AUDIT_ONLY = true;
+async function renderAudit(nav = ''){
+  const a = await ops(`audit?days=${daysBack(400)}`);
+  const paint = () => {
+    const rows = a.entries.filter(e => !AUDIT_ONLY || SENSITIVE.has(e.action));
+    $('#rows').innerHTML = rows.length ? rows.map(e => `<tr tabindex="-1">
+      <td class="muted">${fmtDay(toTs(e.at))} ${fmtTime(toTs(e.at))}</td>
+      <td class="who"><b>${esc(e.via === 'token' ? 'Break-glass token' : a.labels[e.op] || e.op)}</b><small>${esc(e.role)} · ${esc(e.via)}${e.op && a.labels[e.op] ? ' · ' + esc(e.op) : ''}</small></td>
+      <td>${esc(AUDIT_LABEL[e.action] || e.action)}</td>
+      <td class="mono">${esc(e.subject || '—')}</td>
+      <td class="muted mono">${esc(Object.entries(e.params || {}).filter(([, v]) => v !== null && v !== undefined).map(([k, v]) => `${k}=${v}`).join(' '))}</td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">Nothing in this range.</td></tr>';
+  };
+  $('#view').innerHTML = `
+    <h1>Audit log</h1>
+    <p class="sub">Every read of the console since ${fmtD(addDays(todayUTC(), 1 - daysBack(400)))}, newest first. Kept 400 days.${a.truncated ? ' Showing the newest 1,000.' : ''}</p>
+    ${nav}
+    <div class="tools"><div class="chips" role="group" aria-label="Filter the audit log">
+      <button class="chip" data-f="1" aria-pressed="${AUDIT_ONLY}">People and changes</button>
+      <button class="chip" data-f="0" aria-pressed="${!AUDIT_ONLY}">Everything</button></div></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>When</th><th>Operator</th><th>Did</th><th>About</th><th>Details</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>`;
+  $$('.chip[data-f]').forEach(c => c.onclick = () => {
+    AUDIT_ONLY = c.dataset.f === '1';
+    $$('.chip[data-f]').forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+    paint();
+  });
+  paint();
+}
+
+/* ---------------------------------------------------------- operators */
+async function renderOperators(nav = ''){
+  const o = await ops('operators');
+  $('#view').innerHTML = `
+    <h1>Operators</h1>
+    <p class="sub">Everyone here signs in with an emailed code. Social opens the social media tool only; analysts see totals;
+      safety sees people and flagged conversations; admins can do everything, including this list.</p>
+    ${nav}
+    <div class="card section">
+      <h2>Add or change an operator</h2>
+      <form class="opform" id="opForm">
+        <input id="opEmail" type="email" placeholder="Their sign-in email" required aria-label="Email" autocomplete="off">
+        <input id="opLabel" type="text" placeholder="Label (e.g. their name)" maxlength="80" aria-label="Label" autocomplete="off">
+        <select id="opRole" aria-label="Role">${o.roles.map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join('')}</select>
+        <button class="btn primary" type="submit">Save</button>
+      </form>
+      <p class="muted" style="font-size:.82rem;margin:10px 0 0">They must have signed up in the app first.</p>
+      <p class="err" id="opErr" role="alert"></p>
+    </div>
+    <div class="tablewrap section"><table>
+      <thead><tr><th>Operator</th><th>Role</th><th>Social media</th><th>Added</th><th>By</th><th></th></tr></thead>
+      <tbody>${o.operators.map(x => `<tr tabindex="-1">
+        <td class="who"><b>${esc(x.label || x.email_masked || x.uid)}</b><small>${esc(x.email_masked || '(no account)')} · ${esc(x.uid)}</small></td>
+        <td><select data-role-for="${esc(x.uid)}" aria-label="Role">${o.roles.map(r => `<option ${r === x.role ? 'selected' : ''}>${esc(r)}</option>`).join('')}</select></td>
+        <td>${x.role === 'admin' || x.role === 'social' ? '<span class="muted">Included</span>'
+          : `<label class="toggle"><input type="checkbox" data-social-for="${esc(x.uid)}" data-role-now="${esc(x.role)}"${x.social ? ' checked' : ''}> Can use</label>`}</td>
+        <td class="muted">${x.added_at ? fmtDay(x.added_at) : '—'}</td>
+        <td class="muted mono">${esc(x.added_by || '—')}</td>
+        <td>${x.uid === ME.uid ? '<span class="muted">you</span>' : `<button class="btn" data-remove="${esc(x.uid)}">Remove</button>`}</td>
+      </tr>`).join('') || '<tr><td colspan="6" class="empty">No operators yet.</td></tr>'}</tbody></table></div>`;
+  const fail = err => { if (err.message !== 'locked') $('#opErr').textContent = err.message; };
+  $('#opForm').onsubmit = async e => {
+    e.preventDefault();
+    try {
+      await ops('operators', {method: 'POST', body: {email: $('#opEmail').value.trim(),
+        role: $('#opRole').value, label: $('#opLabel').value.trim() || null}});
+      renderAdmin();
+    } catch (err) { fail(err); }
+  };
+  document.querySelectorAll('select[data-role-for]').forEach(s => s.onchange = async () => {
+    try { await ops('operators', {method: 'POST', body: {uid: s.dataset.roleFor, role: s.value}}); renderAdmin(); }
+    catch (err) { fail(err); }
+  });
+  $$('input[data-social-for]').forEach(s => s.onchange = async () => {
+    try { await ops('operators', {method: 'POST', body: {uid: s.dataset.socialFor, role: s.dataset.roleNow, social: s.checked}}); renderAdmin(); }
+    catch (err) { fail(err); }
+  });
+  document.querySelectorAll('button[data-remove]').forEach(b => b.onclick = async () => {
+    if (!confirm('Remove this operator? They lose access on their next request.')) return;
+    try { await ops('operators/' + encodeURIComponent(b.dataset.remove), {method: 'DELETE'}); renderAdmin(); }
+    catch (err) { fail(err); }
+  });
+}
+
+
+/* --------------------------------------------------------------- gate */
+const GATE = {
+  401: 'You’re not signed in.',
+  403: 'This account isn’t an operator. Ask an admin to add you, using the email you sign in with.',
+  404: 'The dashboard isn’t switched on for this server.',
+};
+function toSignIn(){ location.assign('/?next=' + encodeURIComponent(location.pathname + location.hash)); }
+async function signOut(){
+  await fetch('/api/ops/signout', {method: 'POST', headers: {'x-ops-request': '1'}, credentials: 'same-origin'}).catch(() => {});
+  location.assign('/');
+}
+function paintAreas(){
+  const a = ME.areas || {};
+  const mine = [['social', 'Social media'], ['manage', 'Manage app'], ['analytics', 'Analytics']].filter(([k]) => a[k]);
+  const home = mine.length > 1;        // with one area, / only sends them straight back
+  if (ONE_LOGIN && home) $('#homeLink').href = '/';
+  $('#areas').innerHTML = !ONE_LOGIN ? '' : (home ? '<a href="/">Home</a>' : '') + mine.map(([k, l]) => `<a href="/${k}${k === 'social' ? '/' : ''}"${k === AREA ? ' aria-current="page"' : ''}>${l}</a>`).join('');
+  $('#areas').hidden = !ONE_LOGIN;
+}
+function lock(msg, status = 401){
+  TOKEN = ''; ME = null; CACHE.clear();
+  try { sessionStorage.removeItem('ops_token'); } catch (e) {}
+  $('#app').hidden = true; $('#gate').hidden = false;
+  $('#gateMsg').textContent = GATE[status] || 'Something went wrong.';
+  $('#gateHow').hidden = status !== 401;
+  $('#gateLink').href = '/?next=' + encodeURIComponent(location.pathname + location.hash);
+  $('#glass').hidden = status === 404;
+  $('#gateErr').textContent = msg || '';
+  $('#tok').value = '';
+}
+// Who is asking decides everything else: the tabs, the header, the gate.
+async function start(){
+  const headers = TOKEN ? {'x-ops-token': TOKEN} : {};
+  let r;
+  try { r = await fetch('/api/ops/me', {headers, credentials: 'same-origin', cache: 'no-store'}); }
+  catch (e) { return lock('Couldn’t reach the server.', 0); }
+  if (!r.ok) {
+    // The break-glass form stays reachable when the sign-in page is what broke: /manage#breakglass.
+    if (r.status === 401 && ONE_LOGIN && !TOKEN && location.hash !== '#breakglass') { toSignIn(); return false; }
+    const had = !!TOKEN;
+    lock(had && r.status === 401 ? 'That token wasn’t accepted.' : '', r.status);
+    return false;
+  }
+  ME = await r.json();
+  if (TOKEN) { try { sessionStorage.setItem('ops_token', TOKEN); } catch (e) {} }
+  $$('nav.tabs a').forEach(a => { a.hidden = !can(a.dataset.role) || (!!AREA && a.dataset.area !== AREA); });
+  paintAreas();
+  $('#whoami').innerHTML = ME.via === 'token'
+    ? '<b>Break-glass token</b> <span class="pill r-admin">admin</span>'
+    : `<b>${esc(ME.email_masked || ME.uid)}</b> <span class="pill r-${esc(ME.role)}">${esc(ME.role)}</span>`
+      + (ONE_LOGIN ? ' <button class="btn sm" type="button" id="signOut" style="margin-top:8px">Sign out</button>' : '');
+  if ($('#signOut')) $('#signOut').onclick = signOut;
+  $('#lock').hidden = ME.via !== 'token';
+  $('#gate').hidden = true; $('#app').hidden = false;
+  paintRange();
+  route();
+  return true;
+}
+$('#gateForm').onsubmit = async e => {
+  e.preventDefault();
+  TOKEN = $('#tok').value.trim();
+  if (!await start()) $('#glass').open = true;
+};
+$('#lock').onclick = () => { TOKEN = ''; try { sessionStorage.removeItem('ops_token'); } catch (e) {} start(); };
+$('#refresh').onclick = () => { CACHE.clear(); route(); };
+$$('.chip[data-preset]').forEach(c => c.onclick = () => {
+  if (c.dataset.preset === 'custom') { STATE.preset = 'custom'; paintRange(); $('#from').focus(); return; }
+  setPreset(c.dataset.preset); CACHE.clear(); rangeChanged();
+});
+$('#custom').onsubmit = e => {
+  e.preventDefault();
+  const a = $('#from').value, b = $('#to').value, err = $('#rangeErr');
+  err.textContent = '';
+  if (!a || !b) err.textContent = 'Pick both dates.';
+  else if (a > b) err.textContent = '“From” must be on or before “to”.';
+  else if (b > todayUTC()) err.textContent = 'The range can’t end in the future.';
+  else if (span(a, b).length > 400) err.textContent = 'Up to 400 days at a time.';
+  if (err.textContent) return;
+  Object.assign(STATE, {preset: 'custom', from: a, to: b}); CACHE.clear(); rangeChanged();
+};
+$('#compare').onchange = () => { STATE.compare = $('#compare').checked; rangeChanged(); };
+addEventListener('hashchange', route);
+
+/* ------------------------------------------------------------ routing */
+// [least role, render, uses the range, offers compare]
+const PAGES = {
+  overview: ['analyst', renderOverview, true, true],
+  acquisition: ['analyst', renderAcquisition, true, true],
+  funnel: ['analyst', renderFunnel, true, true],
+  engagement: ['analyst', renderEngagement, true, true],
+  retention: ['analyst', renderRetention, true, false],
+  notifications: ['analyst', renderNotifications, true, true],
+  // ---- manage
+  users: ['safety', arg => arg ? renderUser(arg) : renderUsers(), true, false],
+  safety: ['safety', arg => arg ? renderConversation(arg) : renderSafety(), true, false],
+  health: ['analyst', renderHealth, true, false],
+  admin: ['admin', arg => renderAdmin(arg), true, false],
+};
+// Links from before the report tabs still land somewhere sensible.
+const OLD = {people: 'users', user: 'users', audit: 'admin/audit', operators: 'admin/operators'};
+function fail(err){
+  if (err && err.message === 'locked') return;
+  const v = $('#view');
+  if (err && err.status === 403) {
+    v.innerHTML = `<div class="card"><h2>Not for your role</h2>
+      <p class="muted" style="margin:0">${esc(err.message)} Ask an admin if you need it.</p></div>`;
+    return;
+  }
+  v.innerHTML = `<div class="card" role="alert"><p class="err">${esc((err && err.message) || 'Something went wrong.')}</p>
+    <button class="btn" type="button" id="retry">Try again</button></div>`;
+  $('#retry').onclick = () => { CACHE.clear(); route(); };
+}
+function route(){
+  if (!ME) return;
+  const first = AREA === 'manage' ? (can('safety') ? 'users' : 'health') : 'overview';
+  let h = location.hash.replace(/^#\/?/, '') || first;
+  let [page, ...rest] = h.split('/');
+  if (OLD[page]) {
+    const to = OLD[page] + (rest.length ? '/' + rest.join('/') : '');
+    history.replaceState(null, '', '#/' + to);
+    [page, ...rest] = to.split('/');
+  }
+  const arg = rest.length ? decodeURIComponent(rest.join('/')) : '';
+  if (!PAGES[page] || !can(PAGES[page][0])) page = first;
+  // A link into the other area (or an old /ops bookmark) goes there.
+  if (AREA && areaOf(page) !== AREA) { location.replace('/' + areaOf(page) + '#/' + h); return; }
+  const [, render, ranged, compare] = PAGES[page];
+  $$('nav.tabs a').forEach(a => {
+    if (a.dataset.tab !== page) return a.removeAttribute('aria-current');
+    a.setAttribute('aria-current', 'page');
+    if (a.parentNode.scrollWidth > a.parentNode.clientWidth) a.parentNode.scrollLeft = a.offsetLeft - 16;   // the phone's row of tabs
+  });
+  $('#subbar').hidden = !ranged;
+  $('#cmpWrap').hidden = !compare;
+  const v = $('#view');
+  v.innerHTML = '<div class="card" aria-busy="true"><div class="skel" style="width:40%"></div><div class="skel"></div><div class="skel" style="width:70%"></div></div>';
+  Promise.resolve().then(() => render(arg)).catch(fail);
+}
+
+start();
+</script>
+</body>
+</html>

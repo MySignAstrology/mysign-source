@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>What time was I born? · My Sign</title>
+<link rel="stylesheet" href="/fonts/fonts.css?v=2">
+<style>
+/* team2/habit: the "ask your mom" page. Standalone on purpose — whoever opens
+   it has no account and needs nothing from the app but this one question.
+   Server-rendered with only a first name and a birth date; there is nothing
+   else about her in this file to leak. */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  color-scheme:dark;
+  --ground:#090B17; --surface:rgba(16,20,42,.9); --ink:#EFE6D2; --ink-2:#C9C2AE;
+  --rule:rgba(200,162,74,.34); --accent:#F0745C; --accent-ink:#14101A; --err:#FF9A8E;
+  --aura:radial-gradient(120% 80% at 20% 0%,rgba(64,78,170,.3),transparent 60%),
+         radial-gradient(90% 70% at 100% 30%,rgba(200,162,74,.1),transparent 60%);
+  --display:'Bodoni Moda','Newsreader',Charter,Georgia,serif;
+  --sans:'Geist','Helvetica Neue',Arial,sans-serif;
+}
+html,body{margin:0;min-height:100%}
+body{background:var(--ground);background-image:var(--aura);background-attachment:fixed;
+  color:var(--ink);font:16px/1.5 var(--sans);padding:0 16px;-webkit-font-smoothing:antialiased}
+main{max-width:440px;margin:0 auto;padding:12vh 0 4rem}
+.mark{font-family:var(--display);font-size:1.15rem;letter-spacing:.02em;color:var(--ink-2)}
+h1{font-family:var(--display);font-weight:400;font-size:2.4rem;line-height:1.08;margin:.6rem 0 .8rem}
+h1 em{color:var(--accent)}
+p{color:var(--ink-2);margin:.4rem 0}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:20px;padding:1.2rem;margin:1.4rem 0;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+label{display:block;font-weight:600;color:var(--ink);margin:.2rem 0 .4rem}
+input[type=time]{width:100%;font:500 1.4rem var(--sans);padding:.7rem .8rem;border-radius:12px;
+  border:1px solid var(--rule);background:transparent;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:.3rem 0 .2rem}
+.chips button{font:500 .95rem var(--sans);padding:.55rem .9rem;border-radius:999px;border:1px solid var(--rule);
+  background:transparent;color:var(--ink);cursor:pointer;min-height:44px}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.go{width:100%;margin-top:1rem;font:600 1rem var(--sans);padding:.9rem;border-radius:999px;border:0;
+  background:var(--accent);color:var(--accent-ink);cursor:pointer;min-height:48px}
+.go:disabled{opacity:.55;cursor:default}
+.tip{font-size:.92rem}
+.or{text-align:center;font-size:.9rem;margin:1rem 0 .3rem}
+.err{color:var(--err);min-height:1.4em;font-size:.92rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main data-state="{{STATE}}">
+  <div class="mark">My Sign</div>
+
+  <section id="open">
+    <h1><em>{{NAME}}</em> is asking: what time was I born?</h1>
+    <p>They were born on <b>{{DATE}}</b>. If that's the right person, you're the one who'd know. It takes a few seconds and you don't need the app.</p>
+    <div class="card">
+      <label for="t">Time of birth</label>
+      <input id="t" type="time" inputmode="numeric" aria-describedby="tip">
+      <p class="tip" id="tip">The birth certificate or hospital bracelet usually has it, to the minute.</p>
+      <label style="margin-top:.9rem" id="sureL">How sure are you?</label>
+      <div class="chips" role="group" aria-labelledby="sureL" data-group="sure">
+        <button type="button" data-v="certificate" aria-pressed="false">It's written down</button>
+        <button type="button" data-v="sure" aria-pressed="true">I remember it</button>
+        <button type="button" data-v="roughly" aria-pressed="false">Within an hour</button>
+      </div>
+      <p class="tip" id="roughTip" hidden>Within an hour is saved as approximate, not exact. {{NAME}}'s rising sign shows only if it's the same across that whole hour.</p>
+      <p class="or">Don't know the minute?</p>
+      <div class="chips" role="group" aria-label="Roughly when" data-group="approx">
+        <button type="button" data-v="morning" aria-pressed="false">Morning</button>
+        <button type="button" data-v="afternoon" aria-pressed="false">Afternoon</button>
+        <button type="button" data-v="evening" aria-pressed="false">Evening</button>
+        <button type="button" data-v="night" aria-pressed="false">Night</button>
+      </div>
+      <p class="err" id="err" role="alert"></p>
+      <button class="go" id="go" type="button" disabled>Send it to {{NAME}}</button>
+    </div>
+    <p class="tip">Only the time goes back to {{NAME}}. Nothing about you is saved.</p>
+  </section>
+
+  <section id="done" hidden>
+    <h1>Thank you <em>so</em> much.</h1>
+    <p id="doneMsg">It's on its way. They'll get a little note on their phone right now.</p>
+  </section>
+
+  <section id="gone" hidden>
+    <h1>This link has <em>done its job</em>.</h1>
+    <p>It was already answered, cancelled, or it's more than two weeks old. If it's still needed, a fresh one can be sent from My Sign.</p>
+  </section>
+
+  <section id="missing" hidden>
+    <h1>This link <em>isn't one of ours</em>.</h1>
+    <p>Check that it was copied in full, or ask whoever sent it for a new one.</p>
+  </section>
+</main>
+<script>
+(() => {
+  const main = document.querySelector('main');
+  const state = main.dataset.state;
+  const token = '{{TOKEN}}';
+  const $ = s => document.querySelector(s);
+  const show = id => ['open','done','gone','missing'].forEach(x => { $('#' + x).hidden = x !== id; });
+  show(state === 'open' ? 'open' : state);
+  if (state !== 'open') return;
+
+  // The name comes from the server-escaped heading, not a template inside this
+  // script, so an apostrophe in it can't break (or escape) a JS string.
+  const who = $('#open h1 em').textContent;
+  let sure = 'sure', approx = null;
+  const sync = () => { $('#go').disabled = !($('#t').value || approx); };
+  document.querySelectorAll('.chips').forEach(g => g.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const on = g.dataset.group === 'approx' && b.getAttribute('aria-pressed') === 'true' ? null : b.dataset.v;
+    g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === on ? 'true' : 'false'));
+    if (g.dataset.group === 'sure') { sure = on || 'sure'; $('#roughTip').hidden = sure !== 'roughly'; }
+    else { approx = on; if (on) $('#t').value = ''; }
+    sync();
+  }));
+  $('#t').addEventListener('input', () => {
+    if ($('#t').value) { approx = null;
+      document.querySelectorAll('[data-group=approx] button').forEach(x => x.setAttribute('aria-pressed', 'false')); }
+    sync();
+  });
+  $('#go').onclick = async () => {
+    $('#go').disabled = true; $('#err').textContent = '';
+    const t = $('#t').value;
+    const body = t ? {time: t, sure} : {approx, sure};
+    try {
+      const r = await fetch('/api/bt/' + encodeURIComponent(token), {method: 'POST',
+        headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+      if (r.status === 410) return show('gone');
+      if (r.status === 404) return show('missing');
+      if (!r.ok) throw new Error(((await r.json().catch(() => ({}))).detail) || 'That didn\'t send. Please try again.');
+      // "Within an hour" is kept as approximate, never as the exact minute, so
+      // say what it bought rather than implying the chart is now complete.
+      const res = await r.json().catch(() => ({}));
+      if (!t) $('#doneMsg').textContent = 'A rough time is still a real help. A note is on its way.';
+      else if (sure === 'roughly') $('#doneMsg').textContent = res.rising_shown
+        ? `Thank you. Within an hour was enough to pin down ${who}’s rising sign. The houses still need the exact minute, if a birth certificate ever turns up.`
+        : `Thank you. It’s saved as approximate: ${who}’s rising sign changes during that hour, so it stays hidden rather than being guessed. The exact minute, from a birth certificate, would settle it.`;
+      show('done');
+    } catch (e) { $('#err').textContent = e.message; $('#go').disabled = false; }
+  };
+})();
+</script>
+</body>
+</html>

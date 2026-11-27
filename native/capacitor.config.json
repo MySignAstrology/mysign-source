@@ -1,0 +1,16 @@
+{
+  "appId": "app.mysign.ios",
+  "appName": "My Sign",
+  "webDir": "www",
+  "appendUserAgent": "MySignApp/1.0",
+  "backgroundColor": "#090B17",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#090B17",
+    "allowsLinkPreview": false
+  },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 400, "backgroundColor": "#090B17", "showSpinner": false },
+    "StatusBar": { "style": "DEFAULT", "overlaysWebView": true }
+  }
+}

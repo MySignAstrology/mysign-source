@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Sign — who you are, in plain words</title>
+<meta name="description" content="Your birth chart, read as a person: how you love, what sets you off, why you are the way you are. A note each morning, and a conversation that remembers.">
+<link rel="canonical" href="https://mysignapp.com/">
+<meta name="theme-color" content="#090B17">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-title" content="My Sign">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="My Sign">
+<meta property="og:url" content="https://mysignapp.com/">
+<meta property="og:title" content="My Sign — who you are, in plain words">
+<meta property="og:description" content="Your birth chart, read as a person: how you love, how you fight, what you actually need. A note each morning, and a conversation that gets to know you.">
+<meta property="og:image" content="https://mysignapp.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="My Sign — the sky, read against your own life, and remembered.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My Sign — who you are, in plain words">
+<meta name="twitter:description" content="Your birth chart, read as a person: how you love, how you fight, what you actually need. A note each morning, and a conversation that gets to know you.">
+<meta name="twitter:image" content="https://mysignapp.com/og.png">
+<link rel="icon" href="data:image/svg%2bxml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M%2060%203%20C%2061.27%2052.02,%2066.86%2058.52,%20109%2060%20C%2066.86%2061.48,%2061.27%2067.98,%2060%20117%20C%2058.73%2067.98,%2053.14%2061.48,%2011%2060%20C%2053.14%2058.52,%2058.73%2052.02,%2060%203%20Z' fill='%23D9A94E'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="192x192" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<script src="/sky.js?v=2"></script>
+<link rel="stylesheet" href="/fonts/fonts.css?v=2">
+<link rel="stylesheet" href="/brand.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"https://mysignapp.com/#site","name":"My Sign","url":"https://mysignapp.com/"},
+ {"@type":"SoftwareApplication","name":"My Sign","url":"https://mysignapp.com/","applicationCategory":"LifestyleApplication",
+  "operatingSystem":"Web, iOS","description":"A daily astrology companion: a morning note based on today’s real sky and your chart, a check-in, and a conversation that remembers.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+]}
+</script>
+<style>
+/* Page layout only. Colours, type, buttons, fields, glass: brand.css. */
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.page{position:relative;z-index:2}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 1.25rem}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--surface-solid);color:var(--ink);
+  padding:.6rem 1rem;border-radius:var(--r-pill);border:1px solid var(--rule-2)}
+.skip:focus{top:1rem}
+
+/* header: clear at the top, frosted once content scrolls under it (as the app) */
+.top{position:sticky;top:0;z-index:20;border-bottom:1px solid transparent;
+  transition:background .3s,border-color .3s,backdrop-filter .3s}
+.top.scrolled{background:color-mix(in srgb,var(--s0) 80%,transparent);border-bottom-color:var(--rule);
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3)}
+.top .wrap{display:flex;align-items:center;gap:.6rem;padding-top:calc(.8rem + env(safe-area-inset-top));padding-bottom:.75rem}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:.4rem}
+.top nav .ghost{min-height:2.75rem;padding:.4rem 1rem}
+.top .navlink{display:none;font-size:.875rem;font-weight:500;color:var(--ink-2);text-decoration:none;padding:.5rem .75rem;border-radius:var(--r-pill)}
+.top .navlink:hover{color:var(--ink)}
+.top .startsm{display:none}
+
+/* sections */
+section{padding:4.5rem 0}
+.kicker{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 1rem}
+.kicker::before{content:"✦";font-size:.8rem;letter-spacing:0;font-family:var(--sans);
+  background:var(--text-glow);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:var(--head);font-weight:500;font-size:clamp(2.5rem,11vw,3.75rem);line-height:.98;
+  letter-spacing:-.02em;margin:0 0 1.1rem;text-wrap:balance}
+h2 em{font-style:italic;padding-right:.06em;background:var(--text-glow);-webkit-background-clip:text;background-clip:text;color:transparent}
+.body{font-size:1.0625rem;color:var(--ink-2);margin:0 0 1rem;max-width:36rem;text-wrap:pretty}
+.body strong{color:var(--ink);font-weight:600}
+.more{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.9375rem;margin-top:.4rem}
+.more::after{content:"→";transition:transform .25s var(--ease)}
+.more:hover::after{transform:translateX(3px)}
+
+/* hero */
+.herosec{padding:0 0 3.5rem}
+.herogrid{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.orbit.big{position:relative;height:13.5rem;margin:.4rem 0 -1.6rem;pointer-events:none}
+.orbit.big svg{position:absolute;left:50%;top:50%;width:21rem;height:21rem;transform:translate(-50%,-50%);overflow:visible}
+.orbit.big .ring.faint{stroke-dasharray:1 5}
+.orbit .spin.slow{animation-duration:140s}
+.orbit .star{filter:drop-shadow(0 0 14px rgba(230,200,150,.55))}
+.invite{margin:1.4rem 0 -.6rem;padding:.75rem 1rem;border-radius:var(--r-sm);font-size:.9375rem;line-height:1.4}
+.invite[hidden]{display:none}
+.invite b{font-family:var(--display);font-weight:400;font-size:1.2rem}
+.invite small{color:var(--ink-2)}
+.herosec .hero{font-size:clamp(2.6rem,11vw,5.25rem);margin:2rem 0 1rem;line-height:.98}
+.herosec .lede{font-size:1.125rem;max-width:32rem}
+.ctas{display:flex;flex-direction:column;align-items:stretch;gap:.9rem;max-width:24rem}
+.ctas .link{align-self:center;font-size:.9375rem}
+.trust{display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:1.4rem 0 0;padding:0;list-style:none;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;color:var(--ink-2);letter-spacing:.04em}
+.trust li{display:flex;align-items:center;gap:.4rem}
+.trust li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent-2)}
+
+/* the example morning note: the app's Today card, set as a specimen */
+.note{padding:1.2rem 1.25rem 1.15rem;margin-top:2.6rem;max-width:26rem}
+.note .k{display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0}
+.note .tag{font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--ink-3);
+  border:1px solid var(--rule-2);border-radius:var(--r-pill);padding:.25em .7em}
+.note blockquote{margin:.7rem 0 0;font-family:var(--flair);font-style:italic;font-size:1.6rem;line-height:1.12;letter-spacing:-.01em;color:var(--ink);text-wrap:balance}
+.note ul{list-style:none;margin:1rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule)}
+.note li{display:grid;grid-template-columns:3.4rem 1fr auto;gap:.7rem;align-items:baseline;padding:.4rem 0}
+.note .gl{font-family:var(--symbols);font-size:1rem;letter-spacing:.08em;color:var(--accent);white-space:nowrap}
+.note .tx{font-size:.875rem;line-height:1.35}
+.note .tx em{display:block;font-family:var(--display);font-style:italic;font-size:1rem;color:var(--ink-2);margin-top:.15rem}
+.note .tx b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:1.1rem;line-height:1.25;color:var(--ink)}
+.note .tx small{display:block;font-size:.75rem;color:var(--ink-3);margin-top:.2rem}
+/* what you'll read about yourself: the reading, shown as the person reads it */
+.mine{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:.8rem}
+@media (min-width:46rem){.mine{grid-template-columns:1fr 1fr}}
+.mine li{padding:1.15rem 1.25rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.mine .lab{margin:0;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.mine q{display:block;font-family:var(--flair);font-style:italic;font-size:1.4rem;line-height:1.22;quotes:"“" "”";text-wrap:pretty}
+.mine .why{margin:0;font-size:.8125rem;color:var(--ink-3)}
+.mine-note{margin:1rem 0 0;font-size:.875rem;color:var(--ink-3);max-width:36rem}
+.note .orbn{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;color:var(--ink-2);font-weight:500}
+.note .ci{margin:.8rem 0 0;padding-top:.8rem;border-top:1px solid var(--rule)}
+.note .ci p{margin:0 0 .6rem;font-family:var(--flair);font-style:italic;font-size:1.2rem;line-height:1.1}
+.moods{display:grid;grid-template-columns:repeat(10,1fr);gap:.3rem}
+.moods span{aspect-ratio:1;display:grid;place-items:center;border-radius:50%;font-size:.75rem;font-weight:700;color:var(--ink-2);
+  background:color-mix(in srgb,var(--m) 14%,transparent);border:1px solid color-mix(in srgb,var(--m) 34%,transparent)}
+.moods span.on{background:var(--m);color:#fff;border-color:transparent;transform:scale(1.14);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--m) 25%,transparent),0 8px 22px -4px var(--m)}
+
+/* the free reading */
+.free{position:relative;z-index:2;padding:1.15rem 1.25rem .9rem;margin:1.6rem 0 0;max-width:28rem;overflow:visible}
+.freeh{font-family:var(--head);font-size:1.5rem;line-height:1.15;margin:0 0 .9rem;text-wrap:balance}
+.freerow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.7rem}
+.freerow input{min-width:0;width:100%;box-sizing:border-box}
+.free label{display:block}
+.free .field{margin-bottom:.8rem}
+.free .err:empty{display:none}
+.free .hint{text-align:center;margin:.6rem 0 .1rem}
+.freealt{margin-top:.8rem;max-width:28rem}
+.freealt .link{font-size:.875rem}
+.acwrap{position:relative}
+.ac{position:absolute;left:0;right:0;top:100%;z-index:9;max-height:16rem;overflow-y:auto;background:var(--surface-solid);
+  border:1px solid var(--rule-2);border-radius:var(--r-sm);box-shadow:var(--shadow-lg);margin-top:.25rem}
+.ac[hidden]{display:none}
+.ac button{display:block;width:100%;text-align:left;font:inherit;font-size:.9375rem;color:var(--ink);background:none;border:0;padding:.75rem 1rem;cursor:pointer}
+.ac button + button{border-top:1px solid var(--rule)}
+.ac button:hover,.ac button:focus{background:var(--accent-wash);outline:none}
+.ac small{display:block;color:var(--ink-3);font-size:.8125rem}
+.ac p{margin:0;padding:.75rem 1rem;font-size:.875rem;color:var(--ink-2)}
+.freeres{padding-top:1rem}
+.freeres[hidden]{display:none}
+.freeres h2:focus{outline:none}
+.frsave{padding:1.3rem 1.25rem;margin-top:1rem;max-width:36rem}
+.frask{padding:1.3rem 1.25rem;margin-top:1.4rem;max-width:36rem}
+.frask[hidden]{display:none}
+.frask h3{font-family:var(--head);font-weight:500;font-size:1.6rem;line-height:1.15;margin:0 0 .5rem}
+.frchips{display:flex;flex-direction:column;gap:.45rem;margin:.9rem 0 .7rem}
+.frchips .ghost{text-align:left;justify-content:flex-start;white-space:normal;height:auto;line-height:1.35;min-height:2.75rem;font-size:.9rem;padding:.6rem .95rem;border-radius:1.2rem}
+.frq{display:flex;gap:.5rem;align-items:stretch}
+.frq input{flex:1 1 auto;min-width:0}
+.frq .primary{flex:none;width:auto;padding-left:1.2rem;padding-right:1.2rem}
+.frsave .ghost[hidden]{display:none}
+.frsave h3{font-family:var(--head);font-weight:500;font-size:1.6rem;line-height:1.15;margin:0 0 .5rem}
+.fracts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.7rem}
+.fracts .ghost{min-height:2.75rem;font-size:.875rem;padding:.4rem .6rem}
+.frcard{margin-top:.35rem}
+.frcard .ghost{min-height:2.75rem;font-size:.875rem;padding:.4rem .9rem}
+.frcard .hint:empty{margin:0}
+.frcardimg{display:block;width:100%;max-width:16rem;height:auto;border-radius:.75rem;margin-top:.6rem}
+
+/* how it works: the loop */
+.loop{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:.8rem;counter-reset:none}
+.loop li{padding:1.25rem 1.25rem 1.2rem 1.4rem;position:relative}
+.loop li::after{content:"";position:absolute;left:0;top:1.3rem;bottom:1.3rem;width:1px;background:var(--glow)}
+.loop .t{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;font-weight:500;letter-spacing:.06em;color:var(--accent);margin:0}
+.loop h3{font-family:var(--head);font-style:italic;font-weight:500;font-size:1.75rem;line-height:1.05;margin:.35rem 0 .5rem;letter-spacing:-.01em}
+.loop p{margin:0;color:var(--ink-2);font-size:.9375rem;text-wrap:pretty}
+
+/* split sections: copy + specimen */
+.split{display:grid;gap:2.2rem;align-items:center}
+
+/* NASA proof */
+.proof{padding:1.6rem 1.4rem 1.3rem}
+.proof .n{font-family:var(--head);font-size:clamp(5rem,26vw,7.5rem);line-height:.9;margin:0;letter-spacing:-.03em;
+  background:var(--text-glow);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.proof .n small{font-size:.45em;vertical-align:.9em;margin-left:.04em}
+.proof .cap{margin:.6rem 0 1.1rem;color:var(--ink-2);font-size:.9375rem;max-width:22rem}
+.proof dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1rem;margin:0;padding-top:1rem;border-top:1px solid var(--rule)}
+.proof dt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:.15rem}
+.proof dd{margin:0;font-size:.875rem;color:var(--ink)}
+
+/* people */
+.ppl{padding:1.1rem 1.2rem 1rem}
+.ppl .k{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 .3rem}
+.ppl ol{list-style:none;margin:0;padding:0}
+.ppl li{display:grid;grid-template-columns:auto 1fr auto;gap:.1rem .8rem;align-items:center;padding:.7rem 0;border-top:.5px solid var(--glass-line)}
+.ppl li:first-child{border-top:0}
+.ppl .nm{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+.ppl .sc{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.875rem;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.ppl .lvl{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-left:.4rem}
+.ppl .hl{grid-column:2/-1;font-size:.875rem;color:var(--ink-2);line-height:1.35}
+.ppl svg{grid-row:span 2;width:3.2rem;height:2rem;overflow:visible}
+.ppl svg circle{fill:none;stroke-width:1.2}
+.ppl svg .me{stroke:var(--rose-a)} .ppl svg .them{stroke:var(--rose-c)}
+.ticks{list-style:none;margin:1.4rem 0 0;padding:0;max-width:36rem}
+.ticks li{position:relative;padding:.75rem 0 .75rem 1.7rem;border-bottom:1px solid var(--rule);font-size:.9375rem;color:var(--ink-2)}
+.ticks li:last-child{border-bottom:0}
+.ticks li strong{color:var(--ink);font-weight:600}
+.ticks li::before{content:"✦";position:absolute;left:0;top:.8rem;font-size:.8rem;
+  background:var(--text-glow);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* memory: a pattern proposed, a pattern checked */
+.pats{display:grid;gap:.8rem}
+.pat{padding:1.1rem 1.2rem}
+.pat .k{display:flex;align-items:center;justify-content:space-between;gap:.5rem;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0}
+.pat q{display:block;font-family:var(--flair);font-style:italic;font-size:1.45rem;line-height:1.2;margin:.55rem 0 .7rem;quotes:"“" "”"}
+.pat .st{display:flex;flex-wrap:wrap;gap:.35rem}
+.pat .st span{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.75rem;background:var(--surface-2);color:var(--ink-2);border-radius:var(--r-pill);padding:.25em .75em}
+.pat .v{margin:.8rem 0 0;font-size:.875rem;font-weight:600;display:flex;gap:.45rem;align-items:center}
+.pat.no q{color:var(--ink-2);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--crit) 55%,transparent);text-decoration-thickness:1px}
+.pat.no .v{color:var(--crit)}
+.pat.yes .v{color:var(--good)}
+
+/* privacy */
+.promises{list-style:none;margin:2rem 0 1.2rem;padding:0;display:grid;gap:.8rem}
+.promises li{padding:1.25rem 1.25rem 1.2rem}
+.promises svg{width:1.6rem;height:1.6rem;fill:none;stroke:url(#ms-rose);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.promises h3{font-family:var(--head);font-style:italic;font-weight:500;font-size:1.6rem;line-height:1.05;margin:.6rem 0 .45rem}
+.promises p{margin:0;color:var(--ink-2);font-size:.9375rem;text-wrap:pretty}
+
+/* FAQ */
+.faq{max-width:46rem;margin:2rem 0 0}
+.faq details{border-bottom:1px solid var(--rule-2)}
+.faq details:first-child{border-top:1px solid var(--rule-2)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:1.15rem 0;font-family:var(--display);font-size:1.45rem;line-height:1.15;border-radius:4px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:.6rem;height:.6rem;border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);
+  transform:translateY(-.15rem) rotate(45deg);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:translateY(.1rem) rotate(-135deg)}
+.faq .a{padding:0 0 1.2rem;color:var(--ink-2);font-size:.9875rem;max-width:40rem}
+.faq .a p{margin:0 0 .7rem}
+.faq .a p:last-child{margin:0}
+.faq details[open] .a{animation:rise .5s var(--ease) both}
+
+/* final CTA + footer */
+.final{text-align:center;padding:5.5rem 0 4.5rem}
+.final h2{font-size:clamp(3rem,14vw,5.5rem)}
+.final .body{margin:0 auto 1.8rem}
+.final .ctas{margin:0 auto}
+.final .mark{width:2.6rem;height:2.6rem;margin:0 auto 1.4rem;display:block;filter:drop-shadow(0 0 12px rgba(230,200,150,.55))}
+footer{border-top:1px solid var(--rule);padding:2rem 0 calc(2.2rem + env(safe-area-inset-bottom));font-size:.8125rem;color:var(--ink-2)}
+footer .wrap{display:grid;gap:1.2rem}
+footer nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
+footer nav a{color:var(--ink-2);text-decoration:none;display:inline-flex;align-items:center;min-height:2.75rem}
+footer nav a:hover{color:var(--ink);text-decoration:underline}
+footer .fine{margin:0;color:var(--ink-3);font-size:.75rem;max-width:40rem}
+footer .lockup .brand{font-size:1.35rem}
+
+/* reveal on scroll, only when motion is welcome */
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .rv.in{opacity:1;transform:none}
+  /* The hero settles into place but is never invisible: a slow phone or a
+     link preview must not catch a blank first screen. */
+  .herosec .rise{animation:settle .8s var(--ease) both}
+  @keyframes settle{from{transform:translateY(12px)}}
+  .herosec .rise:nth-child(2){animation-delay:.06s}
+  .herosec .rise:nth-child(3){animation-delay:.12s}
+  .herosec .rise:nth-child(4){animation-delay:.18s}
+  .herosec .rise:nth-child(5){animation-delay:.24s}
+  .herosec .rise:nth-child(n+6){animation-delay:.3s}
+}
+
+/* the start sheet: a native <dialog>, a bottom sheet on phones, centred above */
+dialog.start{padding:0;border:0;background:transparent;color:var(--ink);width:100%;max-width:100%;max-height:100dvh;
+  margin:auto 0 0;overflow:visible}
+dialog.start::backdrop{background:rgba(8,4,6,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:fade .25s var(--ease) both}
+dialog.start .sheet{position:relative;margin:0 auto;max-height:calc(100dvh - 1rem);overflow-y:auto;padding-top:1.6rem}
+dialog.start .x{position:absolute;right:.7rem;top:.7rem;width:2.75rem;height:2.75rem;display:grid;place-items:center;
+  background:none;border:0;border-radius:50%;color:var(--ink-2);cursor:pointer}
+dialog.start .x:hover{background:var(--accent-wash);color:var(--ink)}
+dialog.start .x:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+dialog.start .x svg{width:1.1rem;height:1.1rem;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
+dialog.start .mk{width:2rem;height:2rem;display:block;margin:0 0 .9rem;filter:drop-shadow(0 0 8px rgba(230,200,150,.5))}
+dialog.start h2{font-size:2.3rem;margin:0 0 .45rem}
+dialog.start [hidden]{display:none!important}
+dialog.start .resend{margin:-.4rem 0 1rem;font-size:.8125rem;color:var(--ink-3)}
+dialog.start .fine{font-size:.75rem;color:var(--ink-3);margin:1rem 0 0;text-align:center}
+dialog.start .fine a{color:var(--ink-2)}
+dialog.start .status{min-height:0;margin:0}
+
+/* tablet and up */
+@media (min-width:40rem){
+  .wrap{padding:0 2rem}
+  .top .startsm{display:inline-flex}
+  .loop{grid-template-columns:1fr 1fr}
+  .promises{grid-template-columns:repeat(3,1fr)}
+  .pats{grid-template-columns:1fr 1fr}
+  dialog.start{margin:auto;width:30rem}
+  dialog.start .sheet{border-radius:26px;border-bottom:1px solid var(--rule-2);padding:2rem 1.75rem 1.6rem;animation:rise .4s var(--ease) both}
+  dialog.start .sheet::before{display:none}
+  footer .wrap{grid-template-columns:1fr auto;align-items:start}
+  footer .fine{grid-column:1/-1}
+}
+/* desktop */
+@media (min-width:60rem){
+  section{padding:7rem 0}
+  .top .navlink{display:inline-block}
+  .herosec{padding:2rem 0 6rem}
+  .herogrid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:3rem;align-items:center}
+  .herogrid .copy{order:1}
+  .herogrid .art{order:2;position:relative;min-height:40rem}
+  .orbit.big{position:absolute;inset:0;height:auto;margin:0}
+  .orbit.big svg{width:27rem;height:27rem;left:64%;top:33%}
+  .herogrid .note{position:absolute;left:0;bottom:0;margin:0;width:min(25rem,90%);rotate:-1deg;box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-hi)}
+  .herosec .hero{margin-top:1rem}
+  .ctas{flex-direction:row;align-items:center;gap:1.6rem;max-width:none}
+  .ctas .primary{width:auto;padding:1rem 2.6rem}
+  .final .ctas{justify-content:center}
+  .loop{grid-template-columns:repeat(4,1fr);gap:1rem}
+  .split{grid-template-columns:1fr 1fr;gap:5rem}
+  .split.rev .copy{order:2}
+  .pats{grid-template-columns:1fr}
+  .proof{padding:2.2rem 2rem 1.8rem}
+}
+/* phones: the art sits above the headline, the note below the buttons */
+@media (max-width:59.99rem){
+  .herogrid .art{display:contents}
+  .herogrid .orbit.big{order:-1}
+  /* Keep Start on the first screen, even on a small phone: a shorter
+     sky and a tighter headline. */
+  .orbit.big{height:5.5rem;margin:0 0 -1rem}
+  .orbit.big svg{width:11rem;height:11rem}
+  .herosec{padding-bottom:1.5rem}
+  .herosec .hero{font-size:clamp(2.3rem,10.4vw,3.2rem);margin:1rem 0 .6rem}
+  .herosec .lede{font-size:1.0625rem;margin-bottom:1rem}
+  /* the trust line sits centred under the form, so its wrap reads as a choice */
+  .trust{justify-content:center;text-align:center;gap:.4rem 1.1rem;margin-top:1.1rem}
+  /* the example note: a <figure>'s own 40px side margins were squeezing it to two-thirds of the screen */
+  .herogrid .note{margin:2rem 0 0;max-width:none;width:auto}
+  .note blockquote{font-size:1.5rem;text-wrap:pretty}
+  .note .tx b{text-wrap:pretty}
+  .note li{grid-template-columns:3rem 1fr auto;gap:.6rem}
+  .moods{gap:.35rem}
+  /* fewer empty bands between sections on a small screen */
+  section{padding:3.5rem 0}
+  #you{padding-top:2.5rem}
+  .final{padding:3.5rem 0 2.5rem}
+  .final .mark{margin-bottom:1rem}
+  .final .body{max-width:22rem}
+  .moreinfo{padding-bottom:2rem}
+  footer nav{gap:0 1.2rem}
+}
+@media (max-width:24rem){
+  #you .mine .unlock{font-size:.8125rem;padding:0 .9rem}
+}
+</style>
+<style>
+/* ===== the landing page is one question: your birthday ===== */
+.simple .herosec{padding:0 0 3rem}
+.simple .herogrid{display:block;max-width:27rem;margin:0 auto;text-align:center}
+.simple .herogrid .art,.simple .note{display:none}
+.simple .orbit.mini{position:relative;height:6.5rem;margin:1.5rem 0 .5rem;pointer-events:none}
+.simple .orbit.mini svg{position:absolute;left:50%;top:50%;width:6.5rem;height:6.5rem;transform:translate(-50%,-50%);overflow:visible}
+.simple .top .startsm{display:none}
+.simple .kicker{justify-content:center}
+.simple .herosec .hero{font-size:clamp(2.4rem,10vw,3.6rem);margin:.8rem 0 .7rem}
+.simple .herosec .lede{margin:0 auto 1.4rem;max-width:22rem}
+.simple .free{text-align:left;margin-top:0}
+.simple .free .freeh{display:none}
+.simple .alt{margin:1rem 0 0;font-size:.9375rem}
+.simple .alt .link{min-height:2.75rem}
+.simple .trust{justify-content:center;margin-top:1.1rem}
+.simple main{min-height:calc(100svh - 12rem)}
+@media (min-width:60rem){.simple .herosec{padding:2.5rem 0 5rem}.simple .orbit.mini{height:8rem}.simple .orbit.mini svg{width:8rem;height:8rem}}
+</style>
+</head>
+<body data-page="home" class="simple">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="ms-brass" x1="0" y1="0" x2=".35" y2="1">
+    <stop offset="0" stop-color="#EFC97E"/><stop offset=".55" stop-color="#D9A94E"/>
+    <stop offset="1" stop-color="#B8842C"/></linearGradient>
+  <linearGradient id="ms-rose" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#E6CFA8"/><stop offset=".5" stop-color="#E7A79C"/>
+    <stop offset="1" stop-color="#B4485C"/></linearGradient>
+  <symbol id="ms-star" viewBox="0 0 120 120"><path d="M 60 3 C 61.27 52.02, 66.86 58.52, 109 60 C 66.86 61.48, 61.27 67.98, 60 117 C 58.73 67.98, 53.14 61.48, 11 60 C 53.14 58.52, 58.73 52.02, 60 3 Z"/></symbol>
+  <symbol id="ms-glint" viewBox="0 0 120 120"><path d="M 97 10 C 97.4 24.62, 99.17 26.56, 112.5 27 C 99.17 27.44, 97.4 29.38, 97 44 C 96.6 29.38, 94.83 27.44, 81.5 27 C 94.83 26.56, 96.6 24.62, 97 10 Z"/></symbol>
+</defs></svg>
+<div class="sky" aria-hidden="true"><div class="haze"></div><div class="orb"><i></i></div></div><div class="grain" aria-hidden="true"></div>
+
+<div class="page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="lockup" href="/" aria-label="My Sign, home">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true">
+        <use href="#ms-star" fill="url(#ms-brass)"/>
+        <use href="#ms-glint" fill="#EFC97E" opacity=".85"/>
+      </svg>
+      <span class="brand">My&nbsp;Sign</span>
+    </a>
+    <nav aria-label="Primary">
+      <button class="link signin" type="button" data-open="signin" data-track="signin_open">Sign in</button>
+      <a class="ghost startsm" href="#free" data-jump="free" data-track="free_jump_nav">Get my reading</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============ hero ============ -->
+  <section class="herosec" data-section="hero" aria-labelledby="h-hero">
+    <div class="wrap herogrid">
+      <div class="copy">
+        <p class="invite card rise" id="invite" hidden></p>
+        <p class="back card rise" id="frBack" hidden>Welcome back. <button class="link" type="button" id="frBackSee" data-track="return_visit_banner_click">See your reading</button> <button class="link" type="button" id="frBackClear">Clear</button></p>
+        <div class="orbit mini rise" aria-hidden="true"><svg viewBox="0 0 240 240">
+            <circle class="ring" cx="120" cy="120" r="46"/>
+            <circle class="ring" cx="120" cy="120" r="70"/>
+            <circle class="ring faint" cx="120" cy="120" r="104"/>
+            <circle class="ring" cx="120" cy="120" r="118" opacity=".55"/>
+            <g class="spin"><circle cx="190" cy="120" r="3.2" fill="url(#ms-rose)"/></g>
+            <g class="spin rev"><circle cx="120" cy="16" r="2" fill="var(--accent-2)"/><circle cx="46" cy="190" r="1.4" fill="var(--accent)"/></g>
+            <g class="spin slow"><circle cx="74" cy="120" r="1.8" fill="var(--accent-2)"/><circle cx="203" cy="203" r="1.3" fill="url(#ms-rose)"/></g>
+            <use class="star" href="#ms-star" x="96" y="96" width="48" height="48" fill="url(#ms-brass)"/>
+          </svg></div>
+                <h1 class="hero rise" id="h-hero">Who you are, <em>in plain words.</em></h1>
+        <p class="lede rise">Add your birthday. See one line that’s only yours.</p>
+        <form class="free card rise" id="free" novalidate data-step="1">
+          <p class="freeh" id="freeH">See what your chart says about you</p>
+          <div class="field">
+            <label for="frDate">Birthday</label>
+            <input type="date" id="frDate" autocomplete="bday">
+          </div>
+          <button class="primary" type="submit" id="frGo" data-track="free_submit">Get my reading</button>
+          <div class="mini" id="frMini" hidden aria-live="polite">
+            <p class="lab" id="frMiniLab"></p>
+            <q id="frMiniText"></q>
+            <p class="why" id="frMiniWhy"></p>
+          </div>
+          <div id="frMore" hidden>
+            <p class="more-h" id="frMoreH">Now the rest of your chart.</p>
+            <div class="field">
+              <label for="frCity">Birth city</label>
+              <div class="acwrap">
+                <input type="text" id="frCity" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Chicago, or Lagos, or Reykjavik">
+                <div class="ac" id="frAc" hidden></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="frTime">Time, if known</label>
+              <input type="time" id="frTime">
+              <p class="hint">Don’t know it? Skip it. We’ll leave out your rising sign instead of guessing. <button class="link" type="button" id="frSkip">Skip</button></p>
+            </div>
+            <button class="primary" type="submit" id="frDeep" data-track="free_details_submit">Go deeper</button>
+          </div>
+          <p class="err" id="frErr" role="alert"></p>
+          <p class="hint">Free. No password. Your reading stays on your device until you save it. <a href="/privacy">Privacy</a>.</p>
+        </form>
+        <p class="alt rise"><button class="link" type="button" data-open="start" data-track="start_open">Or make your account</button></p>
+      </div>
+    </div>
+  </section>
+  <!-- ============ the free reading, filled in by site.js ============ -->
+  <section class="freeres" id="freeRes" data-section="free_result" aria-labelledby="h-free" hidden>
+    <div class="wrap">
+      <p class="kicker" id="frSigns"></p>
+      <h2 id="h-free" tabindex="-1">This is <em>you.</em></h2>
+      <ul class="mine" id="frList"></ul>
+      <!-- The chat is the product, and nobody found it behind sign-up. Ask the
+           first question here; it is kept on this device only and answered
+           first thing after the account exists. -->
+      <form class="card lit frask" id="frAsk" data-section="free_ask">
+        <h3>Now ask it <em>anything</em> about you.</h3>
+        <p class="body">Why you pull back when it gets close. Whether to text him. What this week is for. It answers from your chart, and it remembers what you tell it.</p>
+        <div class="frchips" id="frChips">
+          <button type="button" class="ghost">Why do I pull away when things get serious?</button>
+          <button type="button" class="ghost">What am I actually best at?</button>
+          <button type="button" class="ghost">Is this a good week for a hard conversation?</button>
+        </div>
+        <div class="frq">
+          <input type="text" id="frQ" maxlength="400" placeholder="Or type your own question" aria-label="Your question">
+          <button class="primary" type="submit" id="frAskGo" data-track="free_ask">Ask</button>
+        </div>
+        <p class="hint">Free. Save your chart with a six-digit code and your answer is the first thing you see.</p>
+      </form>
+      <form class="card lit frmail" id="frMail" novalidate>
+        <h3>Your 7:30 note starts <em>tomorrow.</em></h3>
+        <p class="body">It reads your chart against tomorrow’s sky. Make your account and it’s set up.</p>
+        <div class="field">
+          <label for="frEmail">Where should we send your code?</label>
+          <input type="text" id="frEmail" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com">
+        </div>
+        <button class="primary" type="submit" id="frMailGo" data-track="email_submit">Make my account</button>
+        <p class="err" id="frMailErr" role="alert"></p>
+        <p class="hint">No password. We’ll email a 6-digit code. Delete everything anytime.</p>
+      </form>
+      <div class="card lit frsave">
+        <h3>There’s more where that came from.</h3>
+        <p class="body">Still in your chart: <span id="frLocked"></span>. Your full reading is free and written just for you, so it goes further than this. You also get a note each morning about what today might stir up.</p>
+        <button class="ghost" type="button" id="frSave" data-track="free_save">Get my full reading</button>
+        <div class="fracts">
+          <button class="ghost" type="button" id="frShare" data-track="free_share">Send this to a friend</button>
+          <button class="ghost" type="button" id="frAgain" data-track="free_again">Read someone else</button>
+        </div>
+        <p class="hint" id="frShared" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ social proof: hidden until there is real content ============
+       TODO: real quotes only. Nothing here may be invented. To switch it on, fill
+       in real first names and cities, then remove `hidden`. The count line needs a
+       real number from the backend ("[N] people read their chart this week"); until
+       there is one, leave it out entirely. -->
+  <section id="proof" data-section="proof" aria-label="What people say" hidden>
+    <div class="wrap">
+      <p class="kicker" id="proofCount" hidden></p>
+      <ul class="quotes" id="proofQuotes"></ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="lockup" href="/" aria-label="My Sign, home">
+      <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><use href="#ms-star" fill="url(#ms-brass)"/><use href="#ms-glint" fill="#EFC97E" opacity=".85"/></svg>
+      <span class="brand">My&nbsp;Sign</span>
+    </a>
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/refunds">Refunds</a>
+      <a href="/support">Support</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/accuracy">Accuracy</a>
+      <a href="https://github.com/MySignAstrology/mysign-source">Source code</a>
+      <a href="/shop">Shop</a>
+      <a href="mailto:support@mysignapp.com">support@mysignapp.com</a>
+    </nav>
+    <p class="fine">© <span id="yr">2026</span> XII Studios LLC, Sunny Isles Beach, Florida. My Sign is for reflection and entertainment. It is not medical, legal, financial or psychological advice, and it is not a crisis service.</p>
+  </div>
+</footer>
+</div>
+
+<!-- ============ the start sheet ============ -->
+<dialog class="start" id="start" aria-labelledby="sTitle" aria-describedby="sLede">
+  <form class="sheet" id="sForm" novalidate>
+    <button class="x" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#ms-star" fill="url(#ms-brass)"/><use href="#ms-glint" fill="#EFC97E" opacity=".85"/></svg>
+    <h2 id="sTitle">Make your <em>chart.</em></h2>
+    <p id="sLede">Enter your email and we’ll send you a six-digit code. There’s no password to forget or leak.</p>
+    <div id="sStep1">
+      <div class="field">
+        <label for="sId" id="sIdLabel">Email</label>
+        <input type="text" id="sId" name="id" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false"
+               placeholder="you@example.com" aria-describedby="sIdHint">
+        <p class="hint" id="sIdHint" aria-live="polite"></p>
+      </div>
+    </div>
+    <div id="sStep2" hidden>
+      <p class="sent" id="sSent"></p>
+      <div class="field">
+        <label for="sCode">Six-digit code</label>
+        <input type="text" id="sCode" name="code" class="code-input" inputmode="numeric" autocomplete="one-time-code"
+               maxlength="6" pattern="[0-9]{6}" placeholder="000000">
+      </div>
+      <p class="resend"><button class="link" type="button" id="sResend">Send a new code</button> <span id="sWait"></span></p>
+    </div>
+    <button class="primary" type="submit" id="sGo" disabled data-track="start_submit">Send me a code</button>
+    <p class="err" id="sErr" role="alert"></p>
+    <p class="hint status" id="sStatus" role="status"></p>
+    <div class="devcode" id="devCode" hidden></div>
+    <p class="fine">By continuing you agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+  </form>
+</dialog>
+
+<script src="/consent.js?v=2" defer></script>
+<script src="/track.js?v=2" defer></script>
+<script src="/site.js?v=4" defer></script>
+</body>
+</html>

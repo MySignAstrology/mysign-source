@@ -1,0 +1,334 @@
+[
+  {
+    "Name": "ip-reputation",
+    "Priority": 0,
+    "Statement": {
+      "ManagedRuleGroupStatement": {
+        "VendorName": "AWS",
+        "Name": "AWSManagedRulesAmazonIpReputationList"
+      }
+    },
+    "OverrideAction": {
+      "None": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-ip-reputation"
+    }
+  },
+  {
+    "Name": "auth-request-rate",
+    "Priority": 1,
+    "Statement": {
+      "RateBasedStatement": {
+        "Limit": 10,
+        "EvaluationWindowSec": 300,
+        "AggregateKeyType": "IP",
+        "ScopeDownStatement": {
+          "OrStatement": {
+            "Statements": [
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/auth/request",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              },
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/account/identifier/request",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Action": {
+      "Block": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-auth-request-rate"
+    }
+  },
+  {
+    "Name": "auth-request-non-us",
+    "Priority": 2,
+    "Statement": {
+      "AndStatement": {
+        "Statements": [
+          {
+            "OrStatement": {
+              "Statements": [
+                {
+                  "ByteMatchStatement": {
+                    "FieldToMatch": {
+                      "UriPath": {}
+                    },
+                    "PositionalConstraint": "STARTS_WITH",
+                    "SearchString": "/api/auth/request",
+                    "TextTransformations": [
+                      {
+                        "Priority": 0,
+                        "Type": "LOWERCASE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "ByteMatchStatement": {
+                    "FieldToMatch": {
+                      "UriPath": {}
+                    },
+                    "PositionalConstraint": "STARTS_WITH",
+                    "SearchString": "/api/account/identifier/request",
+                    "TextTransformations": [
+                      {
+                        "Priority": 0,
+                        "Type": "LOWERCASE"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "NotStatement": {
+              "Statement": {
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "US",
+                    "PR",
+                    "GU",
+                    "VI",
+                    "AS",
+                    "MP",
+                    "UM"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "Action": {
+      "Count": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-auth-request-non-us"
+    }
+  },
+  {
+    "Name": "auth-verify-rate",
+    "Priority": 3,
+    "Statement": {
+      "RateBasedStatement": {
+        "Limit": 30,
+        "EvaluationWindowSec": 300,
+        "AggregateKeyType": "IP",
+        "ScopeDownStatement": {
+          "OrStatement": {
+            "Statements": [
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/auth/verify",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              },
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/account/identifier/verify",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Action": {
+      "Block": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-auth-verify-rate"
+    }
+  },
+  {
+    "Name": "model-rate",
+    "Priority": 4,
+    "Statement": {
+      "RateBasedStatement": {
+        "Limit": 100,
+        "EvaluationWindowSec": 300,
+        "AggregateKeyType": "IP",
+        "ScopeDownStatement": {
+          "OrStatement": {
+            "Statements": [
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/message",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              },
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "STARTS_WITH",
+                  "SearchString": "/api/placement/",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              },
+              {
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "UriPath": {}
+                  },
+                  "PositionalConstraint": "ENDS_WITH",
+                  "SearchString": "/reading",
+                  "TextTransformations": [
+                    {
+                      "Priority": 0,
+                      "Type": "LOWERCASE"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Action": {
+      "Block": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-model-rate"
+    }
+  },
+  {
+    "Name": "general-rate",
+    "Priority": 5,
+    "Statement": {
+      "RateBasedStatement": {
+        "Limit": 1000,
+        "EvaluationWindowSec": 300,
+        "AggregateKeyType": "IP"
+      }
+    },
+    "Action": {
+      "Block": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-general-rate"
+    }
+  },
+  {
+    "Name": "known-bad-inputs",
+    "Priority": 6,
+    "Statement": {
+      "ManagedRuleGroupStatement": {
+        "VendorName": "AWS",
+        "Name": "AWSManagedRulesKnownBadInputsRuleSet"
+      }
+    },
+    "OverrideAction": {
+      "Count": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-known-bad-inputs"
+    }
+  },
+  {
+    "Name": "common",
+    "Priority": 7,
+    "Statement": {
+      "ManagedRuleGroupStatement": {
+        "VendorName": "AWS",
+        "Name": "AWSManagedRulesCommonRuleSet",
+        "RuleActionOverrides": [
+          {
+            "Name": "SizeRestrictions_BODY",
+            "ActionToUse": {
+              "Count": {}
+            }
+          }
+        ]
+      }
+    },
+    "OverrideAction": {
+      "Count": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "mysign-common"
+    }
+  }
+]

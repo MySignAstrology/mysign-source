@@ -1,0 +1,2321 @@
+{
+ "source": "Wikidata (CC0), https://www.wikidata.org",
+ "retrieved": "2026-10-30",
+ "people": {
+  "Q104000": {
+   "qid": "Q104000",
+   "name": "Lauren Bacall",
+   "short": "Lauren",
+   "birth_date": "1924-09-16",
+   "death_date": "2014-08-12",
+   "place": "The Bronx",
+   "lat": 40.846666666,
+   "lon": -73.873333333,
+   "source": "https://www.wikidata.org/wiki/Q104000"
+  },
+  "Q10479": {
+   "qid": "Q10479",
+   "name": "Catherine, Princess of Wales",
+   "short": "Catherine",
+   "birth_date": "1982-01-09",
+   "death_date": null,
+   "place": "Royal Berkshire Hospital",
+   "lat": 51.4508,
+   "lon": -0.959444,
+   "source": "https://www.wikidata.org/wiki/Q10479"
+  },
+  "Q10520": {
+   "qid": "Q10520",
+   "name": "David Beckham",
+   "short": "David",
+   "birth_date": "1975-05-02",
+   "death_date": null,
+   "place": "London",
+   "lat": 51.507222222,
+   "lon": -0.1275,
+   "source": "https://www.wikidata.org/wiki/Q10520"
+  },
+  "Q108092350": {
+   "qid": "Q108092350",
+   "name": "Corey Gamble",
+   "short": "Corey",
+   "birth_date": "1980-11-10",
+   "death_date": null,
+   "place": "Atlanta",
+   "lat": 33.754444444,
+   "lon": -84.389722222,
+   "source": "https://www.wikidata.org/wiki/Q108092350"
+  },
+  "Q1111542": {
+   "qid": "Q1111542",
+   "name": "Joanne Woodward",
+   "short": "Joanne",
+   "birth_date": "1930-02-27",
+   "death_date": null,
+   "place": "Thomasville",
+   "lat": 30.8364,
+   "lon": -83.9783,
+   "source": "https://www.wikidata.org/wiki/Q1111542"
+  },
+  "Q1138235": {
+   "qid": "Q1138235",
+   "name": "Kris Jenner",
+   "short": "Kris",
+   "birth_date": "1955-11-05",
+   "death_date": null,
+   "place": "San Diego",
+   "lat": 32.715,
+   "lon": -117.1625,
+   "source": "https://www.wikidata.org/wiki/Q1138235"
+  },
+  "Q11459": {
+   "qid": "Q11459",
+   "name": "Serena Williams",
+   "short": "Serena",
+   "birth_date": "1981-09-26",
+   "death_date": null,
+   "place": "Saginaw",
+   "lat": 43.4199247,
+   "lon": -83.9500261,
+   "source": "https://www.wikidata.org/wiki/Q11459"
+  },
+  "Q117012": {
+   "qid": "Q117012",
+   "name": "Yoko Ono",
+   "short": "Yoko",
+   "birth_date": "1933-02-18",
+   "death_date": null,
+   "place": "Tokyo",
+   "lat": 35.683889,
+   "lon": 139.774444,
+   "source": "https://www.wikidata.org/wiki/Q117012"
+  },
+  "Q11975": {
+   "qid": "Q11975",
+   "name": "Britney Spears",
+   "short": "Britney",
+   "birth_date": "1981-12-02",
+   "death_date": null,
+   "place": "McComb",
+   "lat": 31.243777777,
+   "lon": -90.453166666,
+   "source": "https://www.wikidata.org/wiki/Q11975"
+  },
+  "Q119798": {
+   "qid": "Q119798",
+   "name": "Michael Douglas",
+   "short": "Michael",
+   "birth_date": "1944-09-25",
+   "death_date": null,
+   "place": "New Brunswick",
+   "lat": 40.486666666,
+   "lon": -74.444444444,
+   "source": "https://www.wikidata.org/wiki/Q119798"
+  },
+  "Q12003": {
+   "qid": "Q12003",
+   "name": "Cher",
+   "short": "Cher",
+   "birth_date": "1946-05-20",
+   "death_date": null,
+   "place": "El Centro",
+   "lat": 32.792,
+   "lon": -115.5630514,
+   "source": "https://www.wikidata.org/wiki/Q12003"
+  },
+  "Q1203": {
+   "qid": "Q1203",
+   "name": "John Lennon",
+   "short": "John",
+   "birth_date": "1940-10-09",
+   "death_date": "1980-12-08",
+   "place": "Liverpool Maternity Hospital",
+   "lat": 53.4032,
+   "lon": -2.9647,
+   "source": "https://www.wikidata.org/wiki/Q1203"
+  },
+  "Q129910": {
+   "qid": "Q129910",
+   "name": "A$AP Rocky",
+   "short": "Rocky",
+   "birth_date": "1988-10-03",
+   "death_date": null,
+   "place": "Q189074",
+   "lat": 40.809033333,
+   "lon": -73.948372222,
+   "source": "https://www.wikidata.org/wiki/Q129910"
+  },
+  "Q13133": {
+   "qid": "Q13133",
+   "name": "Michelle Obama",
+   "short": "Michelle",
+   "birth_date": "1964-01-17",
+   "death_date": null,
+   "place": "Chicago",
+   "lat": 41.881944444,
+   "lon": -87.627777777,
+   "source": "https://www.wikidata.org/wiki/Q13133"
+  },
+  "Q13605596": {
+   "qid": "Q13605596",
+   "name": "Travis Scott",
+   "short": "Travis",
+   "birth_date": "1991-04-30",
+   "death_date": null,
+   "place": "Houston",
+   "lat": 29.762777777,
+   "lon": -95.383055555,
+   "source": "https://www.wikidata.org/wiki/Q13605596"
+  },
+  "Q1375057": {
+   "qid": "Q1375057",
+   "name": "Kendall Jenner",
+   "short": "Kendall",
+   "birth_date": "1995-11-03",
+   "death_date": null,
+   "place": "Cedars-Sinai Medical Center",
+   "lat": 34.075198,
+   "lon": -118.380676,
+   "source": "https://www.wikidata.org/wiki/Q1375057"
+  },
+  "Q13909": {
+   "qid": "Q13909",
+   "name": "Angelina Jolie",
+   "short": "Angelina",
+   "birth_date": "1975-06-04",
+   "death_date": null,
+   "place": "Los Angeles",
+   "lat": 34.05223,
+   "lon": -118.24368,
+   "source": "https://www.wikidata.org/wiki/Q13909"
+  },
+  "Q151973": {
+   "qid": "Q151973",
+   "name": "Richard Burton",
+   "short": "Richard",
+   "birth_date": "1925-11-10",
+   "death_date": "1984-08-05",
+   "place": "Pontrhydyfen",
+   "lat": 51.631838888,
+   "lon": -3.743869444,
+   "source": "https://www.wikidata.org/wiki/Q151973"
+  },
+  "Q152239": {
+   "qid": "Q152239",
+   "name": "Queen Camilla",
+   "short": "Camilla",
+   "birth_date": "1947-07-17",
+   "death_date": null,
+   "place": "London Borough of Lambeth",
+   "lat": 51.460833333,
+   "lon": -0.116388888,
+   "source": "https://www.wikidata.org/wiki/Q152239"
+  },
+  "Q152245": {
+   "qid": "Q152245",
+   "name": "Prince Albert",
+   "short": "Albert",
+   "birth_date": "1819-08-26",
+   "death_date": "1861-12-14",
+   "place": "Schloss Rosenau",
+   "lat": 50.2981,
+   "lon": 11.0225,
+   "source": "https://www.wikidata.org/wiki/Q152245"
+  },
+  "Q152316": {
+   "qid": "Q152316",
+   "name": "Prince Harry",
+   "short": "Harry",
+   "birth_date": "1984-09-15",
+   "death_date": null,
+   "place": "St Mary's Hospital",
+   "lat": 51.517222222,
+   "lon": -0.173055555,
+   "source": "https://www.wikidata.org/wiki/Q152316",
+   "birth_time": "16:20",
+   "utc_offset": 1,
+   "time_source": "Buckingham Palace announcement, 15 September 1984 (4.20pm BST)"
+  },
+  "Q15935": {
+   "qid": "Q15935",
+   "name": "Kanye West",
+   "short": "Kanye",
+   "birth_date": "1977-06-08",
+   "death_date": null,
+   "place": "Atlanta",
+   "lat": 33.754444444,
+   "lon": -84.389722222,
+   "source": "https://www.wikidata.org/wiki/Q15935"
+  },
+  "Q162959": {
+   "qid": "Q162959",
+   "name": "Blake Lively",
+   "short": "Blake",
+   "birth_date": "1987-08-25",
+   "death_date": null,
+   "place": "Tarzana",
+   "lat": 34.17333,
+   "lon": -118.55306,
+   "source": "https://www.wikidata.org/wiki/Q162959"
+  },
+  "Q16390": {
+   "qid": "Q16390",
+   "name": "Humphrey Bogart",
+   "short": "Bogie",
+   "birth_date": "1899-12-25",
+   "death_date": "1957-01-14",
+   "place": "New York City",
+   "lat": 40.712777777,
+   "lon": -74.006111111,
+   "source": "https://www.wikidata.org/wiki/Q16390"
+  },
+  "Q165421": {
+   "qid": "Q165421",
+   "name": "Jacqueline Kennedy",
+   "short": "Jackie",
+   "birth_date": "1929-07-28",
+   "death_date": "1994-05-19",
+   "place": "Southampton",
+   "lat": 40.885277777,
+   "lon": -72.395277777,
+   "source": "https://www.wikidata.org/wiki/Q165421"
+  },
+  "Q170606": {
+   "qid": "Q170606",
+   "name": "Eva Mendes",
+   "short": "Eva",
+   "birth_date": "1974-03-05",
+   "death_date": null,
+   "place": "Miami",
+   "lat": 25.774166666,
+   "lon": -80.193611111,
+   "source": "https://www.wikidata.org/wiki/Q170606"
+  },
+  "Q171128": {
+   "qid": "Q171128",
+   "name": "Diego Rivera",
+   "short": "Diego",
+   "birth_date": "1886-12-13",
+   "death_date": "1957-11-24",
+   "place": "Guanajuato",
+   "lat": 21.017777777,
+   "lon": -101.256666666,
+   "source": "https://www.wikidata.org/wiki/Q171128"
+  },
+  "Q17410449": {
+   "qid": "Q17410449",
+   "name": "Brooklyn Beckham",
+   "short": "Brooklyn",
+   "birth_date": "1999-03-04",
+   "death_date": null,
+   "place": "London",
+   "lat": 51.507222222,
+   "lon": -0.1275,
+   "source": "https://www.wikidata.org/wiki/Q17410449"
+  },
+  "Q1770624": {
+   "qid": "Q1770624",
+   "name": "Kylie Jenner",
+   "short": "Kylie",
+   "birth_date": "1997-08-10",
+   "death_date": null,
+   "place": "Cedars-Sinai Medical Center",
+   "lat": 34.075198,
+   "lon": -118.380676,
+   "source": "https://www.wikidata.org/wiki/Q1770624"
+  },
+  "Q179150": {
+   "qid": "Q179150",
+   "name": "Sonny Bono",
+   "short": "Sonny",
+   "birth_date": "1935-02-16",
+   "death_date": "1998-01-05",
+   "place": "Detroit",
+   "lat": 42.331666666,
+   "lon": -83.0475,
+   "source": "https://www.wikidata.org/wiki/Q179150"
+  },
+  "Q18097962": {
+   "qid": "Q18097962",
+   "name": "Pete Davidson",
+   "short": "Pete",
+   "birth_date": "1993-11-16",
+   "death_date": null,
+   "place": "Staten Island",
+   "lat": 40.571944444,
+   "lon": -74.146944444,
+   "source": "https://www.wikidata.org/wiki/Q18097962"
+  },
+  "Q18162913": {
+   "qid": "Q18162913",
+   "name": "Callum Turner",
+   "short": "Callum",
+   "birth_date": "1990-02-15",
+   "death_date": null,
+   "place": "London",
+   "lat": 51.507222222,
+   "lon": -0.1275,
+   "source": "https://www.wikidata.org/wiki/Q18162913"
+  },
+  "Q1816737": {
+   "qid": "Q1816737",
+   "name": "Robert Kardashian",
+   "short": "Robert",
+   "birth_date": "1944-02-22",
+   "death_date": "2003-09-30",
+   "place": "Los Angeles",
+   "lat": 34.05223,
+   "lon": -118.24368,
+   "source": "https://www.wikidata.org/wiki/Q1816737"
+  },
+  "Q185025": {
+   "qid": "Q185025",
+   "name": "Prince Rainier III",
+   "short": "Rainier",
+   "birth_date": "1923-05-31",
+   "death_date": "2005-04-06",
+   "place": "Monaco",
+   "lat": 43.731111111,
+   "lon": 7.42,
+   "source": "https://www.wikidata.org/wiki/Q185025"
+  },
+  "Q186304": {
+   "qid": "Q186304",
+   "name": "Kim Kardashian",
+   "short": "Kim",
+   "birth_date": "1980-10-21",
+   "death_date": null,
+   "place": "Cedars-Sinai Medical Center",
+   "lat": 34.075198,
+   "lon": -118.380676,
+   "source": "https://www.wikidata.org/wiki/Q186304"
+  },
+  "Q187324": {
+   "qid": "Q187324",
+   "name": "Zelda Fitzgerald",
+   "short": "Zelda",
+   "birth_date": "1900-07-24",
+   "death_date": "1948-03-10",
+   "place": "Montgomery",
+   "lat": 32.3675,
+   "lon": -86.3,
+   "source": "https://www.wikidata.org/wiki/Q187324"
+  },
+  "Q189489": {
+   "qid": "Q189489",
+   "name": "Zendaya",
+   "short": "Zendaya",
+   "birth_date": "1996-09-01",
+   "death_date": null,
+   "place": "Oakland",
+   "lat": 37.8,
+   "lon": -122.25,
+   "source": "https://www.wikidata.org/wiki/Q189489"
+  },
+  "Q192682": {
+   "qid": "Q192682",
+   "name": "Ryan Reynolds",
+   "short": "Ryan",
+   "birth_date": "1976-10-23",
+   "death_date": null,
+   "place": "Vancouver",
+   "lat": 49.260833333,
+   "lon": -123.113888888,
+   "source": "https://www.wikidata.org/wiki/Q192682"
+  },
+  "Q193426": {
+   "qid": "Q193426",
+   "name": "Nancy Reagan",
+   "short": "Nancy",
+   "birth_date": "1921-07-06",
+   "death_date": "2016-03-06",
+   "place": "Sloane Hospital for Women",
+   "lat": 40.8409,
+   "lon": -73.9417,
+   "source": "https://www.wikidata.org/wiki/Q193426"
+  },
+  "Q193517": {
+   "qid": "Q193517",
+   "name": "Emily Blunt",
+   "short": "Emily",
+   "birth_date": "1983-02-23",
+   "death_date": null,
+   "place": "Wandsworth",
+   "lat": 51.455,
+   "lon": -0.192,
+   "source": "https://www.wikidata.org/wiki/Q193517"
+  },
+  "Q193815": {
+   "qid": "Q193815",
+   "name": "Ryan Gosling",
+   "short": "Ryan",
+   "birth_date": "1980-11-12",
+   "death_date": null,
+   "place": "London",
+   "lat": 42.9837,
+   "lon": -81.2497,
+   "source": "https://www.wikidata.org/wiki/Q193815"
+  },
+  "Q19810": {
+   "qid": "Q19810",
+   "name": "Victoria Beckham",
+   "short": "Victoria",
+   "birth_date": "1974-04-17",
+   "death_date": null,
+   "place": "Harlow",
+   "lat": 51.783333333,
+   "lon": 0.116666666,
+   "source": "https://www.wikidata.org/wiki/Q19810"
+  },
+  "Q19877770": {
+   "qid": "Q19877770",
+   "name": "Timothée Chalamet",
+   "short": "Timothée",
+   "birth_date": "1995-12-27",
+   "death_date": null,
+   "place": "Manhattan",
+   "lat": 40.728333333,
+   "lon": -73.994166666,
+   "source": "https://www.wikidata.org/wiki/Q19877770"
+  },
+  "Q2023710": {
+   "qid": "Q2023710",
+   "name": "Tom Holland",
+   "short": "Tom",
+   "birth_date": "1996-06-01",
+   "death_date": null,
+   "place": "London",
+   "lat": 51.507222222,
+   "lon": -0.1275,
+   "source": "https://www.wikidata.org/wiki/Q2023710"
+  },
+  "Q209417": {
+   "qid": "Q209417",
+   "name": "Wallis Simpson",
+   "short": "Wallis",
+   "birth_date": "1896-06-19",
+   "death_date": "1986-04-24",
+   "place": "Blue Ridge Summit",
+   "lat": 39.724166666,
+   "lon": -77.471388888,
+   "source": "https://www.wikidata.org/wiki/Q209417"
+  },
+  "Q209662": {
+   "qid": "Q209662",
+   "name": "Lucille Ball",
+   "short": "Lucy",
+   "birth_date": "1911-08-06",
+   "death_date": "1989-04-26",
+   "place": "Jamestown",
+   "lat": 42.095555555,
+   "lon": -79.238611111,
+   "source": "https://www.wikidata.org/wiki/Q209662",
+   "birth_time": "17:00",
+   "utc_offset": -5,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Lucille_Ball)"
+  },
+  "Q20983703": {
+   "qid": "Q20983703",
+   "name": "Hailey Bieber",
+   "short": "Hailey",
+   "birth_date": "1996-11-22",
+   "death_date": null,
+   "place": "Tucson",
+   "lat": 32.221666666,
+   "lon": -110.926388888,
+   "source": "https://www.wikidata.org/wiki/Q20983703"
+  },
+  "Q21914464": {
+   "qid": "Q21914464",
+   "name": "Dua Lipa",
+   "short": "Dua",
+   "birth_date": "1995-08-22",
+   "death_date": null,
+   "place": "London",
+   "lat": 51.507222222,
+   "lon": -0.1275,
+   "source": "https://www.wikidata.org/wiki/Q21914464"
+  },
+  "Q220140": {
+   "qid": "Q220140",
+   "name": "Travis Barker",
+   "short": "Travis",
+   "birth_date": "1975-11-14",
+   "death_date": null,
+   "place": "Fontana",
+   "lat": 34.1,
+   "lon": -117.466666666,
+   "source": "https://www.wikidata.org/wiki/Q220140"
+  },
+  "Q222071": {
+   "qid": "Q222071",
+   "name": "Courtney Love",
+   "short": "Courtney",
+   "birth_date": "1964-07-09",
+   "death_date": null,
+   "place": "San Francisco",
+   "lat": 37.775,
+   "lon": -122.419444444,
+   "source": "https://www.wikidata.org/wiki/Q222071",
+   "birth_time": "14:08",
+   "utc_offset": -7,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Courtney_Love)"
+  },
+  "Q2263": {
+   "qid": "Q2263",
+   "name": "Tom Hanks",
+   "short": "Tom",
+   "birth_date": "1956-07-09",
+   "death_date": null,
+   "place": "Concord",
+   "lat": 37.978055555,
+   "lon": -122.031111111,
+   "source": "https://www.wikidata.org/wiki/Q2263"
+  },
+  "Q228787": {
+   "qid": "Q228787",
+   "name": "Jada Pinkett Smith",
+   "short": "Jada",
+   "birth_date": "1971-09-18",
+   "death_date": null,
+   "place": "Baltimore",
+   "lat": 39.286388888,
+   "lon": -76.615,
+   "source": "https://www.wikidata.org/wiki/Q228787"
+  },
+  "Q231270": {
+   "qid": "Q231270",
+   "name": "Khloé Kardashian",
+   "short": "Khloé",
+   "birth_date": "1984-06-27",
+   "death_date": null,
+   "place": "Los Angeles",
+   "lat": 34.05223,
+   "lon": -118.24368,
+   "source": "https://www.wikidata.org/wiki/Q231270"
+  },
+  "Q233253": {
+   "qid": "Q233253",
+   "name": "June Carter Cash",
+   "short": "June",
+   "birth_date": "1929-06-23",
+   "death_date": "2003-05-15",
+   "place": "Maces Spring",
+   "lat": 36.6722,
+   "lon": -82.4028,
+   "source": "https://www.wikidata.org/wiki/Q233253"
+  },
+  "Q234144": {
+   "qid": "Q234144",
+   "name": "Rita Wilson",
+   "short": "Rita",
+   "birth_date": "1956-10-26",
+   "death_date": null,
+   "place": "Hollywood",
+   "lat": 34.098333333,
+   "lon": -118.326666666,
+   "source": "https://www.wikidata.org/wiki/Q234144"
+  },
+  "Q236347": {
+   "qid": "Q236347",
+   "name": "Nicola Peltz",
+   "short": "Nicola",
+   "birth_date": "1995-01-09",
+   "death_date": null,
+   "place": "Rye",
+   "lat": 40.9811,
+   "lon": -73.6839,
+   "source": "https://www.wikidata.org/wiki/Q236347"
+  },
+  "Q26876": {
+   "qid": "Q26876",
+   "name": "Taylor Swift",
+   "short": "Taylor",
+   "birth_date": "1989-12-13",
+   "death_date": null,
+   "place": "Reading Hospital",
+   "lat": 40.332,
+   "lon": -75.9433,
+   "source": "https://www.wikidata.org/wiki/Q26876"
+  },
+  "Q297142": {
+   "qid": "Q297142",
+   "name": "Joe DiMaggio",
+   "short": "Joe",
+   "birth_date": "1914-11-25",
+   "death_date": "1999-03-08",
+   "place": "Martinez",
+   "lat": 38.019444444,
+   "lon": -122.134166666,
+   "source": "https://www.wikidata.org/wiki/Q297142"
+  },
+  "Q312556": {
+   "qid": "Q312556",
+   "name": "Jeff Bezos",
+   "short": "Jeff",
+   "birth_date": "1964-01-12",
+   "death_date": null,
+   "place": "Albuquerque",
+   "lat": 35.084444444,
+   "lon": -106.650277777,
+   "source": "https://www.wikidata.org/wiki/Q312556"
+  },
+  "Q313039": {
+   "qid": "Q313039",
+   "name": "John Krasinski",
+   "short": "John",
+   "birth_date": "1979-10-20",
+   "death_date": null,
+   "place": "Newton",
+   "lat": 42.336944444,
+   "lon": -71.209722222,
+   "source": "https://www.wikidata.org/wiki/Q313039"
+  },
+  "Q32522": {
+   "qid": "Q32522",
+   "name": "Jennifer Aniston",
+   "short": "Jennifer",
+   "birth_date": "1969-02-11",
+   "death_date": null,
+   "place": "Sherman Oaks",
+   "lat": 34.151111111,
+   "lon": -118.448333333,
+   "source": "https://www.wikidata.org/wiki/Q32522"
+  },
+  "Q3304418": {
+   "qid": "Q3304418",
+   "name": "Meghan Markle",
+   "short": "Meghan",
+   "birth_date": "1981-08-04",
+   "death_date": null,
+   "place": "Canoga Park",
+   "lat": 34.20111,
+   "lon": -118.59722,
+   "source": "https://www.wikidata.org/wiki/Q3304418"
+  },
+  "Q34086": {
+   "qid": "Q34086",
+   "name": "Justin Bieber",
+   "short": "Justin",
+   "birth_date": "1994-03-01",
+   "death_date": null,
+   "place": "London",
+   "lat": 42.9837,
+   "lon": -81.2497,
+   "source": "https://www.wikidata.org/wiki/Q34086"
+  },
+  "Q34851": {
+   "qid": "Q34851",
+   "name": "Elizabeth Taylor",
+   "short": "Elizabeth",
+   "birth_date": "1932-02-27",
+   "death_date": "2011-03-23",
+   "place": "Hampstead Garden Suburb",
+   "lat": 51.583,
+   "lon": -0.185,
+   "source": "https://www.wikidata.org/wiki/Q34851"
+  },
+  "Q35332": {
+   "qid": "Q35332",
+   "name": "Brad Pitt",
+   "short": "Brad",
+   "birth_date": "1963-12-18",
+   "death_date": null,
+   "place": "Shawnee",
+   "lat": 35.3425,
+   "lon": -96.933888888,
+   "source": "https://www.wikidata.org/wiki/Q35332"
+  },
+  "Q36153": {
+   "qid": "Q36153",
+   "name": "Beyoncé",
+   "short": "Beyoncé",
+   "birth_date": "1981-09-04",
+   "death_date": null,
+   "place": "Houston",
+   "lat": 29.762777777,
+   "lon": -95.383055555,
+   "source": "https://www.wikidata.org/wiki/Q36153"
+  },
+  "Q36812": {
+   "qid": "Q36812",
+   "name": "Prince William",
+   "short": "William",
+   "birth_date": "1982-06-21",
+   "death_date": null,
+   "place": "St Mary's Hospital",
+   "lat": 51.517222222,
+   "lon": -0.173055555,
+   "source": "https://www.wikidata.org/wiki/Q36812",
+   "birth_time": "21:03",
+   "utc_offset": 1,
+   "time_source": "Buckingham Palace birth bulletin, 21 June 1982 (9.03pm BST)"
+  },
+  "Q36844": {
+   "qid": "Q36844",
+   "name": "Rihanna",
+   "short": "Rihanna",
+   "birth_date": "1988-02-20",
+   "death_date": null,
+   "place": "Saint Michael",
+   "lat": 13.118055555,
+   "lon": -59.603055555,
+   "source": "https://www.wikidata.org/wiki/Q36844"
+  },
+  "Q37079": {
+   "qid": "Q37079",
+   "name": "Tom Cruise",
+   "short": "Tom",
+   "birth_date": "1962-07-03",
+   "death_date": null,
+   "place": "Syracuse",
+   "lat": 43.046899,
+   "lon": -76.144423,
+   "source": "https://www.wikidata.org/wiki/Q37079"
+  },
+  "Q37459": {
+   "qid": "Q37459",
+   "name": "Nicole Kidman",
+   "short": "Nicole",
+   "birth_date": "1967-06-20",
+   "death_date": null,
+   "place": "Honolulu",
+   "lat": 21.304722222,
+   "lon": -157.857222222,
+   "source": "https://www.wikidata.org/wiki/Q37459"
+  },
+  "Q37463": {
+   "qid": "Q37463",
+   "name": "Pierre Curie",
+   "short": "Pierre",
+   "birth_date": "1859-05-15",
+   "death_date": "1906-04-19",
+   "place": "Paris",
+   "lat": 48.856666666,
+   "lon": 2.352222222,
+   "source": "https://www.wikidata.org/wiki/Q37463"
+  },
+  "Q3925": {
+   "qid": "Q3925",
+   "name": "Grace Kelly",
+   "short": "Grace",
+   "birth_date": "1929-11-12",
+   "death_date": "1982-09-14",
+   "place": "Philadelphia",
+   "lat": 39.952777777,
+   "lon": -75.163611111,
+   "source": "https://www.wikidata.org/wiki/Q3925"
+  },
+  "Q40096": {
+   "qid": "Q40096",
+   "name": "Will Smith",
+   "short": "Will",
+   "birth_date": "1968-09-25",
+   "death_date": null,
+   "place": "Philadelphia",
+   "lat": 39.952777777,
+   "lon": -75.163611111,
+   "source": "https://www.wikidata.org/wiki/Q40096"
+  },
+  "Q40715": {
+   "qid": "Q40715",
+   "name": "Jennifer Lopez",
+   "short": "Jennifer",
+   "birth_date": "1969-07-24",
+   "death_date": null,
+   "place": "The Bronx",
+   "lat": 40.846666666,
+   "lon": -73.873333333,
+   "source": "https://www.wikidata.org/wiki/Q40715"
+  },
+  "Q41871": {
+   "qid": "Q41871",
+   "name": "Paul Newman",
+   "short": "Paul",
+   "birth_date": "1925-01-26",
+   "death_date": "2008-09-26",
+   "place": "Shaker Heights",
+   "lat": 41.476388888,
+   "lon": -81.551666666,
+   "source": "https://www.wikidata.org/wiki/Q41871"
+  },
+  "Q42775": {
+   "qid": "Q42775",
+   "name": "Johnny Cash",
+   "short": "Johnny",
+   "birth_date": "1932-02-26",
+   "death_date": "2003-09-12",
+   "place": "Kingsland",
+   "lat": 33.861388888,
+   "lon": -92.294166666,
+   "source": "https://www.wikidata.org/wiki/Q42775"
+  },
+  "Q43274": {
+   "qid": "Q43274",
+   "name": "King Charles III",
+   "short": "Charles",
+   "birth_date": "1948-11-14",
+   "death_date": null,
+   "place": "Buckingham Palace",
+   "lat": 51.501,
+   "lon": -0.142,
+   "source": "https://www.wikidata.org/wiki/Q43274",
+   "birth_time": "21:14",
+   "utc_offset": 0,
+   "time_source": "Buckingham Palace bulletin, 14 November 1948 (9.14pm GMT)"
+  },
+  "Q43432": {
+   "qid": "Q43432",
+   "name": "Justin Timberlake",
+   "short": "Justin",
+   "birth_date": "1981-01-31",
+   "death_date": null,
+   "place": "Memphis",
+   "lat": 35.146111111,
+   "lon": -90.051944444,
+   "source": "https://www.wikidata.org/wiki/Q43432"
+  },
+  "Q4407963": {
+   "qid": "Q4407963",
+   "name": "Lauren Sánchez",
+   "short": "Lauren",
+   "birth_date": "1969-12-19",
+   "death_date": null,
+   "place": "Albuquerque",
+   "lat": 35.084444444,
+   "lon": -106.650277777,
+   "source": "https://www.wikidata.org/wiki/Q4407963"
+  },
+  "Q44333953": {
+   "qid": "Q44333953",
+   "name": "Bad Bunny",
+   "short": "Bad Bunny",
+   "birth_date": "1994-03-10",
+   "death_date": null,
+   "place": "Bayamón",
+   "lat": 18.383333333,
+   "lon": -66.15,
+   "source": "https://www.wikidata.org/wiki/Q44333953"
+  },
+  "Q4616": {
+   "qid": "Q4616",
+   "name": "Marilyn Monroe",
+   "short": "Marilyn",
+   "birth_date": "1926-06-01",
+   "death_date": "1962-08-04",
+   "place": "Los Angeles",
+   "lat": 34.05223,
+   "lon": -118.24368,
+   "source": "https://www.wikidata.org/wiki/Q4616",
+   "birth_time": "09:30",
+   "utc_offset": -8,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Marilyn_Monroe)"
+  },
+  "Q4721504": {
+   "qid": "Q4721504",
+   "name": "Alexis Ohanian",
+   "short": "Alexis",
+   "birth_date": "1983-04-24",
+   "death_date": null,
+   "place": "Brooklyn",
+   "lat": 40.650833333,
+   "lon": -73.949722222,
+   "source": "https://www.wikidata.org/wiki/Q4721504"
+  },
+  "Q472535": {
+   "qid": "Q472535",
+   "name": "Desi Arnaz",
+   "short": "Desi",
+   "birth_date": "1917-03-02",
+   "death_date": "1986-12-02",
+   "place": "Santiago de Cuba",
+   "lat": 20.021666666,
+   "lon": -75.829444444,
+   "source": "https://www.wikidata.org/wiki/Q472535"
+  },
+  "Q47664": {
+   "qid": "Q47664",
+   "name": "Catherine Zeta-Jones",
+   "short": "Catherine",
+   "birth_date": "1969-09-25",
+   "death_date": null,
+   "place": "Swansea",
+   "lat": 51.616666666,
+   "lon": -3.95,
+   "source": "https://www.wikidata.org/wiki/Q47664"
+  },
+  "Q483118": {
+   "qid": "Q483118",
+   "name": "Ben Affleck",
+   "short": "Ben",
+   "birth_date": "1972-08-15",
+   "death_date": null,
+   "place": "Berkeley",
+   "lat": 37.870277777,
+   "lon": -122.268055555,
+   "source": "https://www.wikidata.org/wiki/Q483118"
+  },
+  "Q5588": {
+   "qid": "Q5588",
+   "name": "Frida Kahlo",
+   "short": "Frida",
+   "birth_date": "1907-07-06",
+   "death_date": "1954-07-13",
+   "place": "Coyoacán, Mexico City",
+   "lat": 19.35,
+   "lon": -99.1617,
+   "source": "https://www.wikidata.org/wiki/Q5588",
+   "place_source": "Wikidata lists no coordinates for her birthplace; Coyoacán per the Museo Frida Kahlo"
+  },
+  "Q575689": {
+   "qid": "Q575689",
+   "name": "Kourtney Kardashian",
+   "short": "Kourtney",
+   "birth_date": "1979-04-18",
+   "death_date": null,
+   "place": "Los Angeles",
+   "lat": 34.05223,
+   "lon": -118.24368,
+   "source": "https://www.wikidata.org/wiki/Q575689"
+  },
+  "Q590227": {
+   "qid": "Q590227",
+   "name": "Edward VIII",
+   "short": "Edward",
+   "birth_date": "1894-06-23",
+   "death_date": "1972-05-28",
+   "place": "White Lodge",
+   "lat": 51.4452,
+   "lon": -0.2648,
+   "source": "https://www.wikidata.org/wiki/Q590227"
+  },
+  "Q62766": {
+   "qid": "Q62766",
+   "name": "Jay-Z",
+   "short": "Jay-Z",
+   "birth_date": "1969-12-04",
+   "death_date": null,
+   "place": "Brooklyn",
+   "lat": 40.650833333,
+   "lon": -73.949722222,
+   "source": "https://www.wikidata.org/wiki/Q62766"
+  },
+  "Q7186": {
+   "qid": "Q7186",
+   "name": "Marie Curie",
+   "short": "Marie",
+   "birth_date": "1867-11-07",
+   "death_date": "1934-07-04",
+   "place": "Warsaw",
+   "lat": 52.23,
+   "lon": 21.011111111,
+   "source": "https://www.wikidata.org/wiki/Q7186"
+  },
+  "Q7197": {
+   "qid": "Q7197",
+   "name": "Simone de Beauvoir",
+   "short": "Simone",
+   "birth_date": "1908-01-09",
+   "death_date": "1986-04-14",
+   "place": "6th arrondissement of Paris",
+   "lat": 48.850530555,
+   "lon": 2.332233333,
+   "source": "https://www.wikidata.org/wiki/Q7197"
+  },
+  "Q76": {
+   "qid": "Q76",
+   "name": "Barack Obama",
+   "short": "Barack",
+   "birth_date": "1961-08-04",
+   "death_date": null,
+   "place": "Kapiolani Medical Center for Women and Children",
+   "lat": 21.2998428,
+   "lon": -157.8334591,
+   "source": "https://www.wikidata.org/wiki/Q76",
+   "birth_time": "19:24",
+   "utc_offset": -10,
+   "time_source": "Certificate of Live Birth, State of Hawaii, released by the White House on 27 April 2011"
+  },
+  "Q7836292": {
+   "qid": "Q7836292",
+   "name": "Travis Kelce",
+   "short": "Travis",
+   "birth_date": "1989-10-05",
+   "death_date": null,
+   "place": "Westlake",
+   "lat": 41.4544,
+   "lon": -81.9286,
+   "source": "https://www.wikidata.org/wiki/Q7836292"
+  },
+  "Q8007": {
+   "qid": "Q8007",
+   "name": "Franklin D. Roosevelt",
+   "short": "Franklin",
+   "birth_date": "1882-01-30",
+   "death_date": "1945-04-12",
+   "place": "Home of Franklin D. Roosevelt National Historic Site",
+   "lat": 41.767222222,
+   "lon": -73.935555555,
+   "source": "https://www.wikidata.org/wiki/Q8007",
+   "birth_time": "20:45",
+   "utc_offset": -4.929,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Franklin_D._Roosevelt); Hyde Park local mean time, before US standard time zones"
+  },
+  "Q80976": {
+   "qid": "Q80976",
+   "name": "Prince Philip",
+   "short": "Philip",
+   "birth_date": "1921-06-10",
+   "death_date": "2021-04-09",
+   "place": "Corfu",
+   "lat": 39.6,
+   "lon": 19.87,
+   "source": "https://www.wikidata.org/wiki/Q80976"
+  },
+  "Q818048": {
+   "qid": "Q818048",
+   "name": "Benny Blanco",
+   "short": "Benny",
+   "birth_date": "1988-03-08",
+   "death_date": null,
+   "place": "Grand Prairie",
+   "lat": 32.715278,
+   "lon": -97.016944,
+   "source": "https://www.wikidata.org/wiki/Q818048"
+  },
+  "Q83287": {
+   "qid": "Q83287",
+   "name": "Selena Gomez",
+   "short": "Selena",
+   "birth_date": "1992-07-22",
+   "death_date": null,
+   "place": "Grand Prairie",
+   "lat": 32.715278,
+   "lon": -97.016944,
+   "source": "https://www.wikidata.org/wiki/Q83287"
+  },
+  "Q83396": {
+   "qid": "Q83396",
+   "name": "Eleanor Roosevelt",
+   "short": "Eleanor",
+   "birth_date": "1884-10-11",
+   "death_date": "1962-11-07",
+   "place": "Manhattan",
+   "lat": 40.728333333,
+   "lon": -73.994166666,
+   "source": "https://www.wikidata.org/wiki/Q83396",
+   "birth_time": "11:00",
+   "utc_offset": -5,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Eleanor_Roosevelt)"
+  },
+  "Q8446": {
+   "qid": "Q8446",
+   "name": "Kurt Cobain",
+   "short": "Kurt",
+   "birth_date": "1967-02-20",
+   "death_date": "1994-04-05",
+   "place": "Aberdeen",
+   "lat": 46.975361111,
+   "lon": -123.815722222,
+   "source": "https://www.wikidata.org/wiki/Q8446",
+   "birth_time": "19:38",
+   "utc_offset": -8,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Kurt_Cobain)"
+  },
+  "Q93354": {
+   "qid": "Q93354",
+   "name": "F. Scott Fitzgerald",
+   "short": "Scott",
+   "birth_date": "1896-09-24",
+   "death_date": "1940-12-21",
+   "place": "Saint Paul",
+   "lat": 44.944166666,
+   "lon": -93.093611111,
+   "source": "https://www.wikidata.org/wiki/Q93354",
+   "birth_time": "15:30",
+   "utc_offset": -6,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/F._Scott_Fitzgerald)"
+  },
+  "Q9364": {
+   "qid": "Q9364",
+   "name": "Jean-Paul Sartre",
+   "short": "Jean-Paul",
+   "birth_date": "1905-06-21",
+   "death_date": "1980-04-15",
+   "place": "Paris",
+   "lat": 48.856666666,
+   "lon": 2.352222222,
+   "source": "https://www.wikidata.org/wiki/Q9364"
+  },
+  "Q9439": {
+   "qid": "Q9439",
+   "name": "Queen Victoria",
+   "short": "Victoria",
+   "birth_date": "1819-05-24",
+   "death_date": "1901-01-22",
+   "place": "Kensington Palace",
+   "lat": 51.505277777,
+   "lon": -0.188333333,
+   "source": "https://www.wikidata.org/wiki/Q9439",
+   "birth_time": "04:15",
+   "utc_offset": -0.0126,
+   "time_source": "Birth record, Rodden rating AA (Astro-Databank, via astrotheme.com/astrology/Queen_Victoria); London local mean time"
+  },
+  "Q9682": {
+   "qid": "Q9682",
+   "name": "Queen Elizabeth II",
+   "short": "Elizabeth",
+   "birth_date": "1926-04-21",
+   "death_date": "2022-09-08",
+   "place": "17 Bruton Street",
+   "lat": 51.5103,
+   "lon": -0.1456,
+   "source": "https://www.wikidata.org/wiki/Q9682"
+  },
+  "Q9685": {
+   "qid": "Q9685",
+   "name": "Princess Diana",
+   "short": "Diana",
+   "birth_date": "1961-07-01",
+   "death_date": "1997-08-31",
+   "place": "Park House",
+   "lat": 52.8278,
+   "lon": 0.506,
+   "source": "https://www.wikidata.org/wiki/Q9685"
+  },
+  "Q9696": {
+   "qid": "Q9696",
+   "name": "John F. Kennedy",
+   "short": "Jack",
+   "birth_date": "1917-05-29",
+   "death_date": "1963-11-22",
+   "place": "John Fitzgerald Kennedy National Historic Site",
+   "lat": 42.3458,
+   "lon": -71.1244,
+   "source": "https://www.wikidata.org/wiki/Q9696",
+   "birth_time": "15:00",
+   "utc_offset": -5,
+   "time_source": "Rodden rating A, from his mother's account (Astro-Databank, via astrotheme.com/astrology/John_Fitzgerald_Kennedy)"
+  },
+  "Q973212": {
+   "qid": "Q973212",
+   "name": "Tristan Thompson",
+   "short": "Tristan",
+   "birth_date": "1991-03-13",
+   "death_date": null,
+   "place": "Brampton",
+   "lat": 43.683333333,
+   "lon": -79.766666666,
+   "source": "https://www.wikidata.org/wiki/Q973212"
+  },
+  "Q9960": {
+   "qid": "Q9960",
+   "name": "Ronald Reagan",
+   "short": "Ronald",
+   "birth_date": "1911-02-06",
+   "death_date": "2004-06-05",
+   "place": "Birthplace of Ronald Reagan",
+   "lat": 41.631111,
+   "lon": -89.785833,
+   "source": "https://www.wikidata.org/wiki/Q9960"
+  }
+ },
+ "relations": [
+  {
+   "a": "Q10479",
+   "b": "Q36812",
+   "b_name": "William, Prince of Wales",
+   "kind": "spouse",
+   "start": "2011-04-29",
+   "end": null
+  },
+  {
+   "a": "Q10520",
+   "b": "Q19810",
+   "b_name": "Victoria Beckham",
+   "kind": "spouse",
+   "start": "1999-07-04",
+   "end": null
+  },
+  {
+   "a": "Q11459",
+   "b": "Q4721504",
+   "b_name": "Alexis Ohanian",
+   "kind": "spouse",
+   "start": "2017-01-01",
+   "end": null
+  },
+  {
+   "a": "Q11459",
+   "b": "Q4721504",
+   "b_name": "Alexis Ohanian",
+   "kind": "partner",
+   "start": "2016-12-29",
+   "end": "2017-01-01"
+  },
+  {
+   "a": "Q11975",
+   "b": "Q43432",
+   "b_name": "Q43432",
+   "kind": "partner",
+   "start": "1999-06-01",
+   "end": "2002-03-01"
+  },
+  {
+   "a": "Q12003",
+   "b": "Q179150",
+   "b_name": "Sonny Bono",
+   "kind": "spouse",
+   "start": "1969-01-01",
+   "end": "1975-01-01"
+  },
+  {
+   "a": "Q1203",
+   "b": "Q117012",
+   "b_name": "Yoko Ono",
+   "kind": "spouse",
+   "start": "1969-03-20",
+   "end": "1980-12-08"
+  },
+  {
+   "a": "Q13133",
+   "b": "Q76",
+   "b_name": "Barack Obama",
+   "kind": "spouse",
+   "start": "1992-10-03",
+   "end": null
+  },
+  {
+   "a": "Q13909",
+   "b": "Q35332",
+   "b_name": "Brad Pitt",
+   "kind": "partner",
+   "start": "2005-01-01",
+   "end": "2014-08-23"
+  },
+  {
+   "a": "Q13909",
+   "b": "Q35332",
+   "b_name": "Brad Pitt",
+   "kind": "spouse",
+   "start": "2014-08-23",
+   "end": "2019-04-12"
+  },
+  {
+   "a": "Q15935",
+   "b": "Q186304",
+   "b_name": "Kim Kardashian",
+   "kind": "spouse",
+   "start": "2014-05-24",
+   "end": "2022-03-02"
+  },
+  {
+   "a": "Q15935",
+   "b": "Q186304",
+   "b_name": "Kim Kardashian",
+   "kind": "partner",
+   "start": "2012-04-01",
+   "end": "2013-10-01"
+  },
+  {
+   "a": "Q16390",
+   "b": "Q104000",
+   "b_name": "Lauren Bacall",
+   "kind": "spouse",
+   "start": "1945-01-01",
+   "end": "1957-01-14"
+  },
+  {
+   "a": "Q19810",
+   "b": "Q10520",
+   "b_name": "David Beckham",
+   "kind": "spouse",
+   "start": "1999-07-04",
+   "end": null
+  },
+  {
+   "a": "Q2263",
+   "b": "Q234144",
+   "b_name": "Rita Wilson",
+   "kind": "spouse",
+   "start": "1988-04-30",
+   "end": null
+  },
+  {
+   "a": "Q26876",
+   "b": "Q7836292",
+   "b_name": "Travis Kelce",
+   "kind": "partner",
+   "start": "2023-08-01",
+   "end": "2026-07-03"
+  },
+  {
+   "a": "Q32522",
+   "b": "Q35332",
+   "b_name": "Brad Pitt",
+   "kind": "partner",
+   "start": "1998-01-01",
+   "end": "2000-07-29"
+  },
+  {
+   "a": "Q32522",
+   "b": "Q35332",
+   "b_name": "Brad Pitt",
+   "kind": "spouse",
+   "start": "2000-07-29",
+   "end": "2005-10-02"
+  },
+  {
+   "a": "Q3925",
+   "b": "Q185025",
+   "b_name": "Rainier III, Prince of Monaco",
+   "kind": "spouse",
+   "start": "1956-04-18",
+   "end": "1982-09-14"
+  },
+  {
+   "a": "Q4616",
+   "b": "Q297142",
+   "b_name": "Joe DiMaggio",
+   "kind": "spouse",
+   "start": "1954-01-14",
+   "end": "1955-10-31"
+  },
+  {
+   "a": "Q5588",
+   "b": "Q171128",
+   "b_name": "Diego Rivera",
+   "kind": "spouse",
+   "start": "1929-08-21",
+   "end": "1939-11-06"
+  },
+  {
+   "a": "Q5588",
+   "b": "Q171128",
+   "b_name": "Diego Rivera",
+   "kind": "spouse",
+   "start": "1940-01-01",
+   "end": "1954-01-01"
+  },
+  {
+   "a": "Q7186",
+   "b": "Q37463",
+   "b_name": "Q37463",
+   "kind": "spouse",
+   "start": "1895-07-26",
+   "end": "1906-04-19"
+  },
+  {
+   "a": "Q7197",
+   "b": "Q9364",
+   "b_name": "Jean-Paul Sartre",
+   "kind": "partner",
+   "start": null,
+   "end": null
+  },
+  {
+   "a": "Q76",
+   "b": "Q13133",
+   "b_name": "Michelle Obama",
+   "kind": "spouse",
+   "start": "1992-10-03",
+   "end": null
+  },
+  {
+   "a": "Q8007",
+   "b": "Q83396",
+   "b_name": "Eleanor Roosevelt",
+   "kind": "spouse",
+   "start": "1903-03-17",
+   "end": "1945-04-12"
+  },
+  {
+   "a": "Q8446",
+   "b": "Q222071",
+   "b_name": "Courtney Love",
+   "kind": "spouse",
+   "start": "1992-02-24",
+   "end": "1994-04-05"
+  },
+  {
+   "a": "Q9364",
+   "b": "Q7197",
+   "b_name": "Simone de Beauvoir",
+   "kind": "partner",
+   "start": null,
+   "end": null
+  },
+  {
+   "a": "Q9439",
+   "b": "Q152245",
+   "b_name": "Prince Albert of Saxe-Coburg and Gotha",
+   "kind": "spouse",
+   "start": "1840-02-10",
+   "end": "1861-12-14"
+  },
+  {
+   "a": "Q9682",
+   "b": "Q80976",
+   "b_name": "Prince Philip, Duke of Edinburgh",
+   "kind": "spouse",
+   "start": "1947-11-20",
+   "end": "2021-04-09"
+  },
+  {
+   "a": "Q9685",
+   "b": "Q43274",
+   "b_name": "Charles III",
+   "kind": "spouse",
+   "start": "1981-07-29",
+   "end": "1996-08-28"
+  },
+  {
+   "a": "Q9696",
+   "b": "Q165421",
+   "b_name": "Jacqueline Kennedy Onassis",
+   "kind": "spouse",
+   "start": "1953-09-12",
+   "end": "1963-11-22"
+  },
+  {
+   "a": "Q9960",
+   "b": "Q193426",
+   "b_name": "Nancy Reagan",
+   "kind": "spouse",
+   "start": "1952-03-04",
+   "end": "2004-06-05"
+  },
+  {
+   "a": "Q26876",
+   "b": "Q7836292",
+   "b_name": "Travis Kelce",
+   "kind": "spouse",
+   "start": "2026-07-03",
+   "end": null
+  },
+  {
+   "a": "Q36844",
+   "b": "Q129910",
+   "b_name": "Q129910",
+   "kind": "partner",
+   "start": "2020-01-01",
+   "end": null
+  },
+  {
+   "a": "Q170606",
+   "b": "Q193815",
+   "b_name": "Ryan Gosling",
+   "kind": "spouse",
+   "start": "2022-01-01",
+   "end": null
+  },
+  {
+   "a": "Q104000",
+   "b": "Q16390",
+   "b_name": "Humphrey Bogart",
+   "kind": "spouse",
+   "start": "1945-05-21",
+   "end": "1957-01-14"
+  },
+  {
+   "a": "Q117012",
+   "b": "Q1203",
+   "b_name": "John Lennon",
+   "kind": "spouse",
+   "start": "1969-03-20",
+   "end": "1980-12-08"
+  },
+  {
+   "a": "Q119798",
+   "b": "Q47664",
+   "b_name": "Catherine Zeta-Jones",
+   "kind": "spouse",
+   "start": "2000-11-18",
+   "end": null
+  },
+  {
+   "a": "Q151973",
+   "b": "Q34851",
+   "b_name": "Elizabeth Taylor",
+   "kind": "spouse",
+   "start": "1964-03-15",
+   "end": "1974-06-26"
+  },
+  {
+   "a": "Q151973",
+   "b": "Q34851",
+   "b_name": "Elizabeth Taylor",
+   "kind": "spouse",
+   "start": "1975-10-10",
+   "end": "1976-07-29"
+  },
+  {
+   "a": "Q152239",
+   "b": "Q43274",
+   "b_name": "Charles III",
+   "kind": "spouse",
+   "start": "2005-04-09",
+   "end": null
+  },
+  {
+   "a": "Q152245",
+   "b": "Q9439",
+   "b_name": "Victoria",
+   "kind": "spouse",
+   "start": "1840-02-10",
+   "end": "1861-12-14"
+  },
+  {
+   "a": "Q152316",
+   "b": "Q3304418",
+   "b_name": "Meghan, Duchess of Sussex",
+   "kind": "spouse",
+   "start": "2018-05-19",
+   "end": null
+  },
+  {
+   "a": "Q162959",
+   "b": "Q192682",
+   "b_name": "Ryan Reynolds",
+   "kind": "spouse",
+   "start": "2012-09-09",
+   "end": null
+  },
+  {
+   "a": "Q165421",
+   "b": "Q9696",
+   "b_name": "John F. Kennedy",
+   "kind": "spouse",
+   "start": "1953-09-12",
+   "end": "1963-11-22"
+  },
+  {
+   "a": "Q171128",
+   "b": "Q5588",
+   "b_name": "Frida Kahlo",
+   "kind": "spouse",
+   "start": "1940-12-08",
+   "end": "1954-07-13"
+  },
+  {
+   "a": "Q171128",
+   "b": "Q5588",
+   "b_name": "Frida Kahlo",
+   "kind": "spouse",
+   "start": "1929-08-21",
+   "end": "1939-11-06"
+  },
+  {
+   "a": "Q179150",
+   "b": "Q12003",
+   "b_name": "Cher",
+   "kind": "spouse",
+   "start": "1964-10-27",
+   "end": "1975-06-26"
+  },
+  {
+   "a": "Q185025",
+   "b": "Q3925",
+   "b_name": "Grace Kelly",
+   "kind": "spouse",
+   "start": "1956-04-18",
+   "end": "1982-09-14"
+  },
+  {
+   "a": "Q186304",
+   "b": "Q15935",
+   "b_name": "Q15935",
+   "kind": "spouse",
+   "start": "2014-05-24",
+   "end": "2022-03-02"
+  },
+  {
+   "a": "Q34086",
+   "b": "Q20983703",
+   "b_name": "Hailey Bieber",
+   "kind": "spouse",
+   "start": "2018-09-13",
+   "end": null
+  },
+  {
+   "a": "Q34851",
+   "b": "Q151973",
+   "b_name": "Richard Burton",
+   "kind": "spouse",
+   "start": "1975-10-10",
+   "end": "1976-07-29"
+  },
+  {
+   "a": "Q34851",
+   "b": "Q151973",
+   "b_name": "Richard Burton",
+   "kind": "spouse",
+   "start": "1964-03-15",
+   "end": "1974-06-26"
+  },
+  {
+   "a": "Q35332",
+   "b": "Q13909",
+   "b_name": "Q13909",
+   "kind": "partner",
+   "start": "2005-01-01",
+   "end": "2014-08-23"
+  },
+  {
+   "a": "Q35332",
+   "b": "Q32522",
+   "b_name": "Jennifer Aniston",
+   "kind": "partner",
+   "start": "1998-01-01",
+   "end": "2000-07-29"
+  },
+  {
+   "a": "Q35332",
+   "b": "Q13909",
+   "b_name": "Q13909",
+   "kind": "spouse",
+   "start": "2014-08-23",
+   "end": "2019-04-12"
+  },
+  {
+   "a": "Q35332",
+   "b": "Q32522",
+   "b_name": "Jennifer Aniston",
+   "kind": "spouse",
+   "start": "2000-07-29",
+   "end": "2005-10-02"
+  },
+  {
+   "a": "Q36153",
+   "b": "Q62766",
+   "b_name": "JAŸ‐Z",
+   "kind": "spouse",
+   "start": "2008-04-04",
+   "end": null
+  },
+  {
+   "a": "Q36812",
+   "b": "Q10479",
+   "b_name": "Catherine, Princess of Wales",
+   "kind": "spouse",
+   "start": "2011-04-29",
+   "end": null
+  },
+  {
+   "a": "Q37079",
+   "b": "Q37459",
+   "b_name": "Nicole Kidman",
+   "kind": "spouse",
+   "start": "1990-12-24",
+   "end": "2001-01-01"
+  },
+  {
+   "a": "Q37459",
+   "b": "Q37079",
+   "b_name": "Tom Cruise",
+   "kind": "spouse",
+   "start": "1990-12-24",
+   "end": "2001-01-01"
+  },
+  {
+   "a": "Q37463",
+   "b": "Q7186",
+   "b_name": "Q7186",
+   "kind": "spouse",
+   "start": "1895-07-26",
+   "end": "1906-04-19"
+  },
+  {
+   "a": "Q40096",
+   "b": "Q228787",
+   "b_name": "Jada Pinkett Smith",
+   "kind": "spouse",
+   "start": "1997-01-01",
+   "end": null
+  },
+  {
+   "a": "Q40715",
+   "b": "Q483118",
+   "b_name": "Ben Affleck",
+   "kind": "spouse",
+   "start": "2022-07-16",
+   "end": "2024-01-01"
+  },
+  {
+   "a": "Q40715",
+   "b": "Q483118",
+   "b_name": "Ben Affleck",
+   "kind": "partner",
+   "start": "2002-01-01",
+   "end": "2004-01-01"
+  },
+  {
+   "a": "Q40715",
+   "b": "Q483118",
+   "b_name": "Ben Affleck",
+   "kind": "partner",
+   "start": "2021-01-01",
+   "end": "2004-01-01"
+  },
+  {
+   "a": "Q40715",
+   "b": "Q483118",
+   "b_name": "Ben Affleck",
+   "kind": "partner",
+   "start": "2002-01-01",
+   "end": "2022-01-01"
+  },
+  {
+   "a": "Q40715",
+   "b": "Q483118",
+   "b_name": "Ben Affleck",
+   "kind": "partner",
+   "start": "2021-01-01",
+   "end": "2022-01-01"
+  },
+  {
+   "a": "Q41871",
+   "b": "Q1111542",
+   "b_name": "Joanne Woodward",
+   "kind": "spouse",
+   "start": "1958-01-29",
+   "end": "2008-09-26"
+  },
+  {
+   "a": "Q42775",
+   "b": "Q233253",
+   "b_name": "June Carter Cash",
+   "kind": "spouse",
+   "start": "1968-03-01",
+   "end": "2003-01-01"
+  },
+  {
+   "a": "Q43274",
+   "b": "Q9685",
+   "b_name": "Diana, Princess of Wales",
+   "kind": "spouse",
+   "start": "1981-07-29",
+   "end": "1996-08-28"
+  },
+  {
+   "a": "Q43274",
+   "b": "Q152239",
+   "b_name": "Queen Camilla",
+   "kind": "spouse",
+   "start": "2005-04-09",
+   "end": null
+  },
+  {
+   "a": "Q43432",
+   "b": "Q11975",
+   "b_name": "Britney Spears",
+   "kind": "partner",
+   "start": "1999-01-01",
+   "end": "2002-03-01"
+  },
+  {
+   "a": "Q47664",
+   "b": "Q119798",
+   "b_name": "Michael Douglas",
+   "kind": "spouse",
+   "start": "2000-11-18",
+   "end": null
+  },
+  {
+   "a": "Q62766",
+   "b": "Q36153",
+   "b_name": "Q36153",
+   "kind": "spouse",
+   "start": "2008-04-04",
+   "end": null
+  },
+  {
+   "a": "Q80976",
+   "b": "Q9682",
+   "b_name": "Elizabeth II",
+   "kind": "spouse",
+   "start": "1947-11-20",
+   "end": "2021-04-09"
+  },
+  {
+   "a": "Q83396",
+   "b": "Q8007",
+   "b_name": "Franklin Delano Roosevelt",
+   "kind": "spouse",
+   "start": "1905-03-17",
+   "end": "1945-04-12"
+  },
+  {
+   "a": "Q93354",
+   "b": "Q187324",
+   "b_name": "Zelda Fitzgerald",
+   "kind": "spouse",
+   "start": "1920-04-03",
+   "end": "1940-12-21"
+  },
+  {
+   "a": "Q83287",
+   "b": "Q818048",
+   "b_name": "Q818048",
+   "kind": "partner",
+   "start": "2023-01-01",
+   "end": "2025-01-01"
+  },
+  {
+   "a": "Q119798",
+   "b": "Q47664",
+   "b_name": "Catherine Zeta-Jones",
+   "kind": "spouse",
+   "start": null,
+   "end": null
+  },
+  {
+   "a": "Q83287",
+   "b": "Q818048",
+   "b_name": "Q818048",
+   "kind": "spouse",
+   "start": "2025-09-27",
+   "end": null
+  },
+  {
+   "a": "Q108092350",
+   "b": "Q1138235",
+   "b_name": "Kris Jenner",
+   "kind": "partner",
+   "start": "2014-01-01",
+   "end": null
+  },
+  {
+   "a": "Q18097962",
+   "b": "Q186304",
+   "b_name": "Kim Kardashian",
+   "kind": "partner",
+   "start": "2021-11-01",
+   "end": "2022-08-01"
+  },
+  {
+   "a": "Q19877770",
+   "b": "Q1770624",
+   "b_name": "Kylie Jenner",
+   "kind": "partner",
+   "start": "2023-01-01",
+   "end": null
+  },
+  {
+   "a": "Q20983703",
+   "b": "Q34086",
+   "b_name": "Q34086",
+   "kind": "spouse",
+   "start": "2018-01-01",
+   "end": null
+  },
+  {
+   "a": "Q21914464",
+   "b": "Q18162913",
+   "b_name": "Callum Turner",
+   "kind": "spouse",
+   "start": "2026-05-31",
+   "end": null
+  },
+  {
+   "a": "Q18162913",
+   "b": "Q21914464",
+   "b_name": "Q21914464",
+   "kind": "spouse",
+   "start": "2026-05-31",
+   "end": null
+  },
+  {
+   "a": "Q1111542",
+   "b": "Q41871",
+   "b_name": "Paul Newman",
+   "kind": "spouse",
+   "start": "1958-01-29",
+   "end": "2008-09-26"
+  },
+  {
+   "a": "Q1138235",
+   "b": "Q1816737",
+   "b_name": "Robert Kardashian",
+   "kind": "spouse",
+   "start": "1978-07-08",
+   "end": "1991-03-01"
+  },
+  {
+   "a": "Q1138235",
+   "b": "Q108092350",
+   "b_name": "Corey Gamble",
+   "kind": "partner",
+   "start": "2014-01-01",
+   "end": null
+  },
+  {
+   "a": "Q13605596",
+   "b": "Q1770624",
+   "b_name": "Kylie Jenner",
+   "kind": "partner",
+   "start": "2017-01-01",
+   "end": "2023-01-07"
+  },
+  {
+   "a": "Q1375057",
+   "b": "Q44333953",
+   "b_name": "Q44333953",
+   "kind": "partner",
+   "start": "2022-01-01",
+   "end": "2023-01-01"
+  },
+  {
+   "a": "Q17410449",
+   "b": "Q236347",
+   "b_name": "Nicola Peltz",
+   "kind": "partner",
+   "start": "2019-10-01",
+   "end": "2022-04-09"
+  },
+  {
+   "a": "Q17410449",
+   "b": "Q236347",
+   "b_name": "Nicola Peltz",
+   "kind": "spouse",
+   "start": "2022-04-09",
+   "end": null
+  },
+  {
+   "a": "Q1770624",
+   "b": "Q19877770",
+   "b_name": "Timothée Chalamet",
+   "kind": "partner",
+   "start": "2023-01-01",
+   "end": null
+  },
+  {
+   "a": "Q1770624",
+   "b": "Q13605596",
+   "b_name": "Travis Scott",
+   "kind": "partner",
+   "start": "2021-09-07",
+   "end": "2023-01-07"
+  },
+  {
+   "a": "Q1816737",
+   "b": "Q1138235",
+   "b_name": "Kris Jenner",
+   "kind": "spouse",
+   "start": "1978-01-01",
+   "end": "1991-01-01"
+  },
+  {
+   "a": "Q186304",
+   "b": "Q18097962",
+   "b_name": "Pete Davidson",
+   "kind": "partner",
+   "start": "2021-01-01",
+   "end": "2022-01-01"
+  },
+  {
+   "a": "Q187324",
+   "b": "Q93354",
+   "b_name": "F. Scott Fitzgerald",
+   "kind": "spouse",
+   "start": "1920-04-03",
+   "end": "1940-12-21"
+  },
+  {
+   "a": "Q192682",
+   "b": "Q162959",
+   "b_name": "Blake Lively",
+   "kind": "spouse",
+   "start": "2012-09-09",
+   "end": null
+  },
+  {
+   "a": "Q193426",
+   "b": "Q9960",
+   "b_name": "Ronald Reagan",
+   "kind": "spouse",
+   "start": "1952-03-04",
+   "end": "2004-06-05"
+  },
+  {
+   "a": "Q193517",
+   "b": "Q313039",
+   "b_name": "John Krasinski",
+   "kind": "spouse",
+   "start": "2010-07-10",
+   "end": null
+  },
+  {
+   "a": "Q193815",
+   "b": "Q170606",
+   "b_name": "Eva Mendes",
+   "kind": "partner",
+   "start": "2011-01-01",
+   "end": null
+  },
+  {
+   "a": "Q209417",
+   "b": "Q590227",
+   "b_name": "Edward VIII",
+   "kind": "spouse",
+   "start": "1937-06-03",
+   "end": "1972-05-28"
+  },
+  {
+   "a": "Q209662",
+   "b": "Q472535",
+   "b_name": "Desi Arnaz",
+   "kind": "spouse",
+   "start": "1940-11-30",
+   "end": "1960-05-04"
+  },
+  {
+   "a": "Q220140",
+   "b": "Q575689",
+   "b_name": "Kourtney Kardashian",
+   "kind": "spouse",
+   "start": "2022-05-15",
+   "end": null
+  },
+  {
+   "a": "Q220140",
+   "b": "Q575689",
+   "b_name": "Kourtney Kardashian",
+   "kind": "partner",
+   "start": "2020-01-01",
+   "end": "2022-04-04"
+  },
+  {
+   "a": "Q222071",
+   "b": "Q8446",
+   "b_name": "Kurt Cobain",
+   "kind": "spouse",
+   "start": "1992-01-01",
+   "end": "1994-04-05"
+  },
+  {
+   "a": "Q228787",
+   "b": "Q40096",
+   "b_name": "Will Smith",
+   "kind": "spouse",
+   "start": "1998-10-17",
+   "end": "2016-01-01"
+  },
+  {
+   "a": "Q231270",
+   "b": "Q973212",
+   "b_name": "Tristan Thompson",
+   "kind": "partner",
+   "start": "2022-01-01",
+   "end": "2022-01-01"
+  },
+  {
+   "a": "Q231270",
+   "b": "Q973212",
+   "b_name": "Tristan Thompson",
+   "kind": "partner",
+   "start": "2016-01-01",
+   "end": "2019-01-01"
+  },
+  {
+   "a": "Q231270",
+   "b": "Q973212",
+   "b_name": "Tristan Thompson",
+   "kind": "partner",
+   "start": "2020-01-01",
+   "end": "2021-01-01"
+  },
+  {
+   "a": "Q233253",
+   "b": "Q42775",
+   "b_name": "Johnny Cash",
+   "kind": "spouse",
+   "start": "1968-03-01",
+   "end": "2003-01-01"
+  },
+  {
+   "a": "Q234144",
+   "b": "Q2263",
+   "b_name": "Tom Hanks",
+   "kind": "spouse",
+   "start": "1988-04-30",
+   "end": null
+  },
+  {
+   "a": "Q236347",
+   "b": "Q17410449",
+   "b_name": "Brooklyn Beckham",
+   "kind": "partner",
+   "start": "2019-10-01",
+   "end": "2022-04-09"
+  },
+  {
+   "a": "Q236347",
+   "b": "Q17410449",
+   "b_name": "Brooklyn Beckham",
+   "kind": "spouse",
+   "start": "2022-04-09",
+   "end": null
+  },
+  {
+   "a": "Q297142",
+   "b": "Q4616",
+   "b_name": "Marilyn Monroe",
+   "kind": "spouse",
+   "start": "1954-01-14",
+   "end": "1955-10-31"
+  },
+  {
+   "a": "Q312556",
+   "b": "Q4407963",
+   "b_name": "Lauren Sánchez",
+   "kind": "partner",
+   "start": "2020-01-01",
+   "end": "2025-01-01"
+  },
+  {
+   "a": "Q312556",
+   "b": "Q4407963",
+   "b_name": "Lauren Sánchez",
+   "kind": "spouse",
+   "start": "2025-06-27",
+   "end": null
+  },
+  {
+   "a": "Q313039",
+   "b": "Q193517",
+   "b_name": "Emily Blunt",
+   "kind": "spouse",
+   "start": "2010-07-10",
+   "end": null
+  },
+  {
+   "a": "Q3304418",
+   "b": "Q152316",
+   "b_name": "Prince Harry, Duke of Sussex",
+   "kind": "spouse",
+   "start": "2018-05-19",
+   "end": null
+  },
+  {
+   "a": "Q4407963",
+   "b": "Q312556",
+   "b_name": "Jeff Bezos",
+   "kind": "spouse",
+   "start": "2025-06-27",
+   "end": null
+  },
+  {
+   "a": "Q4721504",
+   "b": "Q11459",
+   "b_name": "Serena Williams",
+   "kind": "spouse",
+   "start": "2017-01-01",
+   "end": null
+  },
+  {
+   "a": "Q472535",
+   "b": "Q209662",
+   "b_name": "Lucille Ball",
+   "kind": "spouse",
+   "start": "1940-01-01",
+   "end": "1960-01-01"
+  },
+  {
+   "a": "Q483118",
+   "b": "Q40715",
+   "b_name": "Jennifer Lopez",
+   "kind": "spouse",
+   "start": "2022-07-16",
+   "end": "2024-01-01"
+  },
+  {
+   "a": "Q575689",
+   "b": "Q220140",
+   "b_name": "Travis Barker",
+   "kind": "spouse",
+   "start": "2022-05-15",
+   "end": null
+  },
+  {
+   "a": "Q575689",
+   "b": "Q220140",
+   "b_name": "Travis Barker",
+   "kind": "partner",
+   "start": "2020-01-01",
+   "end": "2022-04-04"
+  },
+  {
+   "a": "Q590227",
+   "b": "Q209417",
+   "b_name": "Wallis Simpson",
+   "kind": "spouse",
+   "start": "1937-06-03",
+   "end": "1972-05-28"
+  },
+  {
+   "a": "Q7836292",
+   "b": "Q26876",
+   "b_name": "Taylor Swift",
+   "kind": "partner",
+   "start": "2023-01-01",
+   "end": "2026-07-03"
+  },
+  {
+   "a": "Q973212",
+   "b": "Q231270",
+   "b_name": "Khloé Kardashian",
+   "kind": "partner",
+   "start": "2016-01-01",
+   "end": "2022-01-01"
+  },
+  {
+   "a": "Q818048",
+   "b": "Q83287",
+   "b_name": "Selena Gomez",
+   "kind": "partner",
+   "start": "2023-01-01",
+   "end": "2025-01-01"
+  },
+  {
+   "a": "Q818048",
+   "b": "Q83287",
+   "b_name": "Selena Gomez",
+   "kind": "spouse",
+   "start": "2025-09-27",
+   "end": null
+  },
+  {
+   "a": "Q2023710",
+   "b": "Q189489",
+   "b_name": "Zendaya",
+   "kind": "spouse",
+   "start": null,
+   "end": null
+  },
+  {
+   "a": "Q189489",
+   "b": "Q2023710",
+   "b_name": "Tom Holland",
+   "kind": "spouse",
+   "start": null,
+   "end": null
+  },
+  {
+   "a": "Q7836292",
+   "b": "Q26876",
+   "b_name": "Taylor Swift",
+   "kind": "spouse",
+   "start": "2026-07-03",
+   "end": null
+  },
+  {
+   "a": "Q193815",
+   "b": "Q170606",
+   "b_name": "Eva Mendes",
+   "kind": "spouse",
+   "start": "2022-01-01",
+   "end": null
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "My Sign",
+  "short_name": "My Sign",
+  "description": "A daily companion whose lens is astrology.",
+  "id": "/",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090B17",
+  "theme_color": "#090B17",
+  "orientation": "portrait",
+  "icons": [
+    {"src": "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "/static/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

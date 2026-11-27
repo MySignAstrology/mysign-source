@@ -1,0 +1,164 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accuracy — My Sign</title>
+<meta name="description" content="Every planet in your My Sign chart agrees with NASA JPL to within one arcsecond. Here is the evidence, rerun live.">
+<meta property="og:title" content="Your sky, to the arcsecond — My Sign">
+<meta property="og:description" content="Every planet within one arcsecond of NASA JPL. The AI never invents a placement, and we count every reply to prove it.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#090B17">
+<link rel="stylesheet" href="/fonts/fonts.css?v=2">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{color-scheme:dark;--ground:#090B17;--surface:#10142A;--surface-2:#161B36;--ink:#EFE6D2;--ink-2:#C9C2AE;--ink-3:#A39D88;--rule:rgba(200,162,74,.28);--accent:#F0745C;--brass:#D2AE58;--good:#8FD0AC}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.doc{max-width:44rem;margin:0 auto;padding:3rem 1.25rem 6rem}
+.mono{font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0 0 1rem}
+h1{font-family:Newsreader,Charter,Georgia,serif;font-weight:400;font-size:clamp(2.4rem,7vw,3.6rem);line-height:1.02;letter-spacing:-.015em;margin:0 0 1rem}
+h1 em{color:var(--accent)}
+.lede{font-size:1.125rem;color:var(--ink-2);max-width:36rem;margin:0 0 2.5rem;text-wrap:pretty}
+h2{font-family:Newsreader,Charter,Georgia,serif;font-weight:400;font-size:1.75rem;margin:3rem 0 .5rem;letter-spacing:-.01em}
+p,li{max-width:38rem;text-wrap:pretty}
+a{color:var(--accent)}
+.back{display:inline-block;margin-bottom:2rem;font-size:.875rem}
+.proofs{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:.75rem;margin:0 0 1rem}
+.proof{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:1.1rem 1.1rem 1rem}
+.proof .n{font-family:Newsreader,Charter,Georgia,serif;font-size:2.6rem;line-height:1;color:var(--ink);margin:0 0 .35rem;font-variant-numeric:tabular-nums}
+.proof .n small{font-size:1.1rem;color:var(--ink-3)}
+.proof .k{font-size:.875rem;color:var(--ink-2);margin:0}
+.live{display:inline-flex;align-items:center;gap:.4rem;font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums;font-size:.75rem;color:var(--ink-3);margin:0 0 2rem}
+.live i{width:.45rem;height:.45rem;border-radius:50%;background:var(--good);display:inline-block}
+.live.stale i{background:var(--ink-3)}
+table{width:100%;border-collapse:collapse;font-size:.9375rem;margin:1rem 0 .5rem}
+th,td{text-align:left;padding:.55rem .25rem;border-bottom:1px solid var(--rule);vertical-align:middle}
+th{font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+td.v{font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums;font-variant-numeric:tabular-nums;white-space:nowrap;width:5.5rem}
+td.bar{width:45%}
+.track{position:relative;height:.375rem;background:var(--surface-2);border-radius:1px}
+.track b{position:absolute;left:0;top:0;bottom:0;background:var(--brass);border-radius:1px}
+.track::after{content:"";position:absolute;right:0;top:-.25rem;bottom:-.25rem;border-right:1px dashed var(--accent)}
+.caption{font-size:.8125rem;color:var(--ink-3);margin:0 0 1rem}
+.note{background:var(--surface);border:1px solid var(--rule);border-left:2px solid var(--accent);border-radius:2px;padding:.85rem 1rem;font-size:.9375rem;margin:1rem 0}
+ul.checks{list-style:none;padding:0}
+ul.checks li{padding:.55rem 0 .55rem 1.6rem;border-bottom:1px solid var(--rule);position:relative}
+ul.checks li::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:600}
+dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.25rem;margin:1rem 0}
+dt{font-family:Geist,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums;font-size:.75rem;color:var(--ink-3);padding-top:.15rem}
+dd{margin:0}
+.cta{display:inline-block;margin-top:2.5rem;background:var(--accent);color:var(--ground);text-decoration:none;padding:.8rem 1.4rem;border-radius:2px;font-weight:600}
+footer{border-top:1px solid var(--rule);margin-top:3.5rem;padding-top:1rem;font-size:.8125rem;color:var(--ink-3)}
+@media(max-width:30rem){td.bar{width:38%}.proof .n{font-size:2.2rem}}
+</style><script src="/static/inapp.js"></script></head><body><div class="doc">
+<a class="back" href="/">&larr; My Sign</a>
+<p class="eyebrow">Accuracy</p>
+<h1>Your sky, <em>to the arcsecond.</em></h1>
+<p class="lede">Most astrology apps never tell you where their planets come from. Ours come from NASA JPL's planetary ephemeris, the kind used to navigate spacecraft, and we check them against NASA directly. The results are below, recomputed by the server that reads your chart.</p>
+
+<div class="proofs">
+  <div class="proof"><p class="n" id="worst">0.77<small>″</small></p><p class="k">Our largest disagreement with NASA JPL, on any planet, on any date we test. The bar we set is one arcsecond.</p></div>
+  <div class="proof"><p class="n" id="comparisons">264</p><p class="k">Positions checked against NASA JPL Horizons: Sun to Pluto plus Chiron, <span id="years">1955–2035</span>.</p></div>
+  <div class="proof"><p class="n" id="grounded">—</p><p class="k" id="groundedK">Replies scored for made-up placements. The count starts with the first real conversation.</p></div>
+</div>
+<p class="live stale" id="liveTag"><i></i><span id="liveText">Figures as of 27 October 2026</span></p>
+
+<p>One arcsecond is 1/3600 of a degree, about the width of a dime seen from two miles away. A zodiac sign is 30 degrees wide, so our worst error is less than a hundred-thousandth of a sign.</p>
+
+<h2>Every planet, against NASA</h2>
+<p class="caption">The worst disagreement for each body, in arcseconds, across every date in the reference set. The dashed line is our one-arcsecond limit.</p>
+<table><thead><tr><th>Body</th><th>Worst</th><th class="bar">vs. our limit</th></tr></thead><tbody id="bodies">
+<tr><td>Sun</td><td class="v">0.10″</td><td class="bar"><div class="track"><b style="width:10%"></b></div></td></tr>
+<tr><td>Moon</td><td class="v">0.77″</td><td class="bar"><div class="track"><b style="width:77%"></b></div></td></tr>
+<tr><td>Mercury</td><td class="v">0.12″</td><td class="bar"><div class="track"><b style="width:12%"></b></div></td></tr>
+<tr><td>Venus</td><td class="v">0.11″</td><td class="bar"><div class="track"><b style="width:11%"></b></div></td></tr>
+<tr><td>Mars</td><td class="v">0.09″</td><td class="bar"><div class="track"><b style="width:9%"></b></div></td></tr>
+<tr><td>Jupiter</td><td class="v">0.11″</td><td class="bar"><div class="track"><b style="width:11%"></b></div></td></tr>
+<tr><td>Saturn</td><td class="v">0.10″</td><td class="bar"><div class="track"><b style="width:10%"></b></div></td></tr>
+<tr><td>Uranus</td><td class="v">0.22″</td><td class="bar"><div class="track"><b style="width:22%"></b></div></td></tr>
+<tr><td>Neptune</td><td class="v">0.08″</td><td class="bar"><div class="track"><b style="width:8%"></b></div></td></tr>
+<tr><td>Pluto</td><td class="v">0.12″</td><td class="bar"><div class="track"><b style="width:12%"></b></div></td></tr>
+<tr><td>Chiron</td><td class="v">0.10″</td><td class="bar"><div class="track"><b style="width:10%"></b></div></td></tr>
+</tbody></table>
+<p class="caption">Reference: NASA JPL Horizons, apparent geocentric ecliptic longitude. The Moon moves fastest, so it shows the largest error.</p>
+
+<h2>The AI never makes up your chart</h2>
+<p>A chatbot asked about your Venus will happily make up an answer. Ours can't. The sky is computed first, and the AI writes only from those computed facts.</p>
+<p>Then we check its work. <strong>Every reply is scored before it is counted.</strong> Each planet, sign and house it names has to appear in the computed chart, and so does each pairing: "Venus in Scorpio" only passes if your Venus is actually in Scorpio. A compatibility reading that fails is never shown; you get the itemized report instead.</p>
+<div class="note" id="liveNote">The running total is on this page and updates live. We publish failures too: a number that only ever said 100% wouldn't be worth reading.</div>
+
+<h2>What else we check</h2>
+<ul class="checks">
+  <li><strong>Equinoxes and solstices.</strong> The Sun crosses 0° Aries, Cancer and Capricorn at the minute NASA and timeanddate.com publish. That pins the whole zodiac.</li>
+  <li><strong>Eclipses, to the second.</strong> Your reading names the eclipse before you were born. We check our eclipse engine against NASA's <em>Five Millennium Canon of Eclipses</em>: <span id="eclN">16</span> solar and lunar eclipses from <span id="eclYears">1985–2009</span>, every one within <span id="eclMax">4.5</span> seconds of NASA's time of greatest eclipse. The 2026 total solar eclipse lines up too.</li>
+  <li><strong>Your rising sign, from first principles.</strong> At sunrise the Sun sits on the Ascendant, by definition. We confirm that in Chicago, London, Sydney and Reykjavik, which checks time zones, houses and angles together.</li>
+  <li><strong>The night the clocks change.</strong> When the clocks go back, 1:30 a.m. happens twice. That hour can change your rising sign. Most apps quietly pick one. We flag it, chart the most likely one, and tell you what changes if your birth record meant the other.</li>
+  <li><strong>Birthplaces.</strong> <span id="places">34,106</span> places, each with coordinates and its time zone's full history from the IANA time zone database, including past daylight-saving rules. We include the database's <em>backzone</em> history, which the standard build leaves out: without it, a 1960 birth in Reykjavik, Oslo, Amsterdam or much of Africa converts to the wrong hour. The database is authoritative from 1970. Before that it is its maintainers' best reconstruction, and local daylight-saving time in the US before 1967 varied town by town, so for an older birth the time on the certificate is worth a second look.</li>
+  <li><strong>Building or fading.</strong> Every transit (a planet in today's sky touching your chart) is marked as building or fading from the planet's real speed, including retrograde planets, which appear to move backwards onto a point.</li>
+  <li><strong>Pattern claims about your life.</strong> Before the app says "you feel this way around the full moon," the pattern has to pass a statistical test that guards against coincidence. It usually takes about three months of check-ins.</li>
+</ul>
+
+<h2>Which astrology this is</h2>
+<p>Astrologers disagree about some of this, so we state our choices:</p>
+<dl id="method">
+  <dt>Zodiac</dt><dd>Tropical: 0° Aries is the March equinox</dd>
+  <dt>Houses</dt><dd id="mHouses">Placidus, the modern Western default. Whole sign, equal and Koch are built in for astrologers who prefer them.</dd>
+  <dt>Rulerships</dt><dd id="mRulers">Traditional</dd>
+  <dt>Aspects</dt><dd>Conjunction, sextile, square, trine and opposition, with a 3° orb (how close counts as a hit) for transits</dd>
+  <dt>Points</dt><dd>Sun to Pluto, Chiron, the true North Node, Ascendant and Midheaven</dd>
+  <dt>No birth time</dt><dd>No rising sign and no houses: we leave them out rather than guess. If your Moon could be in either of two signs that day, we tell you.</dd>
+</dl>
+
+<h2>Where the old astrology comes from</h2>
+<p>Your reading includes a section called "What the old astrologers would say": day and night births, the planetary hours, temperament, the Lot of Fortune, the bright stars. Every item names its source, and every source is a public-domain text you can read for free:</p>
+<ul class="checks">
+  <li><strong>Ptolemy, <em>Tetrabiblos</em></strong> (2nd century), tr. J. M. Ashmand, 1822. <a href="https://archive.org/details/b29293066" rel="noopener">Read it</a></li>
+  <li><strong>William Lilly, <em>Christian Astrology</em></strong> (1647, first edition). <a href="https://archive.org/details/b30338724" rel="noopener">Read it</a></li>
+  <li><strong>Cassius Dio, <em>Roman History</em></strong> 37.18–19, on how the planetary days and hours work. <a href="https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/37*.html" rel="noopener">Read it</a></li>
+  <li><strong>Vivian Robson, <em>The Fixed Stars and Constellations in Astrology</em></strong> (1923). <a href="https://archive.org/details/in.ernet.dli.2015.128091" rel="noopener">Read it</a></li>
+</ul>
+<p>The wording in the app is ours; the doctrines are theirs. Where the old authors disagree, we follow the older text and keep a note. If we couldn't trace something to a primary source, it isn't in the app.</p>
+
+<div class="note">This page is about the <em>astronomy</em>: where things were when you were born, and where they are today. It isn't a claim that astrology predicts events. My Sign reads the sky as a way of thinking about your life, not as a forecast.</div>
+
+<a class="cta" href="/">Read your own chart</a>
+
+<footer>
+  Planetary positions: <a href="https://www.astro.com/swisseph/" rel="noopener">Swiss Ephemeris</a> by Astrodienst AG, from NASA JPL's DE431.
+  Reference positions: <a href="https://ssd.jpl.nasa.gov/horizons/" rel="noopener">NASA JPL Horizons</a>.
+  Birthplaces: <a href="https://www.geonames.org" rel="noopener">GeoNames</a>, CC BY 4.0.
+  Raw figures: <a href="/api/accuracy" class="mono">/api/accuracy</a>.
+  &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="/refunds">Refunds</a> &middot; <a href="/cookies">Cookies</a>
+</footer>
+</div>
+<script>
+(function(){
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  fetch('/api/accuracy', {credentials:'omit'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+    var n = d.nasa, lim = n.claim_arcsec;
+    document.getElementById('worst').innerHTML = n.max_arcsec.toFixed(2) + '<small>″</small>';
+    document.getElementById('comparisons').textContent = fmt(n.comparisons);
+    document.getElementById('years').textContent = n.years[0] + '–' + n.years[1];
+    document.getElementById('bodies').innerHTML = Object.keys(n.per_body).map(function(k){
+      var v = n.per_body[k], w = Math.min(100, v / lim * 100);
+      return '<tr><td>' + esc(k) + '</td><td class="v">' + v.toFixed(2) + '″</td><td class="bar"><div class="track"><b style="width:' + w.toFixed(1) + '%"></b></div></td></tr>';
+    }).join('');
+    if (d.places) document.getElementById('places').textContent = fmt(d.places);
+    if (d.eclipses) {
+      document.getElementById('eclN').textContent = d.eclipses.eclipses;
+      document.getElementById('eclYears').textContent = d.eclipses.years[0] + '–' + d.eclipses.years[1];
+      document.getElementById('eclMax').textContent = d.eclipses.max_seconds;
+    }
+    var L = d.live;
+    if (L.replies_checked > 0) {
+      document.getElementById('grounded').innerHTML = (L.grounded_pct === 100 ? '100' : L.grounded_pct.toFixed(1)) + '<small>%</small>';
+      document.getElementById('groundedK').textContent = 'Of ' + fmt(L.replies_checked) + ' AI replies' + (L.since ? ' since ' + L.since : '') + ' named only placements, rising signs and aspects that are really in the chart, and tied each one to the right person.' +
+        (L.replies_withheld ? ' ' + fmt(L.replies_withheld) + ' that failed were withheld before anyone saw them.' : '');
+    }
+    var m = d.methodology;
+    if (m) { document.getElementById('mRulers').textContent = m.rulerships.charAt(0).toUpperCase() + m.rulerships.slice(1); }
+    var tag = document.getElementById('liveTag');
+    tag.classList.remove('stale');
+    document.getElementById('liveText').textContent = (n.passes ? 'Rerun live' : 'Rerun live — below standard, investigating') + ' · ' + new Date(d.generated).toLocaleString();
+  }).catch(function(){ /* the static figures above stand */ });
+})();
+</script>
+</body></html>

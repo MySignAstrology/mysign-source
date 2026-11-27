@@ -1,0 +1,703 @@
+<title>My Sign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --ground:      #F1F0F4;
+    --surface:     #FCFBFD;
+    --surface-2:   #E7E6EE;
+    --ink:         #16182A;
+    --ink-2:       #4B4D62;
+    --ink-3:       #797B8C;
+    --rule:        #D5D3DE;
+    --rule-strong: #B6B3C4;
+    --accent:      #8E6118;
+    --accent-wash: #EFE4CE;
+    --good:        #2C6650;
+    --good-wash:   #DDEAE3;
+    --warn:        #855D14;
+    --warn-wash:   #F1E6CB;
+    --crit:        #96342A;
+    --crit-wash:   #F4DFDB;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0E1020;
+      --surface:     #171A2B;
+      --surface-2:   #202438;
+      --ink:         #E9E8F1;
+      --ink-2:       #ADAEC1;
+      --ink-3:       #7E8096;
+      --rule:        #2B2F47;
+      --rule-strong: #3D4260;
+      --accent:      #D9A94E;
+      --accent-wash: #34290F;
+      --good:        #74C39A;
+      --good-wash:   #16301F;
+      --warn:        #D9B355;
+      --warn-wash:   #332711;
+      --crit:        #E4897A;
+      --crit-wash:   #351C18;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0E1020;
+    --surface:     #171A2B;
+    --surface-2:   #202438;
+    --ink:         #E9E8F1;
+    --ink-2:       #ADAEC1;
+    --ink-3:       #7E8096;
+    --rule:        #2B2F47;
+    --rule-strong: #3D4260;
+    --accent:      #D9A94E;
+    --accent-wash: #34290F;
+    --good:        #74C39A;
+    --good-wash:   #16301F;
+    --warn:        #D9B355;
+    --warn-wash:   #332711;
+    --crit:        #E4897A;
+    --crit-wash:   #351C18;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { max-width: 63rem; margin: 0 auto; padding: 0 1.5rem 7rem; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 4.5rem 0 2.5rem; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.6875rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--accent);
+    margin: 0 0 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Bodoni Moda', 'Didot', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.75rem, 7vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin: 0 0 1.25rem;
+  }
+
+  .deck {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 34rem;
+    margin: 0 0 2.75rem;
+    text-wrap: pretty;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1.25rem 1.5rem;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule-strong);
+    padding: 1.125rem 0;
+  }
+  .meta div { display: flex; flex-direction: column; gap: 0.3rem; }
+  .meta dt, .meta .k {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.625rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.13em;
+    color: var(--ink-3);
+  }
+  .meta .v { font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+
+  /* ---------- row grid ---------- */
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem 2.75rem;
+    padding: 3.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 900px) {
+    .row { grid-template-columns: 8.5rem minmax(0, 1fr); }
+  }
+
+  .rail {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.6875rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.13em;
+    color: var(--ink-3);
+    padding-top: 0.55rem;
+  }
+
+  .col { min-width: 0; }
+
+  h2 {
+    font-family: 'Bodoni Moda', 'Didot', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1.125rem;
+  }
+
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    letter-spacing: -0.005em;
+    margin: 2rem 0 0.5rem;
+    text-wrap: balance;
+  }
+  h3:first-child { margin-top: 0; }
+
+  .col p, .col ul, .col ol { max-width: 38rem; }
+  .col p { margin: 0 0 1rem; text-wrap: pretty; }
+  .col > :last-child { margin-bottom: 0; }
+
+  ul, ol { padding-left: 1.15rem; margin: 0 0 1rem; }
+  li { margin-bottom: 0.5rem; }
+  li::marker { color: var(--ink-3); }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; color: var(--ink-2); }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  a:hover { border-bottom-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 1px; }
+
+  code, .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.8125em;
+  }
+  code { background: var(--surface-2); padding: 0.12em 0.35em; border-radius: 2px; }
+
+  /* ---------- steps ---------- */
+
+  .steps { list-style: none; padding: 0; margin: 0; max-width: 40rem; }
+  .step {
+    display: grid;
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    gap: 0 1.25rem;
+    padding: 0 0 1.75rem;
+    margin: 0;
+    border-left: 1px solid var(--rule-strong);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .step::before {
+    content: "";
+    position: absolute;
+    left: -3.5px; top: 0.62rem;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .step:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .step-time {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.6875rem; font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    padding-top: 0.28rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .step-body { min-width: 0; }
+  .step-body h3 { margin: 0 0 0.35rem; }
+  .step-body p { margin: 0 0 0.6rem; }
+  @media (max-width: 620px) {
+    .step { grid-template-columns: minmax(0, 1fr); }
+    .step-time { padding-top: 0; margin-bottom: 0.3rem; }
+  }
+
+  /* ---------- quote / sample ---------- */
+
+  .sample {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: 2px;
+    padding: 0.95rem 1.15rem;
+    margin: 0 0 1rem;
+    max-width: 38rem;
+  }
+  .sample p { margin: 0; font-size: 0.9375rem; line-height: 1.55; }
+  .sample .who {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.625rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.13em;
+    color: var(--ink-3);
+    display: block; margin-bottom: 0.45rem;
+  }
+  .sample.bad { border-left-color: var(--crit); }
+  .sample.good { border-left-color: var(--good); }
+
+  .pair { display: grid; gap: 0.75rem; max-width: 38rem; }
+  @media (min-width: 760px) { .pair { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 760px) { .pair .sample { max-width: none; margin: 0; } }
+
+  /* ---------- table ---------- */
+
+  .scroll { overflow-x: auto; margin: 0 0 1rem; border: 1px solid var(--rule); border-radius: 2px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 0.8125rem; }
+  th, td { text-align: left; padding: 0.62rem 0.85rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.625rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.11em;
+    color: var(--ink-3);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody th { font-weight: 600; white-space: nowrap; }
+  td.num { font-variant-numeric: tabular-nums; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.75rem; }
+  tr.us th, tr.us td { background: var(--accent-wash); }
+  tr.us th { color: var(--ink); }
+
+  /* ---------- chips ---------- */
+
+  .chip {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.625rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.28em 0.5em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .chip.g { background: var(--good-wash); color: var(--good); }
+  .chip.w { background: var(--warn-wash); color: var(--warn); }
+  .chip.c { background: var(--crit-wash); color: var(--crit); }
+  .chip.n { background: var(--surface-2); color: var(--ink-2); }
+
+  /* ---------- cards ---------- */
+
+  .cards { display: grid; gap: 0.75rem; }
+  @media (min-width: 760px) { .cards.two { grid-template-columns: 1fr 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.1rem 1.25rem;
+  }
+  .card h3 { margin: 0 0 0.45rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .card p, .card ul { margin: 0; font-size: 0.9375rem; max-width: none; }
+  .card ul { padding-left: 1.05rem; }
+  .card li { margin-bottom: 0.35rem; font-size: 0.9375rem; }
+  .card li:last-child { margin-bottom: 0; }
+
+  /* ---------- spec block ---------- */
+
+  .spec {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1rem 1.15rem;
+    margin: 0 0 1rem;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    line-height: 1.75;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--ink-2);
+  }
+  .spec b { color: var(--ink); font-weight: 500; }
+  .spec i { color: var(--accent); font-style: normal; }
+
+  /* ---------- split lists ---------- */
+
+  .split { display: grid; gap: 1.5rem; max-width: 38rem; }
+  @media (min-width: 700px) { .split { grid-template-columns: 1fr 1fr; } }
+  .split h3 { margin-top: 0; }
+
+  .note {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    max-width: 38rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.7rem;
+    margin-top: 1.25rem;
+  }
+
+  footer.end {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    max-width: 38rem;
+  }
+</style>
+
+<div class="doc">
+
+  <header class="masthead">
+    <p class="eyebrow">Product specification &middot; v0.2 &middot; engine verified</p>
+    <h1>My&nbsp;Sign</h1>
+    <p class="deck">An astrology-native companion that checks in every morning, remembers what she told it, and helps her decide. Built around the daily loop, and around the one thing every competitor skipped.</p>
+    <div class="meta">
+      <div><span class="k">Core loop</span><span class="v">Push &rarr; check-in &rarr; chat &rarr; write</span></div>
+      <div><span class="k">Audience</span><span class="v">Women 18&ndash;34, US</span></div>
+      <div><span class="k">Platform</span><span class="v">iOS first</span></div>
+      <div><span class="k">Price</span><span class="v">$9.99&thinsp;/&thinsp;mo</span></div>
+      <div><span class="k">Engine</span><span class="v">Built &amp; calibrated</span></div>
+    </div>
+  </header>
+
+  <section class="row">
+    <div class="rail">Thesis</div>
+    <div class="col">
+      <h2>Not an astrology chatbot</h2>
+      <p>Nine companies already shipped astrology-with-a-chatbox. Co&ndash;Star's <em>Void</em>, Nebula, AstroGPT, Nummi, half a dozen Vedic apps. They are all stateless: every conversation starts from zero, and the answer you get is one a free ChatGPT session would also give you.</p>
+      <p>My Sign is a <strong>daily emotional companion whose lens happens to be astrology</strong>. The astrology is the personality and the trust mechanism — it's why she opens it instead of a journal app, and why the advice feels like it comes from somewhere rather than from a model. The retention comes from somewhere else entirely: <strong>it remembers her life.</strong></p>
+      <p>Everything in this spec serves one loop. Push in the morning &rarr; a fifteen-second check-in &rarr; a real conversation &rarr; a silent write to memory that makes tomorrow's push better. Ship that loop and nothing else. Every feature that doesn't feed it is v2.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Positioning</div>
+    <div class="col">
+      <h2>Where the field actually stands</h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>Product</th><th>Conversational</th><th>Remembers you</th><th>Proactive</th><th>Real chart math</th><th>Price</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Co&ndash;Star &mdash; <span class="mono">The Void</span></th><td>Yes</td><td>No</td><td>Push, but generic</td><td>Yes</td><td class="num">$8/mo</td></tr>
+            <tr><th>The Pattern</th><td>Limited</td><td>Partial</td><td>Yes</td><td>Proprietary, non-classical</td><td class="num">Sub</td></tr>
+            <tr><th>CHANI</th><td>No &mdash; human-written by policy</td><td>No</td><td>Yes</td><td>Yes</td><td class="num">$11.99/mo</td></tr>
+            <tr><th>Nebula</th><td>Yes, plus live psychics</td><td>No</td><td>Yes</td><td>Yes</td><td class="num">Credits</td></tr>
+            <tr><th>AstroMood</th><td>Yes</td><td>Journal only</td><td>Yes</td><td>Moon transits only</td><td class="num">Freemium</td></tr>
+            <tr class="us"><th>My Sign</th><td>Yes</td><td><strong>Core mechanic</strong></td><td><strong>Personalized</strong></td><td>Yes, full ephemeris</td><td class="num">$9.99/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Prices as of August 2026 research; The Pattern and Nebula tiers not independently verified. Re-check before any competitive claim goes into marketing.</p>
+
+      <h3>The five gaps, in priority order</h3>
+      <ol>
+        <li><strong>Memory.</strong> No competitor's chat knows you asked about the same person three weeks ago. This is an engineering advantage, not a content one — which means it's defensible against a company whose moat is astrologers.</li>
+        <li><strong>It asks first.</strong> Mood has to be an input to the conversation, not a separate journal tab. AstroMood has all the pieces and keeps them in different rooms.</li>
+        <li><strong>Unprompted.</strong> The 7:30am notification is the product. The chat is what happens when the notification lands right.</li>
+        <li><strong>Decision-shaped answers.</strong> Not horoscope prose — a position, with a reason, and a time. Nebula does this with human psychics at high marginal cost. Nobody does it well with a model.</li>
+        <li><strong>Voice.</strong> Co&ndash;Star originally won on tone: blunt, funny, screenshot-able. Its AI features lost that. A chat that sounds like a friend rather than a fortune cookie is a real moat with this demographic.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Core loop</div>
+    <div class="col">
+      <h2>One day in the product</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-time">07:30</span>
+          <div class="step-body">
+            <h3>The read</h3>
+            <p>A push derived from today's actual transits to her natal chart. Not a horoscope. One sentence, specific, and it names the mechanism so the claim is falsifiable rather than vague.</p>
+            <div class="sample"><span class="who">Push</span><p>Moon's in your 12th until Thursday. You're going to want to cancel everything — that's the transit, not you.</p></div>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-time">07:31</span>
+          <div class="step-body">
+            <h3>The check-in</h3>
+            <p>Opening the push lands directly on a fifteen-second check-in — one mood dial, one optional line of "what's going on." Never a blank journal page. This is the input that makes the rest of the day's conversation about <em>her</em> instead of about her sign.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-time">All day</span>
+          <div class="step-body">
+            <h3>The conversation</h3>
+            <p>Chat opens pre-loaded with today's transit facts, her check-in, and the retrieved slice of her history. She asks the real question.</p>
+            <div class="sample"><span class="who">Her</span><p>ok so should i answer him or not</p></div>
+            <div class="sample good"><span class="who">The app</span><p>Mercury goes direct Thursday. Both times you've texted him mid-retrograde you told me the next day you hated how it came out. Wait two days. If you still want to say it, you'll say it better.</p></div>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-time">Nightly</span>
+          <div class="step-body">
+            <h3>The write</h3>
+            <p>A background pass extracts durable facts from the day and appends them to memory — who she mentioned, what she decided, how she felt, and the sky state at the time. She never sees this run. It is the entire reason tomorrow is better than today.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Memory</div>
+    <div class="col">
+      <h2>The part that's actually hard</h2>
+      <p>Three stores, each with a different write cadence. Keep them separate — collapsing them into one vector blob is the mistake that makes these products feel like goldfish.</p>
+      <div class="spec"><b>PROFILE</b>          slow-changing, user-visible, editable
+  birth data      <i>date, time, place, time-confidence</i>
+  natal chart     <i>computed once, cached forever</i>
+  people          <i>name, relation, their chart if known</i>
+  themes          <i>recurring concerns she has named herself</i>
+
+<b>EPISODES</b>         append-only, one per check-in or session
+  date, mood, free text
+  questions asked, decision reached
+  <i>sky_state</i>      <i>transits + aspects at time of writing</i>
+
+<b>PATTERNS</b>         derived weekly, never asserted without data
+  claim           <i>"mood dips 2-3 days before the new moon"</i>
+  support         <i>"4 of the last 5 cycles"</i>
+  confidence      <i>low | medium | high</i></div>
+
+      <h3>Retrieval, per turn</h3>
+      <p>Profile in full, the last seven days of episodes verbatim, a semantic match against older episodes on the current question, and any pattern whose trigger fires on today's sky. That's the whole context recipe.</p>
+
+      <h3>The rule that makes it feel like magic instead of a horoscope</h3>
+      <p>Never assert a trait from her sign. Only assert a pattern from her data.</p>
+      <div class="pair">
+        <div class="sample bad"><span class="who">Never</span><p>Cancers are naturally nostalgic — it's your water sign nature.</p></div>
+        <div class="sample good"><span class="who">Always</span><p>You've told me this three times now, and all three were within a day of the Moon hitting your natal Moon. It's a monthly thing for you.</p></div>
+      </div>
+      <p class="note">The second one is unfalsifiable-sounding but literally true and checkable, which is exactly why it lands. It's also something no competitor can say, because none of them kept the data.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Engine</div>
+    <div class="col">
+      <h2>Real sky, not vibes</h2>
+      <p>The astrology-literate user is your best subscriber and she will detect a GPT wrapper within two messages. The fix is architectural: <strong>the model never computes or invents a planetary position.</strong> Every claim it makes about the sky traces to a row in a table you computed.</p>
+      <ul>
+        <li><strong>Ephemeris.</strong> Swiss Ephemeris via <code>pyswisseph</code>. Real positions, not an API you can't audit.</li>
+        <li><strong>Natal chart</strong> from date, time, and place. Time matters enormously — if she doesn't know her birth time, degrade to a solar chart and <em>say so in the UI</em>. Silently faking houses is how you lose the users who care.</li>
+        <li><strong>Daily computation:</strong> transiting positions, aspects to natal points (conjunction, opposition, square, trine, sextile, orb &le; 3&deg;), moon phase, moon sign, house ingresses, retrograde status. Cached per user per day.</li>
+        <li><strong>Interpretation corpus.</strong> A curated body of interpretations keyed by placement / aspect / house, retrieved and handed to the model as source material. This is where you hire an actual astrologer, and it's the second moat after memory.</li>
+      </ul>
+      <p>The model's job is synthesis and voice. The facts and the interpretations are both retrieved. That constraint is what makes the output specific rather than plausible.</p>
+    </div>
+  </section>
+
+
+  <section class="row">
+    <div class="rail">Calibration</div>
+    <div class="col">
+      <h2>Two numbers that came out of building it</h2>
+      <p>The salience scorer and the pattern verifier are written and running against real ephemeris data. Both produced results that change the spec.</p>
+
+      <h3>A third of days are quiet, and that had to be measured</h3>
+      <p>Salience is scored in code — aspect tightness, whether the natal point is personal, calendar events inside the window — because a model asked whether today is interesting always says yes. The non-obvious part is <strong>novelty decay</strong>: Pluto sits within one degree of a natal point for six weeks, so scoring on orb alone marks forty straight days as significant. Slow transits now halve in score each time the app actually surfaces them, and re-sharpen on their exact date.</p>
+      <p>Thresholds are calibrated to the 85th and 40th percentiles of a full year of one chart's daily scores rather than picked by hand. The resulting mix:</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Band</th><th>Days/yr</th><th>Share</th><th>Behavior</th></tr></thead>
+          <tbody>
+            <tr><th>High</th><td class="num">49</td><td class="num">13%</td><td>Lead with the tightest item. Up to four sentences.</td></tr>
+            <tr><th>Medium</th><td class="num">169</td><td class="num">46%</td><td>Something worth saying, kept light. Three sentences.</td></tr>
+            <tr><th>Low</th><td class="num">147</td><td class="num">40%</td><td>Say nothing is happening. Two sentences, and "quiet day" is a complete answer.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Recalibrate per user from a rolling 90-day window once they have one. A chart dense with tight natal aspects is busy every day, and a global constant would either shout constantly or never speak.</p>
+
+      <h3>You cannot honestly show her a pattern for three months</h3>
+      <p>The pattern job has the model <em>propose</em> testable predicates and Python <em>verify</em> them — three gates: support, lift over her own base rate, and a Bonferroni-corrected binomial test. That last gate is the one that is easy to skip and the one that matters. Test five candidate patterns against thirty noisy days and one will look convincing by chance.</p>
+      <p>Run against synthetic histories with one true rule planted and three decoys, the detection threshold is unambiguous:</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>History</th><th>True pattern</th><th>Decoys kept</th></tr></thead>
+          <tbody>
+            <tr><td class="num">30 days</td><td>Missed</td><td class="num">0 of 3</td></tr>
+            <tr><td class="num">60 days</td><td>Missed</td><td class="num">0 of 3</td></tr>
+            <tr><td class="num">90 days</td><td><strong>Found</strong> &mdash; 8 of 8, lift 2.31</td><td class="num">0 of 3</td></tr>
+            <tr><td class="num">240 days</td><td><strong>Found</strong> &mdash; 22 of 23, lift 2.39</td><td class="num">0 of 3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Before the correction was in, a decoy survived at thirty days — "you feel worse around the full moon," 3 of 4, lift 1.88. Plausible, quotable, and false. That is precisely the claim that would have shipped.</p>
+      <p><strong>Product consequence:</strong> the memory moment at week two is <em>episode recall</em> — quoting her own words back with a date. That works immediately. <em>Pattern</em> claims are a month-three feature and should not appear in onboarding copy, screenshots, or the App Store listing as though they are available on day one.</p>
+
+      <h3>Retrieval by recency alone loses the best line</h3>
+      <p>The strongest output in the voice test cited episodes from 24 and 11 days back — both outside any sensible recency window. A seven-day verbatim window silently drops exactly the callbacks that make the product feel like itself. Retrieval pulls on named people and topics across the full history, and needs embeddings before launch.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Voice</div>
+    <div class="col">
+      <h2>Write the persona before the code</h2>
+      <p>This is the highest-leverage artifact in the whole project and it costs nothing to test. Specific, warm, a little blunt. Names the mechanism. Takes a position. Never hedges into uselessness.</p>
+      <div class="pair">
+        <div class="sample bad"><span class="who">Wrong</span><p>Only you can know what's right for you! Trust your intuition and the universe will guide you. &#10024;</p></div>
+        <div class="sample good"><span class="who">Right</span><p>Venus is retrograde in your 7th until the 14th. This is the worst two weeks of the year for you to make a call about him. Sit on it.</p></div>
+      </div>
+      <h3>Hard constraints on the persona</h3>
+      <ul>
+        <li>No therapy-speak. No "I hear you," no "that sounds really hard."</li>
+        <li>No cosmic platitudes. "The universe has a plan" is a banned phrase.</li>
+        <li>Take a position when asked for one. "It depends" is a failure state.</li>
+        <li>Emoji sparingly or not at all — Co&ndash;Star's original voice used none and it read as more serious, not less fun.</li>
+        <li>Short. Two to four sentences is the target; long paragraphs read as a horoscope.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Safety</div>
+    <div class="col">
+      <h2>The thing that gets you pulled from the App Store</h2>
+      <p>You are building an emotionally intimate persona for a young, female-skewing audience, and telling it to give decisive advice. Guardrails are a day-one requirement, not a v2 item. Classify every inbound message <em>before</em> the astrology layer runs.</p>
+      <div class="cards">
+        <div class="card">
+          <h3><span class="chip g">Green</span> Everyday</h3>
+          <p>Relationships, work, mood, friends, plans. Answer normally, in full voice, with a position.</p>
+        </div>
+        <div class="card">
+          <h3><span class="chip w">Amber</span> High-stakes and irreversible</h3>
+          <p>Leaving a partner, quitting a job, moving, money, cutting off family. Still engage — but the model must not deliver a verdict. It reflects, names the transit, and states plainly that the decision is hers. No astrological determinism on anything she can't undo.</p>
+        </div>
+        <div class="card">
+          <h3><span class="chip c">Red</span> Crisis and clinical</h3>
+          <p>Self-harm, abuse, disordered eating, medication, medical symptoms. Drop the persona entirely. No transit framing, ever. Surface real crisis resources, offer to keep talking plainly, and log for human review.</p>
+        </div>
+      </div>
+      <h3>Standing rules</h3>
+      <ul>
+        <li>No medical, legal, or financial advice, in any voice, under any framing.</li>
+        <li>No death, illness, or pregnancy predictions.</li>
+        <li>No "your chart says you'll never" — closed statements about her future are out of bounds.</li>
+        <li>Age-rate honestly (17+), disclose in onboarding that this is for reflection and not prediction, and keep engagement mechanics off the lonely-user pattern.</li>
+        <li>Every amber and red event logged and sampled weekly by a human. Budget for this.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">v1 scope</div>
+    <div class="col">
+      <h2>What ships, what waits</h2>
+      <div class="split">
+        <div>
+          <h3>In</h3>
+          <ul>
+            <li>Onboarding &rarr; birth data &rarr; natal chart</li>
+            <li>Daily push, per-user local time</li>
+            <li>Fifteen-second mood check-in</li>
+            <li>Chat with full memory retrieval</li>
+            <li>Add one person &rarr; synastry</li>
+            <li>Subscription and paywall</li>
+            <li>Safety classifier and crisis path</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Out</h3>
+          <ul>
+            <li>Android (iOS first, deliberately)</li>
+            <li>Multi-person social graph</li>
+            <li>Human astrologer marketplace</li>
+            <li>Tarot, numerology, human design</li>
+            <li>Voice mode</li>
+            <li>Widgets and Live Activities</li>
+            <li>Shareable cards &mdash; <em>v1.1, and the first thing after launch</em></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Shareable screenshot cards are cheap to build and are how Co&ndash;Star actually grew. They're out of v1 only because they're a growth lever, not a retention one — and v1 exists to prove retention.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Stack</div>
+    <div class="col">
+      <h2>Concrete recommendations</h2>
+      <div class="cards two">
+        <div class="card">
+          <h3>Client</h3>
+          <p>Expo / React Native. Faster to v1, and you don't need native until widgets and Live Activities — which are v1.1+ anyway.</p>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <p>Python on FastAPI, because <code>pyswisseph</code> is Python. On AWS this is Lambda plus DynamoDB — chart computation is a textbook Lambda workload, and you already run this stack.</p>
+        </div>
+        <div class="card">
+          <h3>Model</h3>
+          <p>Claude Sonnet 5 for chat volume, Opus 5 for the nightly extraction and weekly pattern job where quality matters more than cost. Long system prompt, heavy retrieved context.</p>
+        </div>
+        <div class="card">
+          <h3>Memory store</h3>
+          <p>DynamoDB for profile and episodes, a small vector index for semantic recall over older episodes. Don't over-engineer this before you have a thousand users.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Business</div>
+    <div class="col">
+      <h2>Pricing and the numbers to hit</h2>
+      <p><strong>$9.99/mo or $59.99/yr</strong> — under CHANI, above Co&ndash;Star's Pro-Star, which is the right place for a product that does more than either.</p>
+      <p><strong>Paywall the conversation, not the ritual.</strong> Free tier keeps the morning push, the check-in, and three chat messages a day. The ritual is what builds the habit; the habit is what makes the paywall convert. Gating the push would be the single most expensive mistake available here.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Metric</th><th>Target</th><th>Why this number</th></tr></thead>
+          <tbody>
+            <tr><th>D1 retention</th><td class="num">40%</td><td>Requires the first push to land the next morning &mdash; tests the whole thesis</td></tr>
+            <tr><th>D7</th><td class="num">25%</td><td>The point at which memory starts being visible to her</td></tr>
+            <tr><th>D30</th><td class="num">15%</td><td>Category median is well below this; beating it is the proof point</td></tr>
+            <tr><th>Free &rarr; paid</th><td class="num">4&ndash;6%</td><td>Standard for consumer subscription at this price</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Channel is organic TikTok and Instagram — that audience is the market, not a segment of it, and roughly 60% of US astrology app users are women 18&ndash;34. This is also why screenshot-ability is a growth requirement rather than a nicety.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="rail">Validate</div>
+    <div class="col">
+      <h2>Three tests before you write app code</h2>
+      <p>All three are runnable in under two weeks and none of them need a build. If any fails, the spec above is wrong and cheap to change.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-time">Test 1</span>
+          <div class="step-body">
+            <h3>Does the voice work? &mdash; <span class="chip g">Passed</span></h3>
+            <p>Eight hand-run conversations against a real computed chart and the v0.1 system prompt. Seven passed. The one failure was the quiet-day case, and it is now fixed in code rather than in prose. Still outstanding: show the transcript to five people in the target demo &mdash; the test proves the voice is <em>specific</em>, not that it is <em>likeable</em>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-time">Test 2</span>
+          <div class="step-body">
+            <h3>Is memory magic or is it creepy?</h3>
+            <p>Ten people, fourteen days, over SMS or Telegram with a human in the loop. Watch for the week-two moment where it references something from week one. Does she light up or recoil? This is the single biggest unknown in the product.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-time">Test 3</span>
+          <div class="step-body">
+            <h3>Will she switch?</h3>
+            <p>Twenty people who already pay for an astrology app. Show them the concept. Would they pay $10/mo for this <em>instead</em>? Switching cost in this category is near zero, which cuts both ways.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="end">
+    Draft v0.1, August 2026. Competitive figures from public sources and app-store listings; verify before external use. Open decisions: product name, whether birth-time-unknown users are a supported segment or a hard gate, and whether the interpretation corpus is licensed or written in-house.
+  </footer>
+
+</div>

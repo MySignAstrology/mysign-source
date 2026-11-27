@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<title>My Sign · Admin</title>
+<style>
+/* Same theme as ops.html and the social media tool. */
+:root{
+  color-scheme:light;
+  --ground:#FFFFFF; --surface:#F6F7F9; --ink:#16181D; --ink-2:#434A56; --ink-3:#626B7A;
+  --accent:#2456E6; --on-accent:#FFFFFF; --crit:#BE2318; --line:#E3E6EB; --field:#C9CED8;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:400px;margin:14vh auto 0;padding:0 16px 48px}
+.wrap.home{max-width:820px;margin-top:10vh}
+h1{font-size:26px;font-weight:600;line-height:1.2;letter-spacing:-.015em;margin:0 0 6px}
+p{margin:0 0 18px;color:var(--ink-3)}
+label{display:block;font-size:13px;color:var(--ink-2)}
+input{width:100%;margin-top:4px;border:1px solid var(--field);border-radius:8px;padding:10px 12px;background:var(--ground)}
+#code{font-size:20px;letter-spacing:.3em;font-variant-numeric:tabular-nums}
+button{cursor:pointer;border:1px solid var(--field);border-radius:8px;padding:10px 14px;background:var(--ground)}
+button.primary{width:100%;margin-top:14px;background:var(--accent);border-color:transparent;color:var(--on-accent);font-weight:500}
+button.link{border:0;padding:0;background:none;color:var(--accent)}
+button[disabled]{opacity:.45;cursor:default}
+.err{color:var(--crit);font-size:14px;min-height:1.5em;margin:10px 0 0}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0 28px}
+.areas a{display:block;border:1px solid var(--line);border-radius:12px;padding:20px;color:inherit;text-decoration:none}
+.areas a:hover{border-color:var(--accent)}
+.areas b{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+.areas span{color:var(--ink-3);font-size:14px}
+.who{display:flex;gap:10px 14px;flex-wrap:wrap;align-items:center;color:var(--ink-3);font-size:14px;overflow-wrap:anywhere}
+.who button{padding:5px 12px}
+</style>
+</head>
+<body>
+<main id="signin" class="wrap" hidden>
+  <h1>My Sign admin</h1>
+  <form id="emailForm">
+    <p>Sign in with the email your admin added.</p>
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="username" required maxlength="254">
+    <button class="primary" type="submit">Email me a code</button>
+  </form>
+  <form id="codeForm" hidden>
+    <p>If <b id="sentTo"></b> has access, a 6-digit code is on its way. It works for 15 minutes.</p>
+    <label for="code">Code</label>
+    <input id="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,8}" maxlength="8" required>
+    <button class="primary" type="submit">Sign in</button>
+    <p style="margin:16px 0 0"><button class="link" type="button" id="again">Use a different email or send a new code</button></p>
+  </form>
+  <p class="err" id="err" role="alert"></p>
+</main>
+
+<main id="home" class="wrap home" hidden>
+  <h1>My Sign admin</h1>
+  <div class="areas" id="areas"></div>
+  <div class="who"><span id="who"></span><button type="button" id="signout">Sign out</button></div>
+</main>
+
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const AREAS = [['social', '/social/', 'Social media', 'Write, approve and schedule posts'],
+               ['manage', '/manage', 'Manage app', 'People, safety, system health, access'],
+               ['analytics', '/analytics', 'Analytics', 'Sign-ups, funnel, engagement, retention']];
+// Only our own three areas, so a crafted link can't send a fresh sign-in anywhere else.
+const next = (new URLSearchParams(location.search).get('next') || '').match(/^\/(social|manage|analytics)(?=$|[/?#])[^\\]*$/);
+
+async function call(path, body){
+  const r = await fetch(path, {method: body ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store',
+    headers: {'x-ops-request': '1', ...(body ? {'content-type': 'application/json'} : {})},
+    body: body ? JSON.stringify(body) : undefined});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(typeof j.detail === 'string' ? j.detail : `Something went wrong (${r.status}).`), {status: r.status});
+  return j;
+}
+function step(code){
+  $('#signin').hidden = false; $('#home').hidden = true;
+  $('#emailForm').hidden = code; $('#codeForm').hidden = !code;
+  $('#err').textContent = '';
+  $(code ? '#code' : '#email').focus();
+}
+async function open_(){
+  let s;
+  try { s = await call('/api/ops/session'); }
+  catch (e) {
+    step(false);
+    if (e.status !== 401 && e.status !== 404) $('#err').textContent = 'Couldn’t reach the server. Try again.';
+    return false;
+  }
+  const mine = AREAS.filter(([k]) => s.areas[k]);
+  if (next && s.areas[next[1]]) { location.replace(next[0]); return true; }
+  if (mine.length === 1) { location.replace(mine[0][1]); return true; }
+  $('#areas').replaceChildren(...mine.map(([, href, name, what]) => {
+    const a = document.createElement('a'), b = document.createElement('b'), t = document.createElement('span');
+    a.href = href; b.textContent = name; t.textContent = what; a.append(b, t); return a;
+  }));
+  $('#who').textContent = `${s.email || ''} · ${s.role}`;
+  $('#signin').hidden = true; $('#home').hidden = false;
+  return true;
+}
+function submit(form, fn){
+  $(form).onsubmit = async e => {
+    e.preventDefault();
+    const b = $(form + ' button.primary');
+    b.disabled = true; $('#err').textContent = '';
+    try { await fn(); } catch (x) { $('#err').textContent = x.message; } finally { b.disabled = false; }
+  };
+}
+submit('#emailForm', async () => {
+  const email = $('#email').value.trim();
+  const r = await call('/api/auth/request-admin', {email});
+  $('#sentTo').textContent = email; $('#code').value = r.dev_code || '';
+  step(true);
+});
+submit('#codeForm', async () => {
+  await call('/api/auth/verify-admin', {email: $('#email').value.trim(), code: $('#code').value.replace(/\s/g, '')});
+  if (!await open_()) throw new Error('Your browser did not keep the sign-in. Allow cookies for this site.');
+});
+$('#again').onclick = () => step(false);
+$('#signout').onclick = async () => { await call('/api/ops/signout', {}).catch(() => {}); location.replace('/'); };
+open_();
+</script>
+</body>
+</html>

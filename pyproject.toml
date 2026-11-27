@@ -1,0 +1,57 @@
+# Ruff and basedpyright are what the engineering guidelines ask for when Python
+# is used. They were listed as open in docs/golden-path-gaps.md; this closes it.
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"   # the floor anyone runs this on; the Lambda runtime is 3.11
+exclude = ["deploy/build", "tests/e2e", "data", "data-dev"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W",    # pycodestyle
+  "F",         # pyflakes — the one that catches a dropped import
+  "I",         # import sorting
+  "B",         # bugbear
+  "UP",        # pyupgrade
+  "C4",        # comprehensions
+  "SIM",       # simplify
+  "RUF",
+]
+ignore = [
+  # --- required by the 3.9 floor -------------------------------------------
+  "UP017",     # dt.UTC is 3.11+
+  "UP006",     # list[str] as an annotation is 3.9-hostile at runtime (Pydantic)
+  "UP045",     # so is str | None
+  "UP007",
+  "UP035",
+  # --- deliberate style in this codebase ------------------------------------
+  # Test fixtures and one-off tools use compact setup lines. Reformatting them
+  # into one statement per line makes the fixtures longer than the assertions.
+  "E701", "E702",
+  "RUF005",    # tuple concatenation reads better than unpacking in the PNG writer
+  "B007",      # loop counters used only for their count
+  "E501",      # line length is handled by the formatter, not enforced in prose
+  "B008",      # FastAPI's Depends() in defaults is the framework's idiom
+  "SIM108",    # ternaries are not always clearer
+  "RUF001",    # em dashes and typographic quotes are deliberate in user-facing text
+  "RUF002",
+  "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]              # tests set env before importing the app, on purpose
+"tools/*" = ["E402"]
+"brand/*" = ["E402"]
+# dict(function=..., wants=...) reads better than brace literals for a table
+# of prose that a non-engineer may end up editing.
+"engine/corpus.py" = ["C408"]
+"engine/tradition.py" = ["C408"]   # same reason: a table of prose, keyword args read better        # the docstring precedes the imports by design
+"evals/*" = ["E402"]
+
+[tool.basedpyright]
+include = ["app", "engine", "tools", "evals"]
+exclude = ["deploy/build", "**/__pycache__", "data", "data-dev"]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+reportMissingImports = "warning"
+reportAttributeAccessIssue = "warning"

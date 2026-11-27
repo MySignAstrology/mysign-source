@@ -1,0 +1,128 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A newer push to the same branch replaces the run in progress, main included:
+# the newest commit contains the ones before it. The browser job is over an
+# hour, and running it for commits nobody is waiting on used up the month's
+# Actions budget by Nov 11, after which nothing ran at all.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: '3.11', cache: pip }
+      - run: pip install ruff
+      - run: ruff check .
+
+  test:
+    # Pinned: ubuntu-latest moved to 26.04, which has no Python 3.9 build.
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.11 is the Lambda runtime — pyswisseph publishes manylinux wheels up
+        # to cp311 and no further. 3.10 is the floor a contributor might have
+        # (3.9 is end-of-life, and anthropic>=2 needs 3.10)
+        # locally, and testing only the ceiling let a fixer rewrite
+        # dt.timezone.utc to the 3.11-only dt.UTC. CI was green; onboarding was
+        # broken for anyone on an older Python.
+        python-version: ['3.10', '3.11']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest tests/ -q
+      - name: engine check against real ephemeris
+        run: python tools/engine_check.py 90
+      - name: voice eval
+        # Demo mode here — no key in CI. Still worth gating: these are the
+        # replies anyone without a key sees, and the eval caught them making
+        # ungrounded claims.
+        run: python tools/eval_voice.py
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: build the lambda package
+        run: ./deploy/build.sh
+      # The build job proved the zip is right and said nothing about the stack.
+      # A duplicate construct id sat in mysign_stack.py through three merges and
+      # only surfaced at deploy time, because nothing ever synthesised it.
+      - name: cdk synth
+        run: |
+          pip install -r deploy/requirements.txt
+          cd deploy && python -c "
+          import json, os
+          os.environ['MYSIGN_ACCOUNT'] = '000000000000'
+          # Run without the cdk CLI, nothing loads cdk.json's context (the
+          # stages map included), so hand it over the way the CLI would.
+          os.environ['CDK_CONTEXT_JSON'] = json.dumps(json.load(open('cdk.json'))['context'])
+          import runpy; runpy.run_path('app.py', run_name='__main__')
+          "
+      # The test job has no aws-cdk-lib, so the stack and router tests skip
+      # there; this is where they run.
+      - name: infra tests
+        run: |
+          pip install -r requirements.txt pytest
+          python -m pytest tests/test_infra.py -q
+      - name: every binary must be linux
+        run: |
+          rm -rf /tmp/zc && mkdir /tmp/zc
+          unzip -q deploy/build/mysign.zip -d /tmp/zc
+          if find /tmp/zc \( -name '*.so' -o -name '*.dylib' \) -exec file {} \; | grep -i 'mach-o'; then
+            echo "macOS binary in the Lambda zip" >&2; exit 1
+          fi
+          find /tmp/zc -name '*.so' | wc -l | xargs echo "linux shared objects:"
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: pip install -r requirements.txt
+      - run: npm ci
+      # Chromium only. The mobile and tablet projects override the device
+      # descriptors' default WebKit, so a second browser buys nothing here.
+      - run: npx playwright install --with-deps chromium
+      # Every screen size on main. A pull request gets the phone (what almost
+      # all the specs run on) plus the specs with desktop-only tests.
+      - name: browser tests (all sizes)
+        if: github.event_name != 'pull_request'
+        run: npx playwright test
+      - name: browser tests (phone)
+        if: github.event_name == 'pull_request'
+        run: npx playwright test --project=mobile
+      - name: browser tests (desktop-only specs)
+        if: github.event_name == 'pull_request'
+        run: npx playwright test --project=desktop ops.spec.js /a11y.spec.js
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

@@ -1,0 +1,100 @@
+{
+  "identifier" : "5A3C1E70",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "5A3C1E71",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "My Sign Plus",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "My Sign Plus",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "59.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "5A3C1E72",
+          "introductoryOffer" : {
+            "internalID" : "5A3C1E73",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "A year of Plus: unlimited AI chat, people and reads",
+              "displayName" : "My Sign Plus Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "mysign_plus_annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Plus Annual",
+          "subscriptionGroupID" : "5A3C1E71",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "9.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "5A3C1E74",
+          "introductoryOffer" : {
+            "internalID" : "5A3C1E75",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Unlimited AI chat, people, circles and deep reads",
+              "displayName" : "My Sign Plus Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "mysign_plus_monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Plus Monthly",
+          "subscriptionGroupID" : "5A3C1E71",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
