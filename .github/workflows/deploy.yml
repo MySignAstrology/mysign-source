@@ -35,7 +35,7 @@ jobs:
       - run: pip install -r requirements.txt -r deploy/requirements.txt pytest
       - run: python -m pytest tests/ -q
       - run: ./deploy/build.sh
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-2
@@ -60,7 +60,7 @@ jobs:
       - run: pip install -r requirements.txt -r deploy/requirements.txt pytest
       - run: python -m pytest tests/ -q
       - run: ./deploy/build.sh
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-2
